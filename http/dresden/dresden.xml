@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?xml-stylesheet type="text/xsl" href="game.xsl"?>
+
+<game>
+	<location type="free" id="map">
+		<src type="image">Dresden 20 map v1r.JPG</src>
+	</location>
+
+
+	<basePiece id="card">
+		<class>card</class>
+		<src type="image" name="back">CBack.PNG</src>
+	</basePiece>
+
+	<location type="single" id="deck">
+		<piece id="c1" base="card">
+			<src type="image" name="front">CE1.PNG</src>
+		</piece>
+		<piece id="c2" base="card">
+            <src type="image" name="front">CE2.PNG</src>
+        </piece>
+        <piece id="c3" base="card">
+            <src type="image" name="front">CE2.PNG</src>
+        </piece>
+        <piece id="c4" base="card">
+            <src type="image" name="front">CE3.PNG</src>
+        </piece>
+	</location>
+
+	<location type="single" id="discard">
+	</location>
+
+  	<basePiece id="counter">
+        <class>counter</class>
+    </basePiece>
+
+    <basePiece id="russian" base="counter">
+        <class>allied russian</class>
+		<src type="image" name="back">RUMask.PNG</src>
+    </basePiece>
+
+    <basePiece id="prussian" base="counter">
+        <class>allied prussian</class>
+		<src type="image" name="back">PRMask.PNG</src>
+    </basePiece>
+
+    <basePiece id="french" base="counter">
+        <class>french</class>
+		<src type="image" name="back">FMask.PNG</src>
+    </basePiece>
+
+	<location type="fixed" id="countersheet">
+        <piece base="russian">
+            <src type="image" name="front">RUBI.PNG</src>
+        </piece>
+        <piece base="russian">
+            <src type="image" name="front">RUBII.PNG</src>
+        </piece>
+        <piece base="russian">
+            <src type="image" name="front">RUBIII.PNG</src>
+        </piece>
+
+	</location>
+</game>
+
+<!--
+
+-->
+

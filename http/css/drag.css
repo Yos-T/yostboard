@@ -1,0 +1,39 @@
+.relativity
+{
+	position:relative;
+}
+
+.stack-free
+{
+}
+.stack-free>.relativity>.stack
+{
+	position: absolute;
+	left: 0px;
+	top: 0px;
+}
+
+.stack-free >.relativity>.stack>div
+{
+	position: absolute;
+}
+
+.stack-list>[data-size="1"].stack.folded
+{
+	/*border: 10px solid black;*/
+	/*float: left;*/
+}
+
+.folded.stack>div
+{
+	position:absolute;
+	top: 5px;
+	left: 5px;
+}
+
+[draggable="true"]
+{
+	/*display: block;*/
+	/*text-decoration: none;*/
+	cursor: move;
+}

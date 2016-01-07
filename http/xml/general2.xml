@@ -1,0 +1,105 @@
+<game>
+  <title></title>
+
+<!-- future Pieces per side? Add a 'side' element to piece/stacking, like class... -->
+  <side></side>
+  <side></side>
+
+  <seqop>seqence of play
+    <phase>
+      <phase></phase>
+      <interruptable/>
+    <phase>
+  </seqop>
+
+  <classDescr name="">
+    default settings for pieces of this class; 
+
+    classes may be combined as space seperated lists. Class overrides defaults from classes before it in the list.
+
+
+	<!-- future (mostly serverside proble)
+			<hidable> (only usable for a group of pieces) 
+				<fullyHidable/>
+				<face></face>
+			</hidable>
+	-->
+  </classDescr>
+
+<group>//group of pieces with the same default class (for easy writing only, has no other meaning)
+<class></class>
+<piece></piece>
+</group> 
+
+	<location>Same as piece, but position/status is not important for game. Delta's are not logged for this type.
+	          It can be a container for other pieces. 
+			  Status may be logged per player/side, for custumization purposes.
+	</location>
+	<area>Same as piece. Static area within a piece or location. Position is static, but other status is logged.</area>
+
+    <piece id="">
+		<label>ingame/ mainboard/ countersheets/ offboard/ etc</label>
+		<class></class>
+		<piece id="">
+			<label></label>
+			<face>a piece without a source is a virtual piece; a container; a location, i.e. dicard pile;</face>
+			<stacking>
+				<order> (how pieces are orderd when stacked on this piece)
+					free  ->coordinates, pieces freely movable
+					list ->ordered list.
+					grouped -> Ordered list, but group pieces with same id (see limit)
+					static -> Same as grouped, but remember piece position. Pieces stacked with this element are always put back where they came from,
+                                                  it's not possible to change the position once it has been established. New pieces are added at the bottom of the stack (only for list/grouped?)
+				</order>
+				<action>
+					default (bubble event)
+					flatten (capture event)
+				</action>
+				<clear>	
+					<top> -> no stacking on top this piece. (usefull for markers, maybe) (may not contain sub-pieces) 
+						all 
+						<!-- future: make exceptions for specific classes/pieces/(side?)
+						<piece>id<piece>
+						<class></class>
+						-->
+					</top>
+					<bottom> -> this piece cannot be stacked on another, but others can stack on this. (i.e. this is a static piece; it cannot be moved; e.g. a map)
+						all
+						<!-- future
+						<piece>id<piece>
+                                                <class></class>
+                                                -->
+					</bottom>
+					<!-- pieces where both bottom and top are all have no stacking at all; can be used for player aids or of map stuff. (may not contain sub-pieces) -->
+				</clear>
+				<position> -> where to put the piece when the stack is folded. When the stack is unfolded the position is dependent on the position where it was dropped
+					top -> new pieces are placed on the top of the stack (default)
+					bottom -> new pieces are placed on the bottom of the stack
+				</position>
+<!-- future, maybe enforce stacking limit...
+				<limit> -> Max nr of pieces that may be stacked on top this one.
+				1;
+				-1 for unlimited; (default);
+				</limit> 
+-->
+<!-- remove surface tag for now, not needed. This is already determined by stacking order (one/many)
+				<surface> -> suface size; how many piece fit on this piece
+				1; for counters... (default);
+				-1 for unlimited; for map
+				</surface>
+-->
+			</stacking>
+
+			<class></class>
+			<limit></limit>
+<!-- future
+			<rotation>
+				allow
+				deny
+				stack(rotate all rotatable pieces in the stack)
+			</rotation>
+-->	
+		</piece>
+    </piece>
+
+</game>

@@ -1,0 +1,58 @@
+<game>
+  <title></title>
+
+  <side></side>
+
+  <seqop>seqence of play
+    <phase>
+      <phase></phase>
+      <interruptable/>
+    <phase>
+  </seqop>
+
+  <classDescr id="">
+    default settings for pieces of this class; 
+
+    classes may be combined as space seperated lists. Class overrides defaults from classes before it in the list.
+	(subset of pieces children)
+  </classDescr>
+
+  <location id="" type="<map | sheet | bin | group | area">
+    <title></title>
+
+    <src></src>
+
+    <contraints> 
+      <pieceOrder>coordinates | fixed | list | random</pieceOrder>
+      <allow> (pieces defined in this location are always allowed to be dragged/dropped here)
+        <location>id |all | none (allow pieces to and from this location)</location> 
+        <piece>id |all | none (allow these pieces on this location)</piece> 
+        <class>class (allow these pieces of this class on this location</class>
+      </allow>
+      <deny></deny>
+    </constraints>
+
+    <location>nested location</location>
+
+    <pieces>
+		<class>default class for all pieces in this group</class>
+
+		<piece id="">
+			<label></label>
+			<src></src>
+		
+			<class></class>
+			<limit></limit>
+			<hidable>
+				<fullyHidable/>
+				<src></src>
+			</hidable>
+			<stackable></stackable>
+			<rotatable></rotatable>
+		</piece>
+    </pieces>
+
+    <piece></piece>
+
+  </location>
+</game>

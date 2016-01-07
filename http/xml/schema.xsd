@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<xs:group name="piecegroup">
+  <xs:sequence>
+        <label></label>
+        <class></class>
+        <limit></limit>
+        <displays>
+          <src></src>
+        </displays>
+        <hidable>
+          <fullyHidable/>
+          <src></src>
+        </hidable>
+
+    <xs:element name="label" type="xs:string"/>
+    <xs:element name="class">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:whiteSpace value="collapse"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:element>
+    <xs:element name="limit" type="xs:integer"/>
+
+  </xs:sequence>
+</xs:group>
+
+<xs:element name="game">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element name="title" type="xs:string"/>
+      <xs:element name="side" type="xs:string" maxOccurs="32"/>
+<!-- 
+  <seqop>seqence of play
+    <phase>
+      <phase></phase>
+      <interruptable/>
+    <phase>
+  </seqop>
+-->
+
+  </xs:complexType>
+</xs:schema>
+  <classDescr id="">
+    default settings for pieces of this class; 
+
+    classes may be combined as space seperated lists. Class overrides defaults from classes before it in the list.
+  </classDescr>
+
+  <location id="" type="<map | sheet | bin | group | area">
+    <title></title>
+
+    <src></src>
+
+    <contraints> 
+      <pieceOrder>coordinates | fixed | list | random</pieceOrder>
+      <allow> (pieces defined in this location are always allowed to be dragged/dropped here)
+        <location>id |all | none (allow pieces to and from this location)</location> 
+        <piece>id |all | none (allow these pieces on this location)</piece> 
+        <class>class (allow these pieces of this class on this location</class>
+      </allow>
+      <deny></deny>
+    </constraints>
+
+    <location>nested location</location>
+
+    <pieces>
+      <default>
+        (group pieces with same default settings)
+        <class></class>
+      </default>
+
+      <piece id="">
+        <label></label>
+        <class></class>
+        <limit></limit>
+        <displays>
+          <src></src>
+        </displays>
+	<hidable>
+          <fullyHidable/>
+          <src></src>
+        </hidable>	
+      </piece>
+    </pieces>
+
+    <piece></piece>
+
+  </location>
+</game>

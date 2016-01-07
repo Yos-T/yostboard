@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<game>
+	<title>Twilight Struggle</title>
+
+	<classDescr name="map">
+		<stacking>
+			<order>free</order>
+			<clear>bottom</clear>
+			<surface>-1</surface>
+		</stacking>
+	</classDescr>
+
+	<classDescr name="counter">
+		<stacking>
+			<order>list</order>
+		</stacking>
+	</classDescr>
+
+	<classDescr name="sheet">
+		<stacking>
+			<order>grouped</order>
+			<clear>bottom</clear>
+			<position>fixed</position>
+			<surface>-1</surface>
+			<limit>1</limit>
+		</stacking>
+	</classDescr>
+
+	<location id="map">
+		<label>Map</label>
+		<class>map</class>
+		<face>
+			<img>TSMap11.jpg</img>
+		</face>
+	</location>
+
+	<location id="countersheet">
+		<label>Twilight Struggle 1</label>
+	    <class>sheet</class>
+
+		<group>
+			<class>counter tsmarker</class>
+
+			<piece id="turn">
+				<face>TURN</face>
+			</piece>
+			<piece id="vp">
+				<face>VP</face>
+			</piece>
+			<piece id="nocoup">
+				<limit>3</limit>
+				<face><img>nocoup.png</img></face>
+			</piece>
+		</group>
+
+		<piece id="defcon">
+			<class>counter</class>
+			<face><img>defcon.png</img>Defcon Status</face>
+		</piece>
+	</location>
+</game>

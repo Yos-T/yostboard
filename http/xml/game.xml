@@ -1,0 +1,35 @@
+<game>
+  <title></title>
+
+  <classDescr name="">
+  </classDescr>
+
+  <group>
+    <class></class>
+    <piece></piece>
+  </group> 
+
+<!-- Supported but unneccesary 
+  <location>Same as piece, but position/status is not important for game. Delta's are not logged for this type.
+            It can be a container for other pieces. 
+            Status may be logged per player/side, for custumization purposes.
+  </location>
+  <area>Same as piece. Static area within a piece or location. Position is static, but other status is logged.</area>
+-->
+
+  <piece id="">
+    <label></label>
+    <class></class>
+    <face></face>
+    <stacking>
+      <coordinates/> <!-- keep track of coordinates of other pieces on this pieces surface in addition to index -->
+      <flatten/> <!-- no substacks -->
+      <grouping/>
+      <static/> <!-- remember positions as described in this document. Only allow pieces to return to this piece, no new ones may be added -->
+      <surface>single/multi (substacks)</surface><!-- single: piece/counter; multi: map -->
+    </stacking>
+    <!-- <limit></limit> -->
+    <piece></piece>
+  </piece>
+
+</game>
