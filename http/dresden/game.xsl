@@ -11,9 +11,12 @@
 <xsl:template match="/game">
   <html>
   <head>
-    <title>Game</title>
-    <link href="drag.css" rel="stylesheet" type="text/css"/>
-    <script src="drag.js" type="application/javascript"></script>
+    <title>
+      <xsl:value-of select="name" />
+    </title>
+    <link href="css/drag.css" rel="stylesheet" type="text/css"/>
+    <script src="js/drag.js" type="application/javascript"></script>
+    <script src="js/init.js" type="application/javascript"></script>
   </head>
   <body onload="init()">
 
@@ -22,7 +25,11 @@
       <xsl:attribute name="id">
         <xsl:value-of select="@id" />
       </xsl:attribute>
+      <xsl:attribute name="class">
+        location-<xsl:value-of select="@type" />
+      </xsl:attribute>
 	  <xsl:apply-templates select="src"/>
+	  <xsl:apply-templates select="piece"/>
     </div>
   </xsl:for-each>
 
@@ -30,7 +37,13 @@
   </html>
 
 </xsl:template>
-
+<!--
+<xsl:attribute-set name="test">
+        <xsl:attribute name="id">
+        <xsl:value-of select="@id" />
+      </xsl:attribute>
+</xsl:attribute-set>
+-->
 <xsl:template match="src">
   <xsl:choose>
   <xsl:when test="@type = 'image'">
@@ -47,6 +60,15 @@
 </xsl:template>
 
 <xsl:template match="piece">
+  <a draggable="true">
+	<xsl:attribute name="id">
+      <xsl:value-of select="@id" />
+    </xsl:attribute>
+	<xsl:attribute name="class">
+      draggable <xsl:value-of select="class" />
+    </xsl:attribute>
+    <xsl:apply-templates select="src"/>
+  </a>
 </xsl:template>
 
 </xsl:stylesheet>

@@ -3,6 +3,8 @@
 <?xml-stylesheet type="text/xsl" href="game.xsl"?>
 
 <game>
+  <name>Dresden 20</name>
+
 	<location type="free" id="map">
 		<src type="image">Dresden 20 map v1r.JPG</src>
 	</location>
@@ -51,13 +53,13 @@
     </basePiece>
 
 	<location type="fixed" id="countersheet">
-        <piece base="russian">
+        <piece id="rubi" base="russian">
             <src type="image" name="front">RUBI.PNG</src>
         </piece>
-        <piece base="russian">
+        <piece id="rubii" base="russian">
             <src type="image" name="front">RUBII.PNG</src>
         </piece>
-        <piece base="russian">
+        <piece id="rubiii" base="russian">
             <src type="image" name="front">RUBIII.PNG</src>
         </piece>
 
