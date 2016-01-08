@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<game>
+	<title>Twilight Struggle</title>
+	<script>ts.js</script>
+	<css>ts.css</css>
+	
+	<map>
+		<src type="img">TSMap11.jpg</src>
+		<!--<src type="img">TSMap11.jpg</src>-->
+		<!--<src type="html"><![CDATA[ <img src="TSMap11.jpg" alt="map" onload="addCountries()" />]]></src>-->
+	</map>
+
+	<countersheet>
+		<title>Twilight Struggle 1</title>
+		<counterDefaults>
+			<stackable>true</stackable>
+			<rotatable>false</rotatable>
+			<limit>1</limit>
+			<class>ts</class>
+		</counterDefaults>
+		
+		<counter id="turn">
+			<class>ts tsmarker</class>
+			<src type="html"><![CDATA[TURN]]></src>
+		</counter>
+		<counter id="vp">
+			<class>ts tsmarker</class>
+			<src type="html"><![CDATA[VP]]></src>
+		</counter>
+		<counter id="nocoup">
+			<class>ts tsmarker</class>
+			<limit>3</limit>
+			<src type="img">nocoup.png</src>
+		</counter>
+		<counter id="defcon">
+			<class>ts tsmarker tsdefcon</class>
+			<src type="html"><![CDATA[<img src="defcon.png" /><span>Defcon Status</span>]]></src>
+		</counter>
+		<counter id="tsspace">
+			<class>ts tsus tsspace</class>
+			<src type="html"><![CDATA[<span>Space Race Card Played<img src="usspace.png"/></span>]]></src>
+			<!--<src type="img">usspace.png</src>-->
+		</counter>
+		<counter id="sovspace">
+			<class>ts tssov tsspace</class>
+			<src type="html"><![CDATA[<span>Space Race Card Played<img src="sovspace.png"/></span>]]></src>
+			<!--<src type="img">usspace.png</src>-->
+		</counter>
+		<counter id="upops">
+			<class>ts tsus</class>
+			<src type="html"><![CDATA[<span>US<img src="usops.png"/></span>]]></src>
+			<!--<src type="img">usspace.png</src>-->
+		</counter>
+		<counter id="sovops">
+			<class>ts tssov</class>
+			<src type="html"><![CDATA[<span>USSR<img src="sovops.png"/></span>]]></src>
+			<!--<src type="img">usspace.png</src>-->
+		</counter>
+		<counter id="nasa">
+			<class>ts tsus tsnasa</class>
+			<src type="img">nasa.png</src>
+		</counter>
+		<counter id="sovspaceorg">
+			<class>ts tssov tsnasa</class>
+			<src type="img">sovspaceorg.png</src>
+		</counter>
+		<!--
+					<src type="img">images/AmericanHand.png</src>
+		<counter id="empty1"><class>tscounter2</class><src type="img">images/AmericanHand.png</src></counter>
+		<counter id="empty2"><class>tscounter3</class><src type="img">images/AmericanHand.png</src></counter>
+		-->
+	</countersheet>
+</game>

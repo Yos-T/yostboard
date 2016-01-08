@@ -1,0 +1,4 @@
+7.5.2 The accesskey attribute
+
+Drag map to scroll?
+Auto scroll when drag near borders

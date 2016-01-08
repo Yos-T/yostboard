@@ -1,0 +1,30 @@
+<board>
+	<stack>
+		<pos />
+		<counter>
+			<src />
+			<id />
+		</counter>
+	</stack>
+
+	<counter>
+			<pos />
+			<src />
+			<id />
+	</counter>
+</board>
+JSON
+{"stackid": { 	"x":#, 
+				"y:#, 
+				"c":[ [counterid, src ],]
+			}
+
+v#;
+#id,#x,#y, (c),$id,#scr, (c),$id,#nr,#scr;
+
+$id_#nr,#x,#y,#src;
+
+log/deltas:
+p: counter/stackid (#x,#y);
+p: counter/stackid  ("location"); ie: counter/stack-> stack; counter/stack-> off map
+s: counterid(#activesrc);

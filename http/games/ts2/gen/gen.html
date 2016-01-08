@@ -1,0 +1,443 @@
+<?xml version="1.0" ?>
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Twilight Struggle
+		</title>
+		<link href="drag.css" rel="stylesheet" type="text/css"/>
+		<script src="drag.js" type="application/javascript">
+			 
+		</script>
+		<script src="ts.js" type="application/javascript">
+			 
+		</script>
+		<link href="ts.css" rel="stylesheet" type="text/css"/>
+	</head>
+	<body onload="init()">
+		<div id="mapSection">
+			<div data-index="0" id="counterSection">
+				 
+			</div>
+			<img alt="map" src="TSMap11.jpg" width="2448px" height="1584px"  />
+			<div>
+				<div id="Europe">
+					<div class="country" data-stability="4" id="Canada">
+						<input class="inf unc_usa" id="Canada_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Canada_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="2" id="Turkey">
+						<input class="inf unc_usa" id="Turkey_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Turkey_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="3" id="Romania">
+						<input class="inf unc_usa" id="Romania_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Romania_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="2" id="Italy">
+						<input class="inf unc_usa" id="Italy_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Italy_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="3" id="Denmark">
+						<input class="inf unc_usa" id="Denmark_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Denmark_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="3" id="Czechoslovakia">
+						<input class="inf unc_usa" id="Czechoslovakia_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Czechoslovakia_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="4" id="Finland">
+						<input class="inf unc_usa" id="Finland_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Finland_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="4" id="W_Germany">
+						<input class="inf unc_usa" id="W_Germany_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="W_Germany_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="4" id="Sweden">
+						<input class="inf unc_usa" id="Sweden_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Sweden_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="3" id="Poland">
+						<input class="inf unc_usa" id="Poland_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Poland_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="3" id="France">
+						<input class="inf unc_usa" id="France_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="France_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="4" id="Norway">
+						<input class="inf unc_usa" id="Norway_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Norway_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="4" id="Austria">
+						<input class="inf unc_usa" id="Austria_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Austria_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="3" id="Yugoslavia">
+						<input class="inf unc_usa" id="Yugoslavia_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Yugoslavia_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="5" id="UK">
+						<input class="inf unc_usa" id="UK_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="UK_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="2" id="Greece">
+						<input class="inf unc_usa" id="Greece_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Greece_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="3" id="Hungary">
+						<input class="inf unc_usa" id="Hungary_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Hungary_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="3" id="Benelux">
+						<input class="inf unc_usa" id="Benelux_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Benelux_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="3" id="E_Germany">
+						<input class="inf unc_usa" id="E_Germany_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="E_Germany_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="2" id="Spain_Portugal">
+						<input class="inf unc_usa" id="Spain_Portugal_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Spain_Portugal_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="3" id="Bulgaria">
+						<input class="inf unc_usa" id="Bulgaria_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Bulgaria_r" maxLength="2" type="text"/>
+					</div>
+				</div>
+				<div id="Central America">
+					<div class="country" data-stability="2" id="Panama">
+						<input class="inf unc_usa" id="Panama_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Panama_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="1" id="Guatemala">
+						<input class="inf unc_usa" id="Guatemala_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Guatemala_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="2" id="Honduras">
+						<input class="inf unc_usa" id="Honduras_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Honduras_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="1" id="Dominican_Republic">
+						<input class="inf unc_usa" id="Dominican_Republic_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Dominican_Republic_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="3" id="Cuba">
+						<input class="inf unc_usa" id="Cuba_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Cuba_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="3" id="Costa_Rica">
+						<input class="inf unc_usa" id="Costa_Rica_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Costa_Rica_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="2" id="Mexico">
+						<input class="inf unc_usa" id="Mexico_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Mexico_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="1" id="Nicaragua">
+						<input class="inf unc_usa" id="Nicaragua_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Nicaragua_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="1" id="Haiti">
+						<input class="inf unc_usa" id="Haiti_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Haiti_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="1" id="El_Salvador">
+						<input class="inf unc_usa" id="El_Salvador_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="El_Salvador_r" maxLength="2" type="text"/>
+					</div>
+				</div>
+				<div id="Asia">
+					<div class="country" data-stability="2" id="Afghanistan">
+						<input class="inf unc_usa" id="Afghanistan_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Afghanistan_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="2" id="Philippines">
+						<input class="inf unc_usa" id="Philippines_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Philippines_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="1" id="Indonesia">
+						<input class="inf unc_usa" id="Indonesia_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Indonesia_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="1" id="Vietnam">
+						<input class="inf unc_usa" id="Vietnam_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Vietnam_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="2" id="Thailand">
+						<input class="inf unc_usa" id="Thailand_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Thailand_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="2" id="Burma">
+						<input class="inf unc_usa" id="Burma_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Burma_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="2" id="Pakistan">
+						<input class="inf unc_usa" id="Pakistan_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Pakistan_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="4" id="Australia">
+						<input class="inf unc_usa" id="Australia_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Australia_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="3" id="N_Korea">
+						<input class="inf unc_usa" id="N_Korea_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="N_Korea_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="3" id="India">
+						<input class="inf unc_usa" id="India_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="India_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="2" id="Malaysia">
+						<input class="inf unc_usa" id="Malaysia_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Malaysia_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="4" id="Japan">
+						<input class="inf unc_usa" id="Japan_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Japan_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="3" id="Taiwan">
+						<input class="inf unc_usa" id="Taiwan_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Taiwan_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="3" id="S_Korea">
+						<input class="inf unc_usa" id="S_Korea_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="S_Korea_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="1" id="Laos_Cambodia">
+						<input class="inf unc_usa" id="Laos_Cambodia_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Laos_Cambodia_r" maxLength="2" type="text"/>
+					</div>
+				</div>
+				<div id="South America">
+					<div class="country" data-stability="2" id="Brazil">
+						<input class="inf unc_usa" id="Brazil_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Brazil_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="2" id="Peru">
+						<input class="inf unc_usa" id="Peru_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Peru_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="1" id="Colombia">
+						<input class="inf unc_usa" id="Colombia_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Colombia_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="3" id="Chile">
+						<input class="inf unc_usa" id="Chile_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Chile_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="2" id="Uruguay">
+						<input class="inf unc_usa" id="Uruguay_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Uruguay_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="2" id="Paraguay">
+						<input class="inf unc_usa" id="Paraguay_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Paraguay_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="2" id="Argentina">
+						<input class="inf unc_usa" id="Argentina_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Argentina_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="2" id="Bolivia">
+						<input class="inf unc_usa" id="Bolivia_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Bolivia_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="2" id="Venezuela">
+						<input class="inf unc_usa" id="Venezuela_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Venezuela_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="2" id="Ecuador">
+						<input class="inf unc_usa" id="Ecuador_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Ecuador_r" maxLength="2" type="text"/>
+					</div>
+				</div>
+				<div id="Afrika">
+					<div class="country" data-stability="1" id="Sudan">
+						<input class="inf unc_usa" id="Sudan_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Sudan_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="1" id="Angola">
+						<input class="inf unc_usa" id="Angola_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Angola_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="2" id="Algeria">
+						<input class="inf unc_usa" id="Algeria_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Algeria_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="2" id="Ivory_Coast">
+						<input class="inf unc_usa" id="Ivory_Coast_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Ivory_Coast_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="3" id="South_Africa">
+						<input class="inf unc_usa" id="South_Africa_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="South_Africa_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="1" id="Saharan_States">
+						<input class="inf unc_usa" id="Saharan_States_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Saharan_States_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="1" id="Zaire">
+						<input class="inf unc_usa" id="Zaire_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Zaire_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="3" id="Morocco">
+						<input class="inf unc_usa" id="Morocco_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Morocco_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="1" id="Ethiopia">
+						<input class="inf unc_usa" id="Ethiopia_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Ethiopia_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="1" id="SE_African_States">
+						<input class="inf unc_usa" id="SE_African_States_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="SE_African_States_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="1" id="Zimbabwe">
+						<input class="inf unc_usa" id="Zimbabwe_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Zimbabwe_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="2" id="Somalia">
+						<input class="inf unc_usa" id="Somalia_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Somalia_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="2" id="West_African_States">
+						<input class="inf unc_usa" id="West_African_States_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="West_African_States_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="2" id="Kenya">
+						<input class="inf unc_usa" id="Kenya_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Kenya_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="1" id="Nigeria">
+						<input class="inf unc_usa" id="Nigeria_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Nigeria_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="1" id="Cameroon">
+						<input class="inf unc_usa" id="Cameroon_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Cameroon_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="2" id="Botswana">
+						<input class="inf unc_usa" id="Botswana_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Botswana_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="2" id="Tunisia">
+						<input class="inf unc_usa" id="Tunisia_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Tunisia_r" maxLength="2" type="text"/>
+					</div>
+				</div>
+				<div id="Middle East">
+					<div class="country" data-stability="2" id="Jordan">
+						<input class="inf unc_usa" id="Jordan_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Jordan_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="4" id="Israel">
+						<input class="inf unc_usa" id="Israel_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Israel_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="3" id="Gulf_States">
+						<input class="inf unc_usa" id="Gulf_States_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Gulf_States_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="3" id="Saudi_Arabia">
+						<input class="inf unc_usa" id="Saudi_Arabia_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Saudi_Arabia_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="2" id="Libya">
+						<input class="inf unc_usa" id="Libya_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Libya_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="2" id="Syria">
+						<input class="inf unc_usa" id="Syria_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Syria_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="2" id="Egypt">
+						<input class="inf unc_usa" id="Egypt_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Egypt_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="2" id="Iran">
+						<input class="inf unc_usa" id="Iran_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Iran_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="3" id="Iraq">
+						<input class="inf unc_usa" id="Iraq_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Iraq_r" maxLength="2" type="text"/>
+					</div>
+					<div class="country" data-stability="1" id="Lebanon">
+						<input class="inf unc_usa" id="Lebanon_a" maxLength="2" type="text"/>
+						<input class="inf unc_ussr" id="Lebanon_r" maxLength="2" type="text"/>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="menuSection">
+			 
+		</div>
+		<div id="debug" style="position:fixed; top:0px; right:0px; width:500px; overflow:scroll; background-color:white">
+			DEBUG
+		</div>
+		<div>
+			<a class="ts tsmarker draggable dropZone" data-limit="1" draggable="true" href="#" id="turn" onclick="return false">
+				<div>
+					TURN
+				</div>
+			</a>
+			<a class="ts tsmarker draggable dropZone" data-limit="1" draggable="true" href="#" id="vp" onclick="return false">
+				<div>
+					VP
+				</div>
+			</a>
+			<a class="ts tsmarker draggable dropZone" data-limit="3" draggable="true" href="#" id="nocoup" onclick="return false">
+				<img alt="map" src="nocoup.png"/>
+			</a>
+			<a class="ts tsmarker tsdefcon draggable dropZone" data-limit="1" draggable="true" href="#" id="defcon" onclick="return false">
+				<div>
+					<img src="defcon.png"/>
+					<span>
+						Defcon Status
+					</span>
+				</div>
+			</a>
+			<a class="ts tsus tsspace draggable dropZone" data-limit="1" draggable="true" href="#" id="tsspace" onclick="return false">
+				<div>
+					<span>
+						Space Race Card Played
+						<img src="usspace.png"/>
+					</span>
+				</div>
+			</a>
+			<a class="ts tssov tsspace draggable dropZone" data-limit="1" draggable="true" href="#" id="sovspace" onclick="return false">
+				<div>
+					<span>
+						Space Race Card Played
+						<img src="sovspace.png"/>
+					</span>
+				</div>
+			</a>
+			<a class="ts tsus draggable dropZone" data-limit="1" draggable="true" href="#" id="upops" onclick="return false">
+				<div>
+					<span>
+						US
+						<img src="usops.png"/>
+					</span>
+				</div>
+			</a>
+			<a class="ts tssov draggable dropZone" data-limit="1" draggable="true" href="#" id="sovops" onclick="return false">
+				<div>
+					<span>
+						USSR
+						<img src="sovops.png"/>
+					</span>
+				</div>
+			</a>
+			<a class="ts tsus tsnasa draggable dropZone" data-limit="1" draggable="true" href="#" id="nasa" onclick="return false">
+				<img alt="map" src="nasa.png"/>
+			</a>
+			<a class="ts tssov tsnasa draggable dropZone" data-limit="1" draggable="true" href="#" id="sovspaceorg" onclick="return false">
+				<img alt="map" src="sovspaceorg.png"/>
+			</a>
+		</div>
+	</body>
+</html>
+

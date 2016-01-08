@@ -1,0 +1,62 @@
+#mapSection
+{
+	position: relative;
+}
+
+#counterSection > .draggable
+{
+	position: absolute;
+}
+
+.draggable
+{
+	display: block;
+	text-decoration: none;
+	cursor: move;
+}
+
+.stack
+{
+	position: absolute;
+}
+
+.stack > div
+{
+	position: relative;
+}
+
+.stack > div > *
+{
+	position: absolute;
+}
+
+.stackUnfold
+{
+	position: absolute;
+	background-color: rgba(255,165,0,0.5);
+	border: 1px solid orange;
+}
+
+.stackUnfold > div
+{
+	position: relative;
+}
+
+.stackUnfold > div > *
+{
+	position: static;
+	margin: 10px;
+}
+
+.hidden
+{
+	position: absolute;
+	visibility: hidden;
+	left: 0px;
+	top: 0px;
+	/*
+	position: relative;
+	top: inherit;
+	left:inherit;
+	*/
+}

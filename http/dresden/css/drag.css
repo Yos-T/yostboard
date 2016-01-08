@@ -1,39 +1,45 @@
-.relativity
+.faces
 {
-	position:relative;
+  position: relative;
+  float: left;
+  top: 0px;
+  left: 0px;
 }
 
-.stack-free
+.faces > .hidden
 {
-}
-.stack-free>.relativity>.stack
-{
-	position: absolute;
-	left: 0px;
-	top: 0px;
+  position: absolute;
+  visibility: hidden;
+  top: 0px;
+  left: 0px;
 }
 
-.stack-free >.relativity>.stack>div
+.pieces
 {
-	position: absolute;
+  position: relative;
+  top: 0px;
+  left: 0px;
 }
 
-.stack-list>[data-size="1"].stack.folded
+.piece
 {
-	/*border: 10px solid black;*/
-	/*float: left;*/
+  display: block;
+  cursor: move;
 }
 
-.folded.stack>div
+.location.free > .pieces > *
 {
-	position:absolute;
-	top: 5px;
-	left: 5px;
+  position: absolute;
 }
 
-[draggable="true"]
+/*
+.piece:active
 {
-	/*display: block;*/
-	/*text-decoration: none;*/
-	cursor: move;
+  cursor: none !important; 
+}
+*/
+
+.location
+{
+/*  position: relative; */
 }

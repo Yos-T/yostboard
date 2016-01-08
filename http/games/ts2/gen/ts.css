@@ -1,0 +1,191 @@
+.ts
+{
+	width:50px;
+	height:50px;
+	border-width: 3px;
+	border-style: outset;
+	text-align:center;
+	vertical-align:middle;
+	font-family:"Arial",Sans-Serif;
+	font-weight: bolder;
+}
+
+.ts img
+{
+	border-width:0px;
+	vertical-align:middle;
+}
+.tsmarker
+{
+	background-color: yellow;
+	border-color: yellow;
+	color: black;
+	line-height:50px;
+}
+
+.tsdefcon>div 
+{
+	margin: 4px;
+	width:40px;
+	height:40px;
+	border: 1px solid black;
+	background-color: red;
+	line-height:11px;
+	font-size:10px;
+	color:white;
+	-moz-transform: rotate(270deg);
+}
+
+.tsus
+{
+	background-color: #008fd5;
+	border-color: #008fd5;
+	color:white;
+}
+
+.tssov
+{
+	background-color: #d2232a;
+	border-color: #d2232a;
+	color:white;
+}
+
+.tsspace
+{
+	height:55px;
+	width:55px;
+	font-size:8px;
+}
+.tsspace img
+{
+	border: 1px solid black;
+}
+.tsnasa
+{
+	line-height:47px;
+}
+
+input.inf 
+{
+	width:41px; 
+	height:38px; 
+	font-size:24px; 
+	font-weight:bold; 
+	text-align:center; 
+	border:0px; 
+	margin:3px;/*3*/
+/*	padding:0px;*/
+	float:left;
+	background-color:rgba(255,255,255,0.5); 
+}
+input.unc_usa 
+{	
+	color: blue;
+}
+input.unc_ussr 
+{
+	color: red;
+}
+input.con_usa 
+{	
+	background-color: blue; 
+	color: white;
+}
+input.con_ussr 
+{	
+	background-color: red; 
+	color: white;
+}
+div.country 
+{ 
+	position:absolute;
+	width:94px;/*94*/ 
+	height:46px;
+	border: 1px solid black;
+}
+		
+/* Country positions */
+#Costa_Rica { left:247px; top:887px; }
+#Cuba { left:370px; top:719px; }
+#Dominican_Republic { left:577px; top:785px; }
+#El_Salvador { left:150px; top:819px; }
+#Guatemala { left:184px; top:741px; }
+#Haiti { left:474px; top:786px; }
+#Honduras { left:257px; top:813px; }
+#Mexico { left:93px; top:666px; }
+#Nicaragua { left:363px; top:814px; }
+#Panama { left:365px; top:886px; }
+#Algeria { left:938px; top:648px; }
+#Angola { left:1103px; top:1107px; }
+#Botswana { left:1197px; top:1219px; }
+#Cameroon { left:1070px; top:985px; }
+#Ethiopia { left:1310px; top:895px; }
+#Ivory_Coast { left:890px; top:913px; }
+#Kenya { left:1321px; top:990px; }
+#Morocco { left:832px; top:680px; }
+#Nigeria { left:1022px; top:902px; }
+#Saharan_States { left:981px; top:800px; }
+#SE_African_States { left:1336px; top:1089px; }
+#Somalia { left:1427px; top:927px; }
+#South_Africa { left:1148px; top:1299px; }
+#Sudan { left:1235px; top:819px; }
+#Tunisia { left:1047px; top:639px; }
+#West_African_States { left:822px; top:774px; }
+#Zaire { left:1195px; top:1021px; }
+#Zimbabwe { left:1231px; top:1143px; }
+#Argentina { left:470px; top:1381px; }
+#Bolivia { left:492px; top:1153px; }
+#Brazil { left:675px; top:1080px; }
+#Chile { left:433px; top:1241px; }
+#Colombia { left:432px; top:973px; }
+#Ecuador { left:322px; top:1006px; }
+#Paraguay { left:553px; top:1232px; }
+#Peru { left:382px; top:1086px; }
+#Uruguay { left:586px; top:1323px; }
+#Venezuela { left:491px; top:896px; }
+#Afghanistan { left:1614px; top:611px; }
+#Australia { left:2145px; top:1181px; }
+#Burma { left:1861px; top:768px; }
+#India { left:1733px; top:754px; }
+#Indonesia { left:2144px; top:1053px; }
+#Japan { left:2267px; top:655px; }
+#Laos_Cambodia { left:1965px; top:779px; }
+#Malaysia { left:1969px; top:965px; }
+#N_Korea { left:2162px; top:513px; }
+#Pakistan { left:1617px; top:705px; }
+#Philippines { left:2183px; top:852px; }
+#S_Korea { left:2183px; top:586px; }
+#Taiwan { left:2138px; top:741px; }
+#Thailand { left:1921px; top:853px; }
+#Vietnam { left:2027px; top:854px; }
+#Austria { left:1051px; top:431px; }
+#Benelux { left:900px; top:357px; }
+#Bulgaria { left:1242px; top:506px; }
+#Canada { left:411px; top:369px; }
+#Czechoslovakia { left:1133px; top:357px; }
+#Denmark { left:959px; top:215px; }
+#E_Germany { left:1043px; top:286px; }
+#Finland { left:1219px; top:146px; }
+#France { left:881px; top:443px; }
+#Greece { left:1157px; top:584px; }
+#Hungary { left:1157px; top:431px; }
+#Italy { left:1022px; top:506px; }
+#Norway { left:935px; top:142px; }
+#Poland { left:1153px; top:286px; }
+#Romania { left:1263px; top:431px; }
+#Spain_Portugal { left:805px; top:545px; }
+#Sweden { left:1080px; top:204px; }
+#Turkey { left:1347px; top:515px; }
+#UK { left:819px; top:283px; }
+#W_Germany { left:1005px; top:357px; }
+#Yugoslavia { left:1132px; top:506px; }
+#Egypt { left:1217px; top:733px; }
+#Gulf_States { left:1454px; top:730px; }
+#Iran { left:1491px; top:660px; }
+#Iraq { left:1388px; top:659px; }
+#Israel { left:1267px; top:659px; }
+#Jordan { left:1335px; top:732px; }
+#Lebanon { left:1285px; top:587px; }
+#Libya { left:1108px; top:723px; }
+#Saudi_Arabia { left:1425px; top:802px; }
+#Syria { left:1388px; top:585px; }

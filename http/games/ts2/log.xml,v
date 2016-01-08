@@ -1,0 +1,61 @@
+head	1.2;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2015.10.13.09.56.59;	author jorism;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2015.10.13.09.48.00;	author jorism;	state Exp;
+branches;
+next	;
+
+
+desc
+@initial rev.
+@
+
+
+1.2
+log
+@-message
+@
+text
+@<bla>
+<logEntry>
+	<player />
+	<piece>id</piece>
+	<randomNumber></randomNumber>
+	<message>TEXT CDATA?</message>
+</logEntry>
+
+<delta>
+	</player>
+	<piece />
+	<position> (new)
+		<x />
+		<y />
+		<stack />
+	</position>
+	<rotation />
+	<hidden />
+
+	<rcsTag />
+</delta>
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+a1 1
+
+@

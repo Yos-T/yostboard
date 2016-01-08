@@ -1,0 +1,21 @@
+
+<logEntry>
+	<player />
+	<piece>id</piece>
+	<randomNumber></randomNumber>
+	<message>TEXT CDATA?</message>
+</logEntry>
+
+<delta>
+	</player>
+	<piece />
+	<position> (new)
+		<x />
+		<y />
+		<stack />
+	</position>
+	<rotation />
+	<hidden />
+
+	<rcsTag />
+</delta>
