@@ -1,3 +1,12 @@
+#map > .faces > img
+{
+  max-width: 3000px;
+}
+
+.allied > .faces > img
+{
+  /*width: 126px;*/
+}
 /*
 #map
 {

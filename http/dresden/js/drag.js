@@ -13,12 +13,25 @@ function dragStartPiece(e)
 {
 	e.stopPropagation(); //don't bubble
 
-    e.dataTransfer.setDragImage(this, 0, 0);
+    var offsetX = 0;
+    var offsetY = 0;
+    var x = 0;
+    var y = 0;
+    if ( window.hasOwnProperty('devicePixelRatio') )
+    {
+        // Correct for zoom level
+        dpr = window.devicePixelRatio; //NON STANDARD ?
+        offsetX = e.layerX;
+        x = e.layerX * dpr;
+        offsetY = e.layerY;
+        y = e.layerY * dpr;
+    }
+    e.dataTransfer.setDragImage(this, x, y);
 
 	e.dataTransfer.dropEffect = 'move';
 	e.dataTransfer.setData('nodeid', this.id);
-	e.dataTransfer.setData('stacking', 1);
-	return false;
+	e.dataTransfer.setData('offsetX', offsetX);
+	e.dataTransfer.setData('offsetY', offsetY);
 }
 
 /***************************
@@ -27,58 +40,17 @@ function dragStartPiece(e)
 function dragOverPiece(e)
 { 
 	var dragObject = findElement(e.dataTransfer.getData('nodeid'));
-	if (!dragObject)
-		return false;
-
-//	if ( (getStackingOrder(this) == 'free') &&  folded(this) )// may not be needed.
-		return true;
-
-//	e.preventDefault();
-/* Scrolling ??? if this.style.overflow=scroll/auto
-	const scrollSpeed=40;
-	const scrollMargin=10;
-
-	var hWidth = dragObject.offsetWidth/2;
-	var hHeight = dragObject.offsetHeight/2;
-	var x = e.pageX - hWidth;
-	var y = e.pageY - hHeight;
-	var scrollX = 0;
-	var scrollY = 0;
-
-	if (e.clientY - hHeight <= scrollMargin)
-		scrollY = -scrollSpeed;
-	else if (window.innerHeight - e.clientY - hHeight <= scrollMargin)
-		scrollY = scrollSpeed;
-
-	if (e.clientX - hWidth <= scrollMargin)
-		scrollX = -scrollSpeed;
-	else if (window.innerWidth - e.clientX - hWidth <= scrollMargin)
-		scrollX = scrollSpeed;
-
-	if ( scrollX || scrollY )
-		window.scrollBy(scrollX,scrollY);
-*/
-//	return false;
+	if (!dragObject) return;
 }
 
 function dragOverLocation(e)
 {
     e.preventDefault();
-    return true;
 }
 
 /**********************
  *        DROP        *
  *********************/
-
-/* 
-Node.compareDocumentPosition(node);
-DOCUMENT_POSITION_DISCONNECTED = 0x01;
-DOCUMENT_POSITION_PRECEDING = 0x02;
-DOCUMENT_POSITION_FOLLOWING = 0x04;
-DOCUMENT_POSITION_CONTAINS = 0x08;
-DOCUMENT_POSITION_CONTAINED_BY = 0x10;
-*/
 function dropPieceCapture(e)
 {
 }
@@ -110,12 +82,13 @@ function dropLocation(e)
 
     var to = this;
     var from = findElement( e.dataTransfer.getData('nodeid') );
-    if ( !from ) return false;
-    var x = e.layerX;
-    var y = e.layerY;
+    var offsetX = e.dataTransfer.getData('offsetX');
+    var offsetY = e.dataTransfer.getData('offsetY');
+    if ( !from ) return;
+    var x = e.layerX - offsetX;
+    var y = e.layerY - offsetY;
     setCoordinates(from, x, y);
     getPieceContainer( to ).appendChild( from );
-    return false;
 }
 
 function setPieceEvents(piece)
