@@ -1,16 +1,21 @@
+function debug(msg)
+{
+    window.console.log(msg);
+}
+
 function findElement(id)
 {
     return document.getElementById(id);
 }
 
+
 /*****************************
  *        DRAG EVENTS        *
  ****************************/
-/****************************
- *        DRAG START        *
- ***************************/
+/*****************************
+ *     EVENTS HELPERS        *
+ ****************************/
 function getOffset(evt) {
-// Scrolling not working in FF
   var el = evt.target,
       x = 0,
       y = 0;
@@ -21,11 +26,15 @@ function getOffset(evt) {
     el = el.offsetParent;
   }
 
-  x = evt.clientX - x;
-  y = evt.clientY - y;
+  x = evt.clientX - x + document.documentElement.scrollLeft;
+  y = evt.clientY - y + document.documentElement.scrollTop;
 
   return { x: x, y: y };
 }
+
+/****************************
+ *        DRAG START        *
+ ***************************/
 function dragStartPiece(e) 
 {
     e.stopPropagation(); //don't bubble
@@ -37,17 +46,8 @@ function dragStartPiece(e)
 
     if ( window.hasOwnProperty('devicePixelRatio') )
     {
-        //var util = window.QueryInterface(Components.interfaces.nsIInterfaceRequestor).getInterface(Components.interfaces.nsIDOMWindowUtils); 
-        //var util = window.QueryInterface(Ci.nsIInterfaceRequestor).getInterface(Ci.nsIDOMWindowUtils).screenPixelsPerCSSPixel;
-        //var dpr = util.screenPixelsPerCSSPixel;
         // Correct for zoom level
         var dpr = window.devicePixelRatio; //NON STANDARD ?
-/*
-        offsetX = e.layerX;
-        x = e.layerX * dpr;
-        offsetY = e.layerY;
-        y = e.layerY * dpr;
-*/
         var offset = getOffset(e);
         offsetX = offset.x;
         x = offsetX * dpr;
@@ -113,9 +113,10 @@ function dropLocation(e)
     var from = findElement( e.dataTransfer.getData('nodeid') );
     var offsetX = e.dataTransfer.getData('offsetX');
     var offsetY = e.dataTransfer.getData('offsetY');
+    var offset = getOffset(e);
     if ( !from ) return;
-    var x = e.layerX - offsetX;
-    var y = e.layerY - offsetY;
+    var x = offset.x - offsetX;
+    var y = offset.y - offsetY;
     setCoordinates(from, x, y);
     getPieceContainer( to ).appendChild( from );
 }
@@ -140,25 +141,15 @@ function setLocationEvents(loc)
 //    loc.addEventListener( "click", clickLocation, false );
 }
 
-function initFaces()
+function initFaces(el)
 {
-    var containers = document.getElementsByClassName("faces");
-    for ( var i = 0; i < containers.length; i++ )
+    if (!el) return;
+    var faces = el.getElementsByClassName("face");
+    if ( !faces ) return;
+    // First face is visible
+    for ( var f = 1; f < faces.length; f++ )
     {
-        var faces = containers[i].childNodes;
-        if ( !faces ) break;
-        // First face is visible
-        var first = true;
-		for ( var f = 0; f < faces.length; f++ )
-		{
-            if ( faces[f].nodeType != Node.ELEMENT_NODE ) continue;
-            if ( first )
-            {
-                first = false;
-                continue;
-            }
-            faces[f].classList.add("hidden");
-        }
+        faces[f].classList.add("hidden");
     }
 }
 
@@ -168,6 +159,7 @@ function initDrag()
     for ( var i = 0; i < pieces.length; i++ )
     {
         setPieceEvents( pieces[i] );
+        initFaces( pieces[i] );
     }
 
     var locations = document.getElementsByClassName("location");
@@ -179,7 +171,6 @@ function initDrag()
 
 function init()
 {
-    initFaces();
     initDrag();
 //    if (initGame)
 //        initGame();

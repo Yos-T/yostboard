@@ -29,11 +29,9 @@
     <div>
       <xsl:attribute name="id"><xsl:value-of select="@id" /></xsl:attribute>
       <xsl:attribute name="class">location <xsl:value-of select="@type" /></xsl:attribute>
-        <div class="faces">
-        <xsl:apply-templates select="face"/>
-        </div>
-        <div class="pieces">
-        <xsl:apply-templates select="piece"/>
+        <div class="relativity">
+          <xsl:apply-templates select="face"/>
+          <xsl:apply-templates select="piece"/>
         </div>
     </div>
   </xsl:for-each>
@@ -44,29 +42,33 @@
 </xsl:template>
 
 <xsl:template match="face">
-  <xsl:choose>
-  <xsl:when test="@type = 'image'">
-    <img>
-    <xsl:attribute name="src">images/<xsl:value-of select="." /></xsl:attribute>
-    </img>
-  </xsl:when>
-  <xsl:otherwise>
-      ERROR face type unknown: <xsl:value-of select="@type" />
-  </xsl:otherwise>
-  </xsl:choose> 
+  <div class="face">
+    <xsl:choose>
+    <xsl:when test="@type = 'image'">
+      <img draggable="false">
+      <xsl:attribute name="src">images/<xsl:value-of select="." /></xsl:attribute>
+      </img>
+    </xsl:when>
+    <xsl:otherwise>
+        ERROR face type unknown: <xsl:value-of select="@type" />
+    </xsl:otherwise>
+    </xsl:choose> 
+  </div>
 </xsl:template>
 
 <xsl:template match="piece">
   <a draggable="true">
-  <xsl:attribute name="id"><xsl:value-of select="@id" /></xsl:attribute>
+    <xsl:attribute name="id"><xsl:value-of select="@id" /></xsl:attribute>
     <xsl:variable name="base" select="@base" />
-  <xsl:variable name="baseClass" select="/game/basePiece[@id=$base]/tags" />
-  <xsl:attribute name="class">piece <xsl:value-of select="$baseClass" /><xsl:value-of select="tags" /></xsl:attribute>
-    <div class="faces">
-      <xsl:apply-templates select="/game/basePiece[@id=$base]/face" />
-      <xsl:apply-templates select="face"/>
-    </div>
-    <div class="stack">
+    <xsl:variable name="baseClass" select="/game/basePiece[@id=$base]/tags" />
+    <xsl:attribute name="class">piece <xsl:value-of select="$baseClass" /><xsl:value-of select="tags" /></xsl:attribute>
+    <div class="relativity">
+      <div class="faces">
+        <xsl:apply-templates select="/game/basePiece[@id=$base]/face" />
+        <xsl:apply-templates select="face"/>
+      </div>
+      <div class="stack">
+      </div>
     </div>
   </a>
 </xsl:template>

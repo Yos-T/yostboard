@@ -1,12 +1,13 @@
-.faces
+.relativity
 {
   position: relative;
-  float: left;
-  top: 0px;
-  left: 0px;
 }
 
-.faces > .hidden
+.location
+{
+}
+
+.face.hidden
 {
   position: absolute;
   visibility: hidden;
@@ -14,33 +15,37 @@
   left: 0px;
 }
 
-.pieces
-{
-  position: relative;
-  top: 0px;
-  left: 0px;
-}
-
 .piece
 {
+  border: 3px solid black;
+  border-style: outset;
   display: block;
   cursor: move;
+  line-height: 0px;
 }
 
-.location.free > .pieces > *
+.location.free > * > .piece
 {
   position: absolute;
 }
 
-/*
-.piece:active
+.location.single
 {
-  cursor: none !important; 
-}
-*/
+  border: 3px solid red;
 
-.location
+}
+.location.single > * > .piece
 {
-/*  position: relative; */
+  display:inline-block;
+}
+.location.fixed
+{
+  border: 3px solid blue;
+
+}
+
+.location.fixed > * > .piece
+{
+  display:inline-block;
 }
 
