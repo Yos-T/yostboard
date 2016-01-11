@@ -9,9 +9,26 @@ function findElement(id)
 /****************************
  *        DRAG START        *
  ***************************/
+function getOffset(evt) {
+// Scrolling not working in FF
+  var el = evt.target,
+      x = 0,
+      y = 0;
+
+  while (el && !isNaN(el.offsetLeft) && !isNaN(el.offsetTop)) {
+    x += el.offsetLeft - el.scrollLeft;
+    y += el.offsetTop - el.scrollTop;
+    el = el.offsetParent;
+  }
+
+  x = evt.clientX - x;
+  y = evt.clientY - y;
+
+  return { x: x, y: y };
+}
 function dragStartPiece(e) 
 {
-	e.stopPropagation(); //don't bubble
+    e.stopPropagation(); //don't bubble
 
     var offsetX = 0;
     var offsetY = 0;
@@ -19,19 +36,29 @@ function dragStartPiece(e)
     var y = 0;
     if ( window.hasOwnProperty('devicePixelRatio') )
     {
+        //var util = window.QueryInterface(Components.interfaces.nsIInterfaceRequestor).getInterface(Components.interfaces.nsIDOMWindowUtils); 
+        //var util = window.QueryInterface(Ci.nsIInterfaceRequestor).getInterface(Ci.nsIDOMWindowUtils).screenPixelsPerCSSPixel;
+        //var dpr = util.screenPixelsPerCSSPixel;
         // Correct for zoom level
-        dpr = window.devicePixelRatio; //NON STANDARD ?
+        var dpr = window.devicePixelRatio; //NON STANDARD ?
+/*
         offsetX = e.layerX;
         x = e.layerX * dpr;
         offsetY = e.layerY;
         y = e.layerY * dpr;
+*/
+        var offset = getOffset(e);
+        offsetX = offset.x;
+        x = offsetX * dpr;
+        offsetY = offset.y;
+        y = offsetY * dpr;
     }
     e.dataTransfer.setDragImage(this, x, y);
 
-	e.dataTransfer.dropEffect = 'move';
-	e.dataTransfer.setData('nodeid', this.id);
-	e.dataTransfer.setData('offsetX', offsetX);
-	e.dataTransfer.setData('offsetY', offsetY);
+    e.dataTransfer.dropEffect = 'move';
+    e.dataTransfer.setData('nodeid', this.id);
+    e.dataTransfer.setData('offsetX', offsetX);
+    e.dataTransfer.setData('offsetY', offsetY);
 }
 
 /***************************
@@ -39,8 +66,8 @@ function dragStartPiece(e)
  **************************/
 function dragOverPiece(e)
 { 
-	var dragObject = findElement(e.dataTransfer.getData('nodeid'));
-	if (!dragObject) return;
+    var dragObject = findElement(e.dataTransfer.getData('nodeid'));
+    if (!dragObject) return;
 }
 
 function dragOverLocation(e)
@@ -57,11 +84,11 @@ function dropPieceCapture(e)
 
 function dropPieceBubble(e)
 {
-	e.preventDefault(); //needed when image is dragged; prevent from opening image;
-	var to = this;
+    e.preventDefault(); //needed when image is dragged; prevent from opening image;
+    var to = this;
 
-	e.stopPropagation(); //don't bubble
-	return false;
+    e.stopPropagation(); //don't bubble
+    return false;
 }
 
 function setCoordinates(piece, x, y)
@@ -72,7 +99,7 @@ function setCoordinates(piece, x, y)
 
 function getPieceContainer( loc )
 {
-    return loc.childNodes[1];
+    return loc.lastElementChild;
 }
 
 function dropLocation(e)
@@ -113,17 +140,24 @@ function setLocationEvents(loc)
 
 function initFaces()
 {
-	var containers = document.getElementsByClassName("faces");
-	for ( var i = 0; i < containers.length; i++ )
-	{
-		var faces = containers[i].childNodes;
-		if ( !faces ) break;
+    var containers = document.getElementsByClassName("faces");
+    for ( var i = 0; i < containers.length; i++ )
+    {
+        var faces = containers[i].childNodes;
+        if ( !faces ) break;
         // First face is visible
-		for ( var f = 1; f < faces.length; f++ )
-		{
-			faces[f].classList.add("hidden");
-		}
-	}
+        var first = true;
+        for ( var f = 0; f < faces.length; f++ )
+        {
+            if ( faces[f].nodeType != Node.ELEMENT_NODE ) continue;
+            if ( first )
+            {
+                first = false;
+                continue;
+            }
+            faces[f].classList.add("hidden");
+        }
+    }
 }
 
 function initDrag()
@@ -143,7 +177,7 @@ function initDrag()
 
 function init()
 {
-	initFaces();
+    initFaces();
     initDrag();
 //    if (initGame)
 //        initGame();

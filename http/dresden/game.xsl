@@ -57,7 +57,7 @@
 </xsl:template>
 
 <xsl:template match="piece">
-  <div draggable="true">
+  <a draggable="true">
   <xsl:attribute name="id"><xsl:value-of select="@id" /></xsl:attribute>
     <xsl:variable name="base" select="@base" />
   <xsl:variable name="baseClass" select="/game/basePiece[@id=$base]/tags" />
@@ -68,7 +68,7 @@
     </div>
     <div class="stack">
     </div>
-  </div>
+  </a>
 </xsl:template>
 
 </xsl:stylesheet>
