@@ -34,6 +34,7 @@ function dragStartPiece(e)
     var offsetY = 0;
     var x = 0;
     var y = 0;
+
     if ( window.hasOwnProperty('devicePixelRatio') )
     {
         //var util = window.QueryInterface(Components.interfaces.nsIInterfaceRequestor).getInterface(Components.interfaces.nsIDOMWindowUtils); 
@@ -53,6 +54,7 @@ function dragStartPiece(e)
         offsetY = offset.y;
         y = offsetY * dpr;
     }
+
     e.dataTransfer.setDragImage(this, x, y);
 
     e.dataTransfer.dropEffect = 'move';
@@ -147,8 +149,8 @@ function initFaces()
         if ( !faces ) break;
         // First face is visible
         var first = true;
-        for ( var f = 0; f < faces.length; f++ )
-        {
+		for ( var f = 0; f < faces.length; f++ )
+		{
             if ( faces[f].nodeType != Node.ELEMENT_NODE ) continue;
             if ( first )
             {
