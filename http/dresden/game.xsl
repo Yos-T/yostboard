@@ -67,7 +67,7 @@
         <xsl:apply-templates select="/game/basePiece[@id=$base]/face" />
         <xsl:apply-templates select="face"/>
       </div>
-      <div class="stack">
+      <div class="stack folded">
       </div>
     </div>
   </a>

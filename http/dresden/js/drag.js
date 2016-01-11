@@ -8,6 +8,92 @@ function findElement(id)
     return document.getElementById(id);
 }
 
+function getPieceContainer( loc )
+{
+    return loc.lastElementChild;
+}
+
+function getStackContainer( piece )
+{
+    return piece.lastElementChild.lastElementChild;
+}
+
+function inFoldedStackContainer( piece )
+{
+    var cl = piece.parentNode.classList;
+    return cl.contains("stack") && !cl.contains("unfolded");
+}
+
+function inStackContainer( piece )
+{
+    return piece.parentNode.classList.contains("stack");
+}
+
+function inStack( piece )
+{
+    return inStackContainer( piece ) || getStackContainer( piece ).firstElementChild;
+}
+
+function inFoldedStack( piece )
+{
+    return inStack(piece) && getStackContainer( piece ).classList.contains("folded");
+}
+
+function getParentPiece( piece )
+{
+    if ( inStackContainer( piece ) )
+        return piece.parentNode.parentNode.parentNode;
+    else
+        return null;
+}
+
+function fold( piece, fold )
+{
+    var p = piece;
+    var add = 'unfolded';
+    var remove = 'folded';
+    if( fold )
+    {
+        add = 'folded';
+        remove = 'unfolded';
+    }
+
+    while (p)
+    {
+        var sc = getStackContainer(p);
+        sc.classList.remove(remove);
+        sc.classList.add(add);
+        p = sc.firstElementChild;
+    }
+    p = getParentPiece(piece);
+    while (p)
+    {
+        var sc = getStackContainer(p);
+        sc.classList.remove(remove);
+        sc.classList.add(add);
+        p = getParentPiece(p);
+    }
+}
+
+function addToStack( pTo, pFrom )
+{
+    var sc = getStackContainer( pTo );
+    var next = sc.firstElementChild;
+    if ( next )
+    {
+        addToStack( next, pFrom )
+    }
+    else
+    {
+        sc.appendChild( pFrom );
+    }
+}
+
+function setCoordinates(piece, x, y)
+{
+    piece.style.left = x+'px';
+    piece.style.top = y+'px';
+}
 
 /*****************************
  *        DRAG EVENTS        *
@@ -16,7 +102,7 @@ function findElement(id)
  *     EVENTS HELPERS        *
  ****************************/
 function getOffset(evt) {
-  var el = evt.target,
+  var el = evt.currentTarget,
       x = 0,
       y = 0;
 
@@ -37,8 +123,8 @@ function getOffset(evt) {
  ***************************/
 function dragStartPiece(e) 
 {
-    e.stopPropagation(); //don't bubble
-
+    if ( inStackContainer(this) ) return;
+    
     var offsetX = 0;
     var offsetY = 0;
     var x = 0;
@@ -61,6 +147,8 @@ function dragStartPiece(e)
     e.dataTransfer.setData('nodeid', this.id);
     e.dataTransfer.setData('offsetX', offsetX);
     e.dataTransfer.setData('offsetY', offsetY);
+
+    e.stopPropagation(); 
 }
 
 /***************************
@@ -68,8 +156,9 @@ function dragStartPiece(e)
  **************************/
 function dragOverPiece(e)
 { 
-    var dragObject = findElement(e.dataTransfer.getData('nodeid'));
-    if (!dragObject) return;
+    e.preventDefault();
+//    var dragObject = findElement(e.dataTransfer.getData('nodeid'));
+//    if (!dragObject) return;
 }
 
 function dragOverLocation(e)
@@ -82,32 +171,23 @@ function dragOverLocation(e)
  *********************/
 function dropPieceCapture(e)
 {
+    e.preventDefault(); 
 }
 
 function dropPieceBubble(e)
 {
-    e.preventDefault(); //needed when image is dragged; prevent from opening image;
+    e.preventDefault(); 
+
     var to = this;
+    var from = findElement( e.dataTransfer.getData('nodeid') );
+    addToStack(to, from);
 
-    e.stopPropagation(); //don't bubble
-    return false;
-}
-
-function setCoordinates(piece, x, y)
-{
-    piece.style.left = x+'px';
-    piece.style.top = y+'px';
-}
-
-function getPieceContainer( loc )
-{
-    return loc.lastElementChild;
+    e.stopPropagation();
 }
 
 function dropLocation(e)
 {
-    e.preventDefault(); //needed when image is dragged; prevent from opening image;
-    e.stopPropagation(); //don't bubble
+    e.preventDefault();
 
     var to = this;
     var from = findElement( e.dataTransfer.getData('nodeid') );
@@ -119,6 +199,23 @@ function dropLocation(e)
     var y = offset.y - offsetY;
     setCoordinates(from, x, y);
     getPieceContainer( to ).appendChild( from );
+
+    e.stopPropagation();
+}
+
+function clickPiece( e )
+{
+    e.preventDefault();
+
+    if ( inStack(this) )
+    {
+        if ( inFoldedStack(this) ) 
+            fold(this, false);
+        else
+            fold(this, true);
+    }
+
+    e.stopPropagation();
 }
 
 function setPieceEvents(piece)
@@ -129,7 +226,7 @@ function setPieceEvents(piece)
     piece.addEventListener( "dragover", dragOverPiece, false );
     piece.addEventListener( "drop", dropPieceBubble, false );
     piece.addEventListener( "drop", dropPieceCapture, true ); //not needed for all pieces.
-//    piece.addEventListener( "click", clickPiece, false );
+    piece.addEventListener( "click", clickPiece, false );
 }
 
 function setLocationEvents(loc)
