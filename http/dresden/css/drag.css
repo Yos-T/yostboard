@@ -1,6 +1,7 @@
 .relativity
 {
   position: relative;
+  display: flex;
 }
 
 .location
@@ -38,6 +39,10 @@
   display: block;
   cursor: move;
   line-height: 0px;
+}
+
+.location.free
+{
 }
 
 .location.free > * > .piece
