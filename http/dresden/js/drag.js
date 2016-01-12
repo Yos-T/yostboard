@@ -128,15 +128,7 @@ function unfold( piece )
 function addToStack( pTo, pFrom )
 {
     var sc = getStackContainer( pTo );
-    var next = sc.firstElementChild;
-    if ( next )
-    {
-        addToStack( next, pFrom )
-    }
-    else
-    {
-        sc.appendChild( pFrom );
-    }
+    sc.appendChild( pFrom );
 }
 
 function getCoordinates( piece )
@@ -268,9 +260,7 @@ function getDragPiece( nodeid )
         }
         else
         {
-            //addToStack( prevPiece, nextPiece );
-            var sc = getStackContainer( prevPiece );
-            sc.appendChild( nextPiece );
+            addToStack( prevPiece, nextPiece );
         }
     }
     return piece;
