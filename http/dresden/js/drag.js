@@ -13,6 +13,22 @@ function getPieceContainer( loc )
     return loc.lastElementChild;
 }
 
+function getFaces( piece )
+{
+    return piece.lastElementChild.firstElementChild.getElementsByClassName("face");
+}
+
+function activeFace( piece )
+{
+    var faces = getFaces( piece );
+    for ( var i = 0; i < faces.length; ++i )
+    {
+        if ( !faces[i].classList.contains("hidden") )
+            return faces[i];
+    }
+    return null;
+}
+
 function getStackContainer( piece )
 {
     return piece.lastElementChild.lastElementChild;
@@ -29,14 +45,38 @@ function inStackContainer( piece )
     return piece.parentNode.classList.contains("stack");
 }
 
+function stackNext( piece )
+{
+    return getStackContainer( piece ).firstElementChild;
+}
+
+function stackPrev( piece )
+{
+    if ( inStackContainer( piece ) )
+    {
+        return piece.parentNode.parentNode.parentNode;
+    }
+    return null;
+}
+
+function isTopOfStack( piece )
+{
+    return stackPrev( piece ) && !stackNext( piece );
+}
+
 function inStack( piece )
 {
-    return inStackContainer( piece ) || getStackContainer( piece ).firstElementChild;
+    return stackPrev( piece ) || stackNext( piece );
 }
 
 function inFoldedStack( piece )
 {
     return inStack(piece) && getStackContainer( piece ).classList.contains("folded");
+}
+
+function inUnfoldedStack( piece )
+{
+    return inStack(piece) && getStackContainer( piece ).classList.contains("unfolded");
 }
 
 function getParentPiece( piece )
@@ -47,7 +87,7 @@ function getParentPiece( piece )
         return null;
 }
 
-function fold( piece, fold )
+function doFold( piece, fold )
 {
     var p = piece;
     var add = 'unfolded';
@@ -75,6 +115,16 @@ function fold( piece, fold )
     }
 }
 
+function fold( piece )
+{
+    doFold( piece, true );
+}
+
+function unfold( piece )
+{
+    doFold( piece, false );
+}
+
 function addToStack( pTo, pFrom )
 {
     var sc = getStackContainer( pTo );
@@ -87,6 +137,16 @@ function addToStack( pTo, pFrom )
     {
         sc.appendChild( pFrom );
     }
+}
+
+function getCoordinates( piece )
+{
+    var p = {x:0,y:0};
+    var s = piece.style.left;
+    p.x = s.substring(0, s.length-2); //strip 'px'
+    s = piece.style.top;
+    p.y = s.substring(0, s.length-2); //strip 'px'
+    return p;
 }
 
 function setCoordinates(piece, x, y)
@@ -123,8 +183,14 @@ function getOffset(evt) {
  ***************************/
 function dragStartPiece(e) 
 {
-    if ( inStackContainer(this) ) return;
-    
+    if ( inFoldedStackContainer(this) ) return; // Bubble to bottom of stack.
+
+    var dragEl = this;
+    if ( inUnfoldedStack(this) )
+    {
+        dragEl = activeFace(this);
+    }
+
     var offsetX = 0;
     var offsetY = 0;
     var x = 0;
@@ -141,7 +207,7 @@ function dragStartPiece(e)
         y = offsetY * dpr;
     }
 
-    e.dataTransfer.setDragImage(this, x, y);
+    e.dataTransfer.setDragImage(dragEl, x, y);
 
     e.dataTransfer.dropEffect = 'move';
     e.dataTransfer.setData('nodeid', this.id);
@@ -185,12 +251,37 @@ function dropPieceBubble(e)
     e.stopPropagation();
 }
 
+function getDragPiece( nodeid )
+{
+    var piece = findElement( nodeid );
+    if ( !piece ) return null;
+
+    if ( inUnfoldedStack( piece ) && !isTopOfStack( piece ) )
+    {
+        var nextPiece = stackNext( piece );
+        var prevPiece = stackPrev( piece );
+        if ( !prevPiece )
+        {
+            var c = getCoordinates( piece );
+            setCoordinates( nextPiece, c.x, c.y );
+            piece.parentNode.appendChild( nextPiece );
+        }
+        else
+        {
+            //addToStack( prevPiece, nextPiece );
+            var sc = getStackContainer( prevPiece );
+            sc.appendChild( nextPiece );
+        }
+    }
+    return piece;
+}
+
 function dropLocation(e)
 {
     e.preventDefault();
 
     var to = this;
-    var from = findElement( e.dataTransfer.getData('nodeid') );
+    var from = getDragPiece( e.dataTransfer.getData('nodeid') );
     var offsetX = e.dataTransfer.getData('offsetX');
     var offsetY = e.dataTransfer.getData('offsetY');
     var offset = getOffset(e);
@@ -210,9 +301,9 @@ function clickPiece( e )
     if ( inStack(this) )
     {
         if ( inFoldedStack(this) ) 
-            fold(this, false);
+            unfold(this);
         else
-            fold(this, true);
+            fold(this);
     }
 
     e.stopPropagation();
