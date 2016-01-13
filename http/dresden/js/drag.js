@@ -15,7 +15,7 @@ function getPieceContainer( loc )
 
 function getFaces( piece )
 {
-    return piece.lastElementChild.firstElementChild.getElementsByClassName("face");
+    return piece.firstElementChild.getElementsByClassName("face");
 }
 
 function activeFace( piece )
@@ -31,18 +31,18 @@ function activeFace( piece )
 
 function getStackContainer( piece )
 {
-    return piece.lastElementChild.lastElementChild;
+    return piece;
 }
 
 function inFoldedStackContainer( piece )
 {
     var cl = piece.parentNode.classList;
-    return cl.contains("stack") && !cl.contains("unfolded");
+    return cl.contains("piece") && !cl.contains("unfolded");
 }
 
 function inStackContainer( piece )
 {
-    return piece.parentNode.classList.contains("stack");
+    return piece.parentNode.classList.contains("piece");
 }
 
 function stackNext( piece )
@@ -54,7 +54,7 @@ function stackPrev( piece )
 {
     if ( inStackContainer( piece ) )
     {
-        return piece.parentNode.parentNode.parentNode;
+        return piece.parentNode;
     }
     return null;
 }
@@ -82,7 +82,7 @@ function inUnfoldedStack( piece )
 function getParentPiece( piece )
 {
     if ( inStackContainer( piece ) )
-        return piece.parentNode.parentNode.parentNode;
+        return piece.parentNode;
     else
         return null;
 }
@@ -103,7 +103,7 @@ function doFold( piece, fold )
         var sc = getStackContainer(p);
         sc.classList.remove(remove);
         sc.classList.add(add);
-        p = sc.firstElementChild;
+        p = sc.firstElementChild; // DOES NOT WORK!!
     }
     p = getParentPiece(piece);
     while (p)
@@ -130,10 +130,12 @@ function addToStack( pTo, pFrom )
     var sc = getStackContainer( pTo );
     while ( pFrom )
     {
-        var next = sc.firstElementChild;
-        if ( next == pFrom ) return;
+        var next = sc.lastElementChild;
+        if ( next == pFrom ) break;
         sc.appendChild( pFrom );
         sc = getStackContainer( pFrom );
+        if ( !next ) break;
+        if ( !next.classList.contains("piece") ) break;
         pFrom = next;
     }
 }

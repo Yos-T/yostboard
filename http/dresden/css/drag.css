@@ -1,21 +1,20 @@
 .relativity
 {
   position: relative;
-  display: flex;
 }
 
 .location
 {
 }
 
-.stack.folded
+.piece.folded
 {
   position: absolute;
   top: 25px;
   left: 25px;
 }
 
-.stack.unfolded
+.piece.unfolded
 {
   position: static;
   display: inline-block;

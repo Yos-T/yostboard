@@ -62,13 +62,9 @@
     <xsl:variable name="base" select="@base" />
     <xsl:variable name="baseClass" select="/game/basePiece[@id=$base]/tags" />
     <xsl:attribute name="class">piece <xsl:value-of select="$baseClass" /><xsl:value-of select="tags" /></xsl:attribute>
-    <div class="relativity">
-      <div class="faces">
-        <xsl:apply-templates select="/game/basePiece[@id=$base]/face" />
-        <xsl:apply-templates select="face"/>
-      </div>
-      <div class="stack folded">
-      </div>
+    <div class="faces">
+      <xsl:apply-templates select="/game/basePiece[@id=$base]/face" />
+      <xsl:apply-templates select="face"/>
     </div>
   </a>
 </xsl:template>
