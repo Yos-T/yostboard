@@ -131,6 +131,7 @@ function addToStack( pTo, pFrom )
     while ( pFrom )
     {
         var next = sc.firstElementChild;
+        if ( next == pFrom ) return;
         sc.appendChild( pFrom );
         sc = getStackContainer( pFrom );
         pFrom = next;
@@ -263,6 +264,10 @@ function getDragPiece( nodeid )
             var c = getCoordinates( piece );
             setCoordinates( nextPiece, c.x, c.y );
             piece.parentNode.appendChild( nextPiece );
+            if ( !inStack( nextPiece ) )
+            {
+                fold( nextPiece );
+            }
         }
         else
         {
@@ -286,6 +291,7 @@ function dropLocation(e)
     var y = offset.y - offsetY;
     setCoordinates(from, x, y);
     getPieceContainer( to ).appendChild( from );
+    fold( from );
 
     e.stopPropagation();
 }
@@ -330,8 +336,8 @@ function initFaces(el)
     if (!el) return;
     var faces = el.getElementsByClassName("face");
     if ( !faces ) return;
-    // First face is visible
-    for ( var f = 1; f < faces.length; f++ )
+    // Last face is visible
+    for ( var f = 0; f < faces.length-1; f++ )
     {
         faces[f].classList.add("hidden");
     }
@@ -353,9 +359,28 @@ function initDrag()
     }
 }
 
+function initTestBigStack()
+{
+    var piece = document.getElementById('c1');
+    var mappc = getPieceContainer( document.getElementById('map') );
+   
+    var base = piece.cloneNode(true); 
+    mappc.appendChild( base );
+    setCoordinates( base, 0, 0 );
+
+    for (var i = 0; i < 300; i++)
+    {
+        var clone = piece.cloneNode(true);
+        clone.id = 'c'+i;
+        setPieceEvents( clone );
+        addToStack( base, clone );
+    }
+}
+
 function init()
 {
     initDrag();
+    initTestBigStack();
 //    if (initGame)
 //        initGame();
 //    restorePos();
