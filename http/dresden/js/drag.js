@@ -128,7 +128,13 @@ function unfold( piece )
 function addToStack( pTo, pFrom )
 {
     var sc = getStackContainer( pTo );
-    sc.appendChild( pFrom );
+    while ( pFrom )
+    {
+        var next = sc.firstElementChild;
+        sc.appendChild( pFrom );
+        sc = getStackContainer( pFrom );
+        pFrom = next;
+    }
 }
 
 function getCoordinates( piece )
