@@ -5,72 +5,57 @@
 
 .location
 {
+  z-index: 1;
 }
 
-.piece.folded
+/* stack bottom */
+.location.free > * > .piece
+{
+  position: absolute !important;
+}
+.location.free > * > .unfolded.piece
+{
+  border: 15px solid green;
+}
+
+/* TODO: not sure if right... */
+.location.single > * > .piece,
+.location.fixed > * > .piece
+{
+  position: static !important;
+}
+
+.piece > :not(.unfolded).piece
 {
   position: absolute;
-  top: 25px;
-  left: 25px;
+  top: 25px !important;
+  left: 25px !important;
 }
 
-.piece.unfolded
+.piece > .unfolded.piece
 {
   position: static;
-  display: inline-block;
 }
 
 .faces
 {
   display: inline-block;
+  cursor: move;
 }
 
 .face.hidden
 {
-  position: absolute;
-  visibility: hidden;
-  top: 0px;
-  left: 0px;
+  display: none;
 }
 
 .piece
 {
-  border: 3px solid black;
-  border-style: outset;
-  display: block;
-  cursor: move;
+  display:inline-block;
   line-height: 0px;
+  z-index: 2;
 }
 
-.location.free
-{
-}
-
-.location.free > * > .piece
-{
-  position: absolute;
-}
-
-.location.single
-{
-  border: 3px solid red;
-
-}
-.location.single > * > .piece
-{
-  display:inline-block;
-}
-.location.fixed
-{
-  border: 3px solid blue;
-
-}
-
-.location.fixed > * > .piece
-{
-  display:inline-block;
-}
-
+/* Prevent image selection */
 img 
 {
   -webkit-user-select: none;
@@ -79,3 +64,23 @@ img
   -o-user-select: none;
   user-select: none;
 }
+
+/* debug rules: */
+.piece
+{
+  border: 3px solid black;
+  border-style: outset;
+}
+
+.location.single
+{
+  border: 3px solid red;
+
+}
+
+.location.fixed
+{
+  border: 3px solid blue;
+
+}
+

@@ -3,53 +3,44 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Dresden 20</title>
-<link rel="stylesheet" type="text/css" href="css/dresden20.css">
-<script type="application/javascript" src="js/dresden20.js"></script><link href="css/drag.css" rel="stylesheet" type="text/css">
-<script src="js/drag.js" type="application/javascript"></script>
+<style type="text/css">
+.location.free > * > .piece
+{
+  position: absolute;
+}
+.stack
+{
+  counter-reset: offset;
+}
+.stack > .piece
+{
+  content: counter(offset)"px";
+/*
+  top: counter(offset) "px";
+  counter-increment: offset + 10;
+*/
+}
+</style>
 </head>
 <body onload="init()">
-<div id="map" class="location free">
-<div class="faces"><img src="images/Dresden%2020%20map%20v1r.JPG"></div>
-<div class="pieces"></div>
-</div>
-<div id="deck" class="location single">
-<div class="faces"></div>
-<div class="pieces">
-<div class="stack">
-<div draggable="true" id="c1" class="piece card"><div class="faces">
-<img src="images/CBack.PNG"><img src="images/CE1.PNG">
-</div></div>
-<div draggable="true" id="c2" class="piece card"><div class="faces">
-<img src="images/CBack.PNG"><img src="images/CE2.PNG">
-</div></div>
-<div draggable="true" id="c3" class="piece card"><div class="faces">
-<img src="images/CBack.PNG"><img src="images/CE2.PNG">
-</div></div>
-<div draggable="true" id="c4" class="piece card"><div class="faces">
-<img src="images/CBack.PNG"><img src="images/CE3.PNG">
-</div></div>
-</div>
-
-</div>
-</div>
-<div id="discard" class="location single">
-<div class="faces"></div>
-<div class="pieces"></div>
-</div>
-<div id="countersheet" class="location fixed">
-<div class="faces"></div>
-<div class="pieces">
-<div draggable="true" id="rubi" class="piece allied russian"><div class="faces">
-<img src="images/RUMask.PNG"><img src="images/RUBI.PNG">
-</div></div>
-<div draggable="true" id="rubii" class="piece allied russian"><div class="faces">
-<img src="images/RUMask.PNG"><img src="images/RUBII.PNG">
-</div></div>
-<div draggable="true" id="rubiii" class="piece allied russian"><div class="faces">
-<img src="images/RUMask.PNG"><img src="images/RUBIII.PNG">
-</div></div>
-<div draggable="true" id="turn" class="piece "><div class="faces"><img src="images/ALGTurn.PNG"></div></div>
-</div>
-</div>
+  <div id="map" class="location free">
+    <div class="faces"><img src="images/Dresden%2020%20map%20v1r.JPG"></div>
+      <div class="stack">
+        <div draggable="true" id="c1" class="piece card">
+          <div class="faces">
+            <img src="images/CBack.PNG"><img src="images/CE1.PNG">
+          </div>
+        </div>
+      <div draggable="true" id="c2" class="piece card"><div class="faces">
+        <img src="images/CBack.PNG"><img src="images/CE2.PNG">
+      </div></div>
+      <div draggable="true" id="c3" class="piece card"><div class="faces">
+        <img src="images/CBack.PNG"><img src="images/CE2.PNG">
+      </div></div>
+      <div draggable="true" id="c4" class="piece card"><div class="faces">
+        <img src="images/CBack.PNG"><img src="images/CE3.PNG">
+      </div></div>
+  </div>
+  </div>
 </body>
 </html>

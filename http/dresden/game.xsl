@@ -57,16 +57,16 @@
 </xsl:template>
 
 <xsl:template match="piece">
-  <a draggable="true">
+  <div>
     <xsl:attribute name="id"><xsl:value-of select="@id" /></xsl:attribute>
     <xsl:variable name="base" select="@base" />
     <xsl:variable name="baseClass" select="/game/basePiece[@id=$base]/tags" />
     <xsl:attribute name="class">piece <xsl:value-of select="$baseClass" /><xsl:value-of select="tags" /></xsl:attribute>
-    <div class="faces">
+    <div class="faces" draggable="true">
       <xsl:apply-templates select="/game/basePiece[@id=$base]/face" />
       <xsl:apply-templates select="face"/>
     </div>
-  </a>
+  </div>
 </xsl:template>
 
 </xsl:stylesheet>
