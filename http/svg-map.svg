@@ -1,0 +1,756 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="210mm" height="297mm" viewBox="-50.000 -50.000 1350.000 1991.858">
+  <desc>Traveller Subsector</desc>
+  <defs>
+    <style type="text/css"><![CDATA[
+      text {
+        font-size: 16pt;
+        font-family: Optima, Helvetica, sans-serif;
+        text-anchor: middle;
+      }
+      text a {
+        fill: blue;
+        text-decoration: underline;
+      }
+      .coordinates {
+        fill-opacity: 0.5;
+      }
+      .starport, .base {
+        font-size: 20pt;
+      }
+      .direction {
+        font-size: 24pt;
+      }
+      .legend {
+        text-anchor: start;
+        font-size: 14pt;
+      }
+      tspan.comm {
+        fill: #ff6347; /* tomato */
+      }
+      line.comm {
+        stroke-width: 10pt;
+        stroke: #ff6347; /* tomato */
+      }
+      polyline.trade {
+        stroke-width: 1pt;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke: grey;
+        fill: none;
+        display: none;
+      }
+      tspan.trade {
+        fill: #afeeee; /* pale turquoise */
+      }
+      line.main {
+        stroke-width: 6pt;
+        stroke: #afeeee; /* pale turquoise */
+        fill: none;
+      }
+      .code {
+        opacity: 0.3;
+      }
+      .amber {
+        fill: none;
+        stroke-width: 1pt;
+        stroke: black;
+      }
+      .red {
+        fill: red;
+      }
+      #hex {
+        stroke-width: 3pt;
+        fill: none;
+        stroke: black;
+      }
+    ]]></style>
+    <polygon id="hex" points="-100.000,0.000 -50.000,86.603 50.000,86.603 100.000,0.000 50.000,-86.603 -50.000,-86.603"/>
+  </defs>
+  <rect fill="white" stroke="black" stroke-width="10" id="frame" x="-50.000" y="-50.000" width="1350.000" height="1991.858"/>
+
+  <g id="comm">
+    <line class="comm" x1="250.000" y1="1385.641" x2="550.000" y2="1558.846"/>
+    <line class="comm" x1="550.000" y1="1558.846" x2="250.000" y2="1385.641"/>
+    <line class="comm" x1="850.000" y1="1385.641" x2="1000.000" y2="1125.833"/>
+    <line class="comm" x1="1000.000" y1="259.808" x2="1000.000" y2="433.013"/>
+    <line class="comm" x1="1000.000" y1="259.808" x2="1150.000" y2="173.205"/>
+    <line class="comm" x1="1000.000" y1="433.013" x2="1000.000" y2="259.808"/>
+    <line class="comm" x1="1000.000" y1="1125.833" x2="850.000" y2="1385.641"/>
+    <line class="comm" x1="1150.000" y1="173.205" x2="1000.000" y2="259.808"/>
+  </g>
+
+  <g id="trade">
+    <polyline class="trade" points="100.000,259.808 100.000,433.013 100.000,259.808"/>
+    <polyline class="trade" points="100.000,259.808 100.000,606.218 100.000,259.808"/>
+    <polyline class="trade" points="100.000,259.808 400.000,433.013 100.000,259.808"/>
+    <polyline class="trade" points="100.000,259.808 400.000,606.218 100.000,433.013 100.000,259.808"/>
+    <polyline class="trade" points="100.000,259.808 550.000,173.205 250.000,173.205 100.000,259.808"/>
+    <polyline class="trade" points="100.000,779.423 100.000,259.808 100.000,433.013 100.000,779.423"/>
+    <polyline class="trade" points="100.000,779.423 100.000,433.013 100.000,779.423"/>
+    <polyline class="trade" points="100.000,779.423 100.000,606.218 100.000,779.423"/>
+    <polyline class="trade" points="100.000,779.423 400.000,433.013 100.000,433.013 100.000,779.423"/>
+    <polyline class="trade" points="100.000,779.423 400.000,606.218 100.000,779.423"/>
+    <polyline class="trade" points="550.000,866.025 100.000,779.423 400.000,606.218 550.000,866.025"/>
+    <polyline class="trade" points="550.000,866.025 100.000,952.628 400.000,779.423 550.000,866.025"/>
+    <polyline class="trade" points="550.000,866.025 400.000,433.013 400.000,606.218 550.000,866.025"/>
+    <polyline class="trade" points="550.000,866.025 400.000,779.423 550.000,866.025"/>
+    <polyline class="trade" points="550.000,866.025 550.000,173.205 550.000,519.615 550.000,866.025"/>
+    <polyline class="trade" points="550.000,866.025 550.000,519.615 550.000,866.025"/>
+    <polyline class="trade" points="550.000,866.025 550.000,1039.230 550.000,866.025"/>
+    <polyline class="trade" points="550.000,866.025 700.000,433.013 400.000,606.218 550.000,866.025"/>
+    <polyline class="trade" points="550.000,866.025 700.000,1299.038 550.000,1039.230 550.000,866.025"/>
+    <polyline class="trade" points="550.000,866.025 850.000,346.410 550.000,519.615 550.000,866.025"/>
+    <polyline class="trade" points="550.000,866.025 1000.000,433.013 850.000,692.820 550.000,866.025"/>
+    <polyline class="trade" points="550.000,866.025 1000.000,606.218 850.000,692.820 550.000,866.025"/>
+    <polyline class="trade" points="550.000,866.025 1150.000,519.615 850.000,692.820 550.000,866.025"/>
+    <polyline class="trade" points="550.000,866.025 1150.000,692.820 850.000,692.820 550.000,866.025"/>
+    <polyline class="trade" points="1000.000,259.808 400.000,86.603 550.000,173.205 850.000,346.410 1000.000,259.808"/>
+    <polyline class="trade" points="1000.000,259.808 400.000,433.013 700.000,433.013 1000.000,259.808"/>
+    <polyline class="trade" points="1000.000,259.808 550.000,173.205 700.000,433.013 1000.000,259.808"/>
+    <polyline class="trade" points="1000.000,259.808 550.000,519.615 700.000,433.013 1000.000,259.808"/>
+    <polyline class="trade" points="1000.000,259.808 700.000,433.013 1000.000,259.808"/>
+    <polyline class="trade" points="1000.000,259.808 850.000,346.410 1000.000,259.808"/>
+    <polyline class="trade" points="1000.000,259.808 1000.000,433.013 1000.000,259.808"/>
+    <polyline class="trade" points="1000.000,259.808 1000.000,606.218 1000.000,259.808"/>
+    <polyline class="trade" points="1000.000,259.808 1150.000,519.615 1000.000,259.808"/>
+    <polyline class="trade" points="1000.000,259.808 1150.000,692.820 1000.000,433.013 1000.000,259.808"/>
+  </g>
+
+  <g id="routes">
+    <line class="main" x1="100.000" y1="259.808" x2="100.000" y2="433.013"/>
+    <line class="main" x1="100.000" y1="259.808" x2="250.000" y2="173.205"/>
+    <line class="main" x1="100.000" y1="779.423" x2="100.000" y2="606.218"/>
+    <line class="main" x1="550.000" y1="866.025" x2="400.000" y2="779.423"/>
+    <line class="main" x1="550.000" y1="866.025" x2="550.000" y2="1039.230"/>
+    <line class="main" x1="1000.000" y1="259.808" x2="850.000" y2="346.410"/>
+    <line class="main" x1="550.000" y1="173.205" x2="400.000" y2="86.603"/>
+    <line class="main" x1="1000.000" y1="259.808" x2="1000.000" y2="433.013"/>
+    <line class="main" x1="100.000" y1="259.808" x2="100.000" y2="606.218"/>
+    <line class="main" x1="100.000" y1="259.808" x2="400.000" y2="433.013"/>
+    <line class="main" x1="250.000" y1="173.205" x2="550.000" y2="173.205"/>
+    <line class="main" x1="100.000" y1="779.423" x2="400.000" y2="606.218"/>
+    <line class="main" x1="550.000" y1="866.025" x2="400.000" y2="606.218"/>
+    <line class="main" x1="400.000" y1="779.423" x2="100.000" y2="952.628"/>
+    <line class="main" x1="550.000" y1="866.025" x2="550.000" y2="519.615"/>
+    <line class="main" x1="550.000" y1="866.025" x2="850.000" y2="692.820"/>
+    <line class="main" x1="850.000" y1="692.820" x2="1000.000" y2="433.013"/>
+    <line class="main" x1="1000.000" y1="259.808" x2="700.000" y2="433.013"/>
+    <line class="main" x1="1000.000" y1="259.808" x2="1000.000" y2="606.218"/>
+    <line class="main" x1="1000.000" y1="259.808" x2="1150.000" y2="519.615"/>
+    <line class="main" x1="550.000" y1="866.025" x2="700.000" y2="1299.038"/>
+    <line class="main" x1="1000.000" y1="259.808" x2="1150.000" y2="692.820"/>
+  </g>
+
+  <g id="grid">
+    <use xlink:href="#hex" x="100.000" y="86.603"/>
+    <text class="coordinates" x="100.000" y="26.603">0101</text>
+
+    <use xlink:href="#hex" x="100.000" y="259.808"/>
+    <text class="coordinates" x="100.000" y="199.808">0102</text>
+
+    <use xlink:href="#hex" x="100.000" y="433.013"/>
+    <text class="coordinates" x="100.000" y="373.013">0103</text>
+
+    <use xlink:href="#hex" x="100.000" y="606.218"/>
+    <text class="coordinates" x="100.000" y="546.218">0104</text>
+
+    <use xlink:href="#hex" x="100.000" y="779.423"/>
+    <text class="coordinates" x="100.000" y="719.423">0105</text>
+
+    <use xlink:href="#hex" x="100.000" y="952.628"/>
+    <text class="coordinates" x="100.000" y="892.628">0106</text>
+
+    <use xlink:href="#hex" x="100.000" y="1125.833"/>
+    <text class="coordinates" x="100.000" y="1065.833">0107</text>
+
+    <use xlink:href="#hex" x="100.000" y="1299.038"/>
+    <text class="coordinates" x="100.000" y="1239.038">0108</text>
+
+    <use xlink:href="#hex" x="100.000" y="1472.243"/>
+    <text class="coordinates" x="100.000" y="1412.243">0109</text>
+
+    <use xlink:href="#hex" x="100.000" y="1645.448"/>
+    <text class="coordinates" x="100.000" y="1585.448">0110</text>
+
+    <use xlink:href="#hex" x="250.000" y="173.205"/>
+    <text class="coordinates" x="250.000" y="113.205">0201</text>
+
+    <use xlink:href="#hex" x="250.000" y="346.410"/>
+    <text class="coordinates" x="250.000" y="286.410">0202</text>
+
+    <use xlink:href="#hex" x="250.000" y="519.615"/>
+    <text class="coordinates" x="250.000" y="459.615">0203</text>
+
+    <use xlink:href="#hex" x="250.000" y="692.820"/>
+    <text class="coordinates" x="250.000" y="632.820">0204</text>
+
+    <use xlink:href="#hex" x="250.000" y="866.025"/>
+    <text class="coordinates" x="250.000" y="806.025">0205</text>
+
+    <use xlink:href="#hex" x="250.000" y="1039.230"/>
+    <text class="coordinates" x="250.000" y="979.230">0206</text>
+
+    <use xlink:href="#hex" x="250.000" y="1212.436"/>
+    <text class="coordinates" x="250.000" y="1152.436">0207</text>
+
+    <use xlink:href="#hex" x="250.000" y="1385.641"/>
+    <text class="coordinates" x="250.000" y="1325.641">0208</text>
+
+    <use xlink:href="#hex" x="250.000" y="1558.846"/>
+    <text class="coordinates" x="250.000" y="1498.846">0209</text>
+
+    <use xlink:href="#hex" x="250.000" y="1732.051"/>
+    <text class="coordinates" x="250.000" y="1672.051">0210</text>
+
+    <use xlink:href="#hex" x="400.000" y="86.603"/>
+    <text class="coordinates" x="400.000" y="26.603">0301</text>
+
+    <use xlink:href="#hex" x="400.000" y="259.808"/>
+    <text class="coordinates" x="400.000" y="199.808">0302</text>
+
+    <use xlink:href="#hex" x="400.000" y="433.013"/>
+    <text class="coordinates" x="400.000" y="373.013">0303</text>
+
+    <use xlink:href="#hex" x="400.000" y="606.218"/>
+    <text class="coordinates" x="400.000" y="546.218">0304</text>
+
+    <use xlink:href="#hex" x="400.000" y="779.423"/>
+    <text class="coordinates" x="400.000" y="719.423">0305</text>
+
+    <use xlink:href="#hex" x="400.000" y="952.628"/>
+    <text class="coordinates" x="400.000" y="892.628">0306</text>
+
+    <use xlink:href="#hex" x="400.000" y="1125.833"/>
+    <text class="coordinates" x="400.000" y="1065.833">0307</text>
+
+    <use xlink:href="#hex" x="400.000" y="1299.038"/>
+    <text class="coordinates" x="400.000" y="1239.038">0308</text>
+
+    <use xlink:href="#hex" x="400.000" y="1472.243"/>
+    <text class="coordinates" x="400.000" y="1412.243">0309</text>
+
+    <use xlink:href="#hex" x="400.000" y="1645.448"/>
+    <text class="coordinates" x="400.000" y="1585.448">0310</text>
+
+    <use xlink:href="#hex" x="550.000" y="173.205"/>
+    <text class="coordinates" x="550.000" y="113.205">0401</text>
+
+    <use xlink:href="#hex" x="550.000" y="346.410"/>
+    <text class="coordinates" x="550.000" y="286.410">0402</text>
+
+    <use xlink:href="#hex" x="550.000" y="519.615"/>
+    <text class="coordinates" x="550.000" y="459.615">0403</text>
+
+    <use xlink:href="#hex" x="550.000" y="692.820"/>
+    <text class="coordinates" x="550.000" y="632.820">0404</text>
+
+    <use xlink:href="#hex" x="550.000" y="866.025"/>
+    <text class="coordinates" x="550.000" y="806.025">0405</text>
+
+    <use xlink:href="#hex" x="550.000" y="1039.230"/>
+    <text class="coordinates" x="550.000" y="979.230">0406</text>
+
+    <use xlink:href="#hex" x="550.000" y="1212.436"/>
+    <text class="coordinates" x="550.000" y="1152.436">0407</text>
+
+    <use xlink:href="#hex" x="550.000" y="1385.641"/>
+    <text class="coordinates" x="550.000" y="1325.641">0408</text>
+
+    <use xlink:href="#hex" x="550.000" y="1558.846"/>
+    <text class="coordinates" x="550.000" y="1498.846">0409</text>
+
+    <use xlink:href="#hex" x="550.000" y="1732.051"/>
+    <text class="coordinates" x="550.000" y="1672.051">0410</text>
+
+    <use xlink:href="#hex" x="700.000" y="86.603"/>
+    <text class="coordinates" x="700.000" y="26.603">0501</text>
+
+    <use xlink:href="#hex" x="700.000" y="259.808"/>
+    <text class="coordinates" x="700.000" y="199.808">0502</text>
+
+    <use xlink:href="#hex" x="700.000" y="433.013"/>
+    <text class="coordinates" x="700.000" y="373.013">0503</text>
+
+    <use xlink:href="#hex" x="700.000" y="606.218"/>
+    <text class="coordinates" x="700.000" y="546.218">0504</text>
+
+    <use xlink:href="#hex" x="700.000" y="779.423"/>
+    <text class="coordinates" x="700.000" y="719.423">0505</text>
+
+    <use xlink:href="#hex" x="700.000" y="952.628"/>
+    <text class="coordinates" x="700.000" y="892.628">0506</text>
+
+    <use xlink:href="#hex" x="700.000" y="1125.833"/>
+    <text class="coordinates" x="700.000" y="1065.833">0507</text>
+
+    <use xlink:href="#hex" x="700.000" y="1299.038"/>
+    <text class="coordinates" x="700.000" y="1239.038">0508</text>
+
+    <use xlink:href="#hex" x="700.000" y="1472.243"/>
+    <text class="coordinates" x="700.000" y="1412.243">0509</text>
+
+    <use xlink:href="#hex" x="700.000" y="1645.448"/>
+    <text class="coordinates" x="700.000" y="1585.448">0510</text>
+
+    <use xlink:href="#hex" x="850.000" y="173.205"/>
+    <text class="coordinates" x="850.000" y="113.205">0601</text>
+
+    <use xlink:href="#hex" x="850.000" y="346.410"/>
+    <text class="coordinates" x="850.000" y="286.410">0602</text>
+
+    <use xlink:href="#hex" x="850.000" y="519.615"/>
+    <text class="coordinates" x="850.000" y="459.615">0603</text>
+
+    <use xlink:href="#hex" x="850.000" y="692.820"/>
+    <text class="coordinates" x="850.000" y="632.820">0604</text>
+
+    <use xlink:href="#hex" x="850.000" y="866.025"/>
+    <text class="coordinates" x="850.000" y="806.025">0605</text>
+
+    <use xlink:href="#hex" x="850.000" y="1039.230"/>
+    <text class="coordinates" x="850.000" y="979.230">0606</text>
+
+    <use xlink:href="#hex" x="850.000" y="1212.436"/>
+    <text class="coordinates" x="850.000" y="1152.436">0607</text>
+
+    <use xlink:href="#hex" x="850.000" y="1385.641"/>
+    <text class="coordinates" x="850.000" y="1325.641">0608</text>
+
+    <use xlink:href="#hex" x="850.000" y="1558.846"/>
+    <text class="coordinates" x="850.000" y="1498.846">0609</text>
+
+    <use xlink:href="#hex" x="850.000" y="1732.051"/>
+    <text class="coordinates" x="850.000" y="1672.051">0610</text>
+
+    <use xlink:href="#hex" x="1000.000" y="86.603"/>
+    <text class="coordinates" x="1000.000" y="26.603">0701</text>
+
+    <use xlink:href="#hex" x="1000.000" y="259.808"/>
+    <text class="coordinates" x="1000.000" y="199.808">0702</text>
+
+    <use xlink:href="#hex" x="1000.000" y="433.013"/>
+    <text class="coordinates" x="1000.000" y="373.013">0703</text>
+
+    <use xlink:href="#hex" x="1000.000" y="606.218"/>
+    <text class="coordinates" x="1000.000" y="546.218">0704</text>
+
+    <use xlink:href="#hex" x="1000.000" y="779.423"/>
+    <text class="coordinates" x="1000.000" y="719.423">0705</text>
+
+    <use xlink:href="#hex" x="1000.000" y="952.628"/>
+    <text class="coordinates" x="1000.000" y="892.628">0706</text>
+
+    <use xlink:href="#hex" x="1000.000" y="1125.833"/>
+    <text class="coordinates" x="1000.000" y="1065.833">0707</text>
+
+    <use xlink:href="#hex" x="1000.000" y="1299.038"/>
+    <text class="coordinates" x="1000.000" y="1239.038">0708</text>
+
+    <use xlink:href="#hex" x="1000.000" y="1472.243"/>
+    <text class="coordinates" x="1000.000" y="1412.243">0709</text>
+
+    <use xlink:href="#hex" x="1000.000" y="1645.448"/>
+    <text class="coordinates" x="1000.000" y="1585.448">0710</text>
+
+    <use xlink:href="#hex" x="1150.000" y="173.205"/>
+    <text class="coordinates" x="1150.000" y="113.205">0801</text>
+
+    <use xlink:href="#hex" x="1150.000" y="346.410"/>
+    <text class="coordinates" x="1150.000" y="286.410">0802</text>
+
+    <use xlink:href="#hex" x="1150.000" y="519.615"/>
+    <text class="coordinates" x="1150.000" y="459.615">0803</text>
+
+    <use xlink:href="#hex" x="1150.000" y="692.820"/>
+    <text class="coordinates" x="1150.000" y="632.820">0804</text>
+
+    <use xlink:href="#hex" x="1150.000" y="866.025"/>
+    <text class="coordinates" x="1150.000" y="806.025">0805</text>
+
+    <use xlink:href="#hex" x="1150.000" y="1039.230"/>
+    <text class="coordinates" x="1150.000" y="979.230">0806</text>
+
+    <use xlink:href="#hex" x="1150.000" y="1212.436"/>
+    <text class="coordinates" x="1150.000" y="1152.436">0807</text>
+
+    <use xlink:href="#hex" x="1150.000" y="1385.641"/>
+    <text class="coordinates" x="1150.000" y="1325.641">0808</text>
+
+    <use xlink:href="#hex" x="1150.000" y="1558.846"/>
+    <text class="coordinates" x="1150.000" y="1498.846">0809</text>
+
+    <use xlink:href="#hex" x="1150.000" y="1732.051"/>
+    <text class="coordinates" x="1150.000" y="1672.051">0810</text>
+  </g>
+
+  <g id="legend">
+    <text class="legend" x="-10.000" y="1905.256">◉ gas giant – ■ imperial consulate – ☼ TAS – ▲ scout base – ★ navy base – π research base – ☠ pirate base – <tspan class="comm">▮</tspan> communication – <tspan class="trade">▮</tspan> trade – <a xlink:href="https://campaignwiki.org/uwp-generator/1894990139">UWP</a></text>
+    <text class="direction" x="600.000" y="-13.000">coreward</text>
+    <text transform="translate(1260.000,866.025) rotate(90)" class="direction">trailing</text>
+    <text class="direction" x="600.000" y="1853.294">rimward</text>
+    <text transform="translate(-10.000,866.025) rotate(-90)" class="direction">spinward</text>
+  </g>
+
+  <g id="system">
+  <a xlink:href="http://campaignwiki.org/wiki/NameOfYourWiki/Revoq">
+    <g id="Revoq">
+      <circle cx="100.000" cy="259.808" r="17.000"/>
+      <circle class="code amber" cx="100.000" cy="259.808" r="52.000"/>
+      <text class="starport" x="100.000" y="230.363">D</text>
+      <text class="name" x="100.000" y="329.090">Revoq</text>
+    </g>
+  </a>
+  <a xlink:href="http://campaignwiki.org/wiki/NameOfYourWiki/Rapareluxe">
+    <g id="Rapareluxe">
+      <circle cx="100.000" cy="433.013" r="18.000"/>
+      <text class="starport" x="100.000" y="403.568">D</text>
+      <text class="name" x="100.000" y="502.295">Rapareluxe</text>
+      <text class="scout base" x="40.000" y="415.692">▲</text>
+    </g>
+  </a>
+  <a xlink:href="http://campaignwiki.org/wiki/NameOfYourWiki/Etematuti">
+    <g id="Etematuti">
+      <circle cx="100.000" cy="606.218" r="20.000"/>
+      <text class="starport" x="100.000" y="576.773">C</text>
+      <text class="name" x="100.000" y="675.500">Etematuti</text>
+    </g>
+  </a>
+  <a xlink:href="http://campaignwiki.org/wiki/NameOfYourWiki/Tirivi">
+    <g id="Tirivi">
+      <circle cx="100.000" cy="779.423" r="15.000"/>
+      <circle class="code amber" cx="100.000" cy="779.423" r="52.000"/>
+      <text class="starport" x="100.000" y="749.978">C</text>
+      <text class="name" x="100.000" y="848.705">Tirivi</text>
+      <text class="TAS base" x="40.000" y="796.743">☼</text>
+      <text class="scout base" x="40.000" y="762.102">▲</text>
+    </g>
+  </a>
+  <a xlink:href="http://campaignwiki.org/wiki/NameOfYourWiki/Qtorapara">
+    <g id="Qtorapara">
+      <circle cx="100.000" cy="952.628" r="15.000"/>
+      <text class="starport" x="100.000" y="923.183">A</text>
+      <text class="name" x="100.000" y="1021.910">Qtorapara</text>
+      <text class="consulate base" x="60.000" y="995.929">■</text>
+      <text class="TAS base" x="40.000" y="969.948">☼</text>
+      <text class="research base" x="160.000" y="935.307">π</text>
+    </g>
+  </a>
+  <a xlink:href="http://campaignwiki.org/wiki/NameOfYourWiki/Inrizo">
+    <g id="Inrizo">
+      <circle cx="100.000" cy="1472.243" r="17.000"/>
+      <circle class="code amber" cx="100.000" cy="1472.243" r="52.000"/>
+      <text class="starport" x="100.000" y="1442.798">D</text>
+      <text class="name" x="100.000" y="1541.525">Inrizo</text>
+    </g>
+  </a>
+  <a xlink:href="http://campaignwiki.org/wiki/NameOfYourWiki/Pararabazo">
+    <g id="Pararabazo">
+      <circle cx="100.000" cy="1645.448" r="13.000"/>
+      <text class="starport" x="100.000" y="1616.003">B</text>
+      <text class="name" x="100.000" y="1714.730">Pararabazo</text>
+      <text class="TAS base" x="40.000" y="1662.769">☼</text>
+    </g>
+  </a>
+  <a xlink:href="http://campaignwiki.org/wiki/NameOfYourWiki/Fenazu">
+    <g id="Fenazu">
+      <circle cx="250.000" cy="173.205" r="17.000"/>
+      <circle class="code amber" cx="250.000" cy="173.205" r="52.000"/>
+      <text class="starport" x="250.000" y="143.760">D</text>
+      <text class="name" x="250.000" y="242.487">Fenazu</text>
+      <text class="scout base" x="190.000" y="155.885">▲</text>
+    </g>
+  </a>
+  <a xlink:href="http://campaignwiki.org/wiki/NameOfYourWiki/Bapana">
+    <g id="Bapana">
+      <circle cx="250.000" cy="1385.641" r="15.000"/>
+      <text class="starport" x="250.000" y="1356.196">A</text>
+      <text class="name" x="250.000" y="1454.923">Bapana</text>
+      <text class="consulate base" x="210.000" y="1428.942">■</text>
+      <text class="TAS base" x="190.000" y="1402.961">☼</text>
+      <text class="naval base" x="210.000" y="1342.339">★</text>
+      <text class="research base" x="310.000" y="1368.320">π</text>
+    </g>
+  </a>
+  <a xlink:href="http://campaignwiki.org/wiki/NameOfYourWiki/Ra">
+    <g id="Ra">
+      <circle class="code red" cx="250.000" cy="1558.846" r="52.000"/>
+      <circle cx="250.000" cy="1558.846" r="15.000"/>
+      <text class="starport" x="250.000" y="1529.401">E</text>
+      <text class="name" x="250.000" y="1628.128">Ra</text>
+      <text class="pirate base" x="310.000" y="1576.166">☠</text>
+    </g>
+  </a>
+  <a xlink:href="http://campaignwiki.org/wiki/NameOfYourWiki/Rebaxe">
+    <g id="Rebaxe">
+      <circle cx="400.000" cy="86.603" r="14.000"/>
+      <text class="starport" x="400.000" y="57.158">C</text>
+      <text class="name" x="400.000" y="155.885">Rebaxe</text>
+    </g>
+  </a>
+  <a xlink:href="http://campaignwiki.org/wiki/NameOfYourWiki/Nazofetuvo">
+    <g id="Nazofetuvo">
+      <circle cx="400.000" cy="433.013" r="18.000"/>
+      <text class="starport" x="400.000" y="403.568">A</text>
+      <text class="name" x="400.000" y="502.295">Nazofetuvo</text>
+      <text class="consulate base" x="360.000" y="476.314">■</text>
+      <text class="TAS base" x="340.000" y="450.333">☼</text>
+      <text class="naval base" x="360.000" y="389.711">★</text>
+    </g>
+  </a>
+  <a xlink:href="http://campaignwiki.org/wiki/NameOfYourWiki/Zozi">
+    <g id="Zozi">
+      <circle cx="400.000" cy="606.218" r="17.000"/>
+      <text class="starport" x="400.000" y="576.773">D</text>
+      <text class="name" x="400.000" y="675.500">Zozi</text>
+    </g>
+  </a>
+  <a xlink:href="http://campaignwiki.org/wiki/NameOfYourWiki/Ririnfeba">
+    <g id="Ririnfeba">
+      <circle cx="400.000" cy="779.423" r="16.000"/>
+      <text class="starport" x="400.000" y="749.978">C</text>
+      <text class="name" x="400.000" y="848.705">Ririnfeba</text>
+      <text class="scout base" x="340.000" y="762.102">▲</text>
+    </g>
+  </a>
+  <a xlink:href="http://campaignwiki.org/wiki/NameOfYourWiki/Zubaqto">
+    <g id="Zubaqto">
+      <circle class="code red" cx="400.000" cy="1125.833" r="52.000"/>
+      <circle cx="400.000" cy="1125.833" r="16.000"/>
+      <text class="starport" x="400.000" y="1096.388">C</text>
+      <text class="name" x="400.000" y="1195.115">Zubaqto</text>
+      <text class="research base" x="460.000" y="1108.513">π</text>
+      <text class="pirate base" x="460.000" y="1143.154">☠</text>
+    </g>
+  </a>
+  <a xlink:href="http://campaignwiki.org/wiki/NameOfYourWiki/Zutoreqti">
+    <g id="Zutoreqti">
+      <circle cx="550.000" cy="173.205" r="11.000"/>
+      <text class="starport" x="550.000" y="143.760"/>
+      <text class="name" x="550.000" y="242.487">Zutoreqti</text>
+    </g>
+  </a>
+  <a xlink:href="http://campaignwiki.org/wiki/NameOfYourWiki/Qqra">
+    <g id="Qqra">
+      <circle cx="550.000" cy="519.615" r="16.000"/>
+      <text class="starport" x="550.000" y="490.170">C</text>
+      <text class="name" x="550.000" y="588.897">Qqra</text>
+    </g>
+  </a>
+  <a xlink:href="http://campaignwiki.org/wiki/NameOfYourWiki/Eqmainvi">
+    <g id="Eqmainvi">
+      <circle cx="550.000" cy="866.025" r="12.000"/>
+      <circle class="code amber" cx="550.000" cy="866.025" r="52.000"/>
+      <text class="starport" x="550.000" y="836.581">B</text>
+      <text class="name" x="550.000" y="935.307">Eqmainvi</text>
+      <text class="consulate base" x="510.000" y="909.327">■</text>
+      <text class="TAS base" x="490.000" y="883.346">☼</text>
+      <text class="scout base" x="490.000" y="848.705">▲</text>
+    </g>
+  </a>
+  <a xlink:href="http://campaignwiki.org/wiki/NameOfYourWiki/Mazozozon">
+    <g id="Mazozozon">
+      <circle cx="550.000" cy="1039.230" r="13.000"/>
+      <circle class="code amber" cx="550.000" cy="1039.230" r="52.000"/>
+      <text class="starport" x="550.000" y="1009.786">D</text>
+      <text class="name" x="550.000" y="1108.513">Mazozozon</text>
+    </g>
+  </a>
+  <a xlink:href="http://campaignwiki.org/wiki/NameOfYourWiki/Votozima">
+    <g id="Votozima">
+      <circle cx="550.000" cy="1558.846" r="15.000"/>
+      <circle class="code amber" cx="550.000" cy="1558.846" r="52.000"/>
+      <text class="starport" x="550.000" y="1529.401">B</text>
+      <text class="name" x="550.000" y="1628.128">Votozima</text>
+      <text class="consulate base" x="510.000" y="1602.147">■</text>
+      <text class="TAS base" x="490.000" y="1576.166">☼</text>
+    </g>
+  </a>
+  <a xlink:href="http://campaignwiki.org/wiki/NameOfYourWiki/Xetiziinba">
+    <g id="Xetiziinba">
+      <circle cx="700.000" cy="86.603" r="11.000"/>
+      <circle class="code amber" cx="700.000" cy="86.603" r="52.000"/>
+      <text class="starport" x="700.000" y="57.158">E</text>
+      <text class="name" x="700.000" y="155.885">Xetiziinba</text>
+    </g>
+  </a>
+  <a xlink:href="http://campaignwiki.org/wiki/NameOfYourWiki/Tiinferan">
+    <g id="Tiinferan">
+      <circle cx="700.000" cy="433.013" r="11.000"/>
+      <text class="starport" x="700.000" y="403.568">C</text>
+      <text class="name" x="700.000" y="502.295">Tiinferan</text>
+      <text class="scout base" x="640.000" y="415.692">▲</text>
+      <text class="research base" x="760.000" y="415.692">π</text>
+    </g>
+  </a>
+  <a xlink:href="http://campaignwiki.org/wiki/NameOfYourWiki/Ratin">
+    <g id="Ratin">
+      <circle cx="700.000" cy="1125.833" r="14.000"/>
+      <circle class="code amber" cx="700.000" cy="1125.833" r="52.000"/>
+      <text class="starport" x="700.000" y="1096.388">E</text>
+      <text class="name" x="700.000" y="1195.115">RATIN</text>
+    </g>
+  </a>
+  <a xlink:href="http://campaignwiki.org/wiki/NameOfYourWiki/Tefarare">
+    <g id="Tefarare">
+      <circle cx="700.000" cy="1299.038" r="17.000"/>
+      <circle class="code amber" cx="700.000" cy="1299.038" r="52.000"/>
+      <text class="starport" x="700.000" y="1269.593">C</text>
+      <text class="name" x="700.000" y="1368.320">Tefarare</text>
+    </g>
+  </a>
+  <a xlink:href="http://campaignwiki.org/wiki/NameOfYourWiki/Qnvona">
+    <g id="Qnvona">
+      <circle cx="850.000" cy="173.205" r="15.000"/>
+      <text class="starport" x="850.000" y="143.760">E</text>
+      <text class="name" x="850.000" y="242.487">Qnvona</text>
+    </g>
+  </a>
+  <a xlink:href="http://campaignwiki.org/wiki/NameOfYourWiki/Vofati">
+    <g id="Vofati">
+      <circle cx="850.000" cy="346.410" r="18.000"/>
+      <text class="starport" x="850.000" y="316.965">B</text>
+      <text class="name" x="850.000" y="415.692">Vofati</text>
+      <text class="TAS base" x="790.000" y="363.731">☼</text>
+      <text class="scout base" x="790.000" y="329.090">▲</text>
+    </g>
+  </a>
+  <a xlink:href="http://campaignwiki.org/wiki/NameOfYourWiki/Fafete">
+    <g id="Fafete">
+      <circle cx="850.000" cy="692.820" r="20.000"/>
+      <text class="starport" x="850.000" y="663.375">C</text>
+      <text class="name" x="850.000" y="762.102">Fafete</text>
+    </g>
+  </a>
+  <a xlink:href="http://campaignwiki.org/wiki/NameOfYourWiki/Rena">
+    <g id="Rena">
+      <circle cx="850.000" cy="866.025" r="12.000"/>
+      <text class="starport" x="850.000" y="836.581">E</text>
+      <text class="name" x="850.000" y="935.307">Rena</text>
+    </g>
+  </a>
+  <a xlink:href="http://campaignwiki.org/wiki/NameOfYourWiki/Razito">
+    <g id="Razito">
+      <circle cx="850.000" cy="1212.436" r="14.000"/>
+      <circle class="code amber" cx="850.000" cy="1212.436" r="52.000"/>
+      <text class="starport" x="850.000" y="1182.991">E</text>
+      <text class="name" x="850.000" y="1281.718">Razito</text>
+    </g>
+  </a>
+  <a xlink:href="http://campaignwiki.org/wiki/NameOfYourWiki/Ineri">
+    <g id="Ineri">
+      <circle cx="850.000" cy="1385.641" r="17.000"/>
+      <circle class="code amber" cx="850.000" cy="1385.641" r="52.000"/>
+      <text class="starport" x="850.000" y="1356.196">C</text>
+      <text class="name" x="850.000" y="1454.923">Ineri</text>
+      <text class="consulate base" x="810.000" y="1428.942">■</text>
+    </g>
+  </a>
+  <a xlink:href="http://campaignwiki.org/wiki/NameOfYourWiki/Toqfe">
+    <g id="Toqfe">
+      <circle cx="1000.000" cy="259.808" r="16.000"/>
+      <text class="starport" x="1000.000" y="230.363">A</text>
+      <text class="name" x="1000.000" y="329.090">Toqfe</text>
+      <text class="TAS base" x="940.000" y="277.128">☼</text>
+    </g>
+  </a>
+  <a xlink:href="http://campaignwiki.org/wiki/NameOfYourWiki/Luema">
+    <g id="Luema">
+      <circle cx="1000.000" cy="433.013" r="19.000"/>
+      <text class="starport" x="1000.000" y="403.568">B</text>
+      <text class="name" x="1000.000" y="502.295">Luema</text>
+      <text class="consulate base" x="960.000" y="476.314">■</text>
+      <text class="TAS base" x="940.000" y="450.333">☼</text>
+      <text class="scout base" x="940.000" y="415.692">▲</text>
+      <text class="naval base" x="960.000" y="389.711">★</text>
+    </g>
+  </a>
+  <a xlink:href="http://campaignwiki.org/wiki/NameOfYourWiki/Etaqqxe">
+    <g id="Etaqqxe">
+      <circle cx="1000.000" cy="606.218" r="11.000"/>
+      <text class="starport" x="1000.000" y="576.773"/>
+      <text class="name" x="1000.000" y="675.500">Etaqqxe</text>
+      <text class="scout base" x="940.000" y="588.897">▲</text>
+    </g>
+  </a>
+  <a xlink:href="http://campaignwiki.org/wiki/NameOfYourWiki/Vobatezutu">
+    <g id="Vobatezutu">
+      <circle cx="1000.000" cy="952.628" r="16.000"/>
+      <text class="starport" x="1000.000" y="923.183">C</text>
+      <text class="name" x="1000.000" y="1021.910">Vobatezutu</text>
+      <text class="pirate base" x="1060.000" y="969.948">☠</text>
+    </g>
+  </a>
+  <a xlink:href="http://campaignwiki.org/wiki/NameOfYourWiki/Reinvita">
+    <g id="Reinvita">
+      <circle cx="1000.000" cy="1125.833" r="13.000"/>
+      <circle class="code amber" cx="1000.000" cy="1125.833" r="52.000"/>
+      <text class="starport" x="1000.000" y="1096.388">B</text>
+      <text class="name" x="1000.000" y="1195.115">Reinvita</text>
+      <text class="consulate base" x="960.000" y="1169.134">■</text>
+      <text class="TAS base" x="940.000" y="1143.154">☼</text>
+      <text class="scout base" x="940.000" y="1108.513">▲</text>
+      <text class="naval base" x="960.000" y="1082.532">★</text>
+    </g>
+  </a>
+  <a xlink:href="http://campaignwiki.org/wiki/NameOfYourWiki/Qqena">
+    <g id="Qqena">
+      <circle cx="1000.000" cy="1299.038" r="13.000"/>
+      <circle class="code amber" cx="1000.000" cy="1299.038" r="52.000"/>
+      <text class="starport" x="1000.000" y="1269.593">D</text>
+      <text class="name" x="1000.000" y="1368.320">Qqena</text>
+    </g>
+  </a>
+  <a xlink:href="http://campaignwiki.org/wiki/NameOfYourWiki/Tuezofazo">
+    <g id="Tuezofazo">
+      <circle cx="1000.000" cy="1645.448" r="14.000"/>
+      <circle class="code amber" cx="1000.000" cy="1645.448" r="52.000"/>
+      <text class="starport" x="1000.000" y="1616.003">D</text>
+      <text class="name" x="1000.000" y="1714.730">Tuezofazo</text>
+    </g>
+  </a>
+  <a xlink:href="http://campaignwiki.org/wiki/NameOfYourWiki/Manti">
+    <g id="Manti">
+      <circle cx="1150.000" cy="173.205" r="20.000"/>
+      <circle class="code amber" cx="1150.000" cy="173.205" r="52.000"/>
+      <text class="starport" x="1150.000" y="143.760">B</text>
+      <text class="name" x="1150.000" y="242.487">Manti</text>
+      <text class="consulate base" x="1110.000" y="216.506">■</text>
+      <text class="TAS base" x="1090.000" y="190.526">☼</text>
+    </g>
+  </a>
+  <a xlink:href="http://campaignwiki.org/wiki/NameOfYourWiki/Vorereto">
+    <g id="Vorereto">
+      <circle cx="1150.000" cy="519.615" r="17.000"/>
+      <circle class="code amber" cx="1150.000" cy="519.615" r="52.000"/>
+      <text class="starport" x="1150.000" y="490.170">D</text>
+      <text class="name" x="1150.000" y="588.897">Vorereto</text>
+      <text class="scout base" x="1090.000" y="502.295">▲</text>
+    </g>
+  </a>
+  <a xlink:href="http://campaignwiki.org/wiki/NameOfYourWiki/Matotopa">
+    <g id="Matotopa">
+      <circle cx="1150.000" cy="692.820" r="14.000"/>
+      <circle class="code amber" cx="1150.000" cy="692.820" r="52.000"/>
+      <text class="starport" x="1150.000" y="663.375">C</text>
+      <text class="name" x="1150.000" y="762.102">Matotopa</text>
+    </g>
+  </a>
+  <a xlink:href="http://campaignwiki.org/wiki/NameOfYourWiki/Fetetu">
+    <g id="Fetetu">
+      <circle cx="1150.000" cy="1385.641" r="18.000"/>
+      <circle class="code amber" cx="1150.000" cy="1385.641" r="52.000"/>
+      <text class="starport" x="1150.000" y="1356.196">C</text>
+      <text class="name" x="1150.000" y="1454.923">Fetetu</text>
+    </g>
+  </a>
+  <a xlink:href="http://campaignwiki.org/wiki/NameOfYourWiki/Faravora">
+    <g id="Faravora">
+      <circle cx="1150.000" cy="1558.846" r="11.000"/>
+      <circle class="code amber" cx="1150.000" cy="1558.846" r="52.000"/>
+      <text class="starport" x="1150.000" y="1529.401">E</text>
+      <text class="name" x="1150.000" y="1628.128">Faravora</text>
+    </g>
+  </a>
+  </g>
+</svg>

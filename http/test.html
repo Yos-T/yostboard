@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Stacking without z-index</title>
+    <style type="text/css">
+
+    div {
+        font: 12px Arial;
+        position: absolute;
+        width: 150px;
+        height: 35px;
+        top: 10px;
+        left: 100px;
+        border: 1px dashed #990000;
+        background-color: #ffdddd;
+        text-align: center;
+    }
+   </style>
+</head>
+
+<body>
+    <br /><br />
+
+    <div id="absdiv1">
+        <br /><span class="bold">DIV #1</span>
+        <br />position: absolute;
+    <div id="reldiv1">
+        <br /><span class="bold">DIV #2</span>
+        <br />position: relative;
+    </div>
+    </div>
+
+<!--
+    <div id="reldiv2">
+        <br /><span class="bold">DIV #3</span>
+        <br />position: relative;
+    </div>
+
+    <div id="absdiv2">
+        <br /><span class="bold">DIV #4</span>
+        <br />position: absolute;
+    </div>
+
+    <div id="normdiv">
+        <br /><span class="bold">DIV #5</span>
+        <br />no positioning
+    </div>
+-->
+</body>
+</html>

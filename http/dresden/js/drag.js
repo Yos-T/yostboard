@@ -35,27 +35,45 @@ function activeFace( piece )
 
 function stackNext( piece )
 {
-// TODO: stackOverflow
-    var isTop = !piece.lastElementChild.classList.contains("piece");
-    if ( isTop ) return null;
-    return piece.lastElementChild;
+    if ( piece.lastElementChild.classList.contains("piece") )
+    {
+        return piece.lastElementChild;
+    }
+    else if ( piece.lastElementChild.classList.contains("stackOverflow") )
+    {
+        return piece.lastElementChild.firstElementChild;
+    }
+    return null; // Top of stack
 }
 
 function stackPrev( piece )
 {
-// TODO: stackOverflow
-    var isBottom = !piece.parentNode.classList.contains("piece"); 
-    if ( isBottom ) return null;
-    return piece.parentNode;
+    if ( piece.parentNode.classList.contains("piece") )
+    {
+        return piece.parentNode;
+    }
+    else if ( piece.parentNode.classList.contains("stackOverflow") )
+    {
+        var prev = piece.previousElementSibling;
+        if ( prev )
+        {
+            return prev;
+        }
+        else
+        {
+            return piece.parentNode.parentNode;
+        }
+    }
+    return null; // Bottom of stack
 }
 
 function getStackBottom( piece )
 {
-    prev = stackPrev( piece );
-    while( prev )
+    var prev = piece.parentNode;
+    while( prev.classList.contains("piece") || prev.classList.contains("stackOverflow") )
     {
         piece = prev;
-        prev = stackPrev( prev );
+        prev = prev.parentNode;
     }
     return piece;
 }
@@ -119,13 +137,26 @@ function unfold( piece )
     if ( !isUnfolded(piece) ) toggleFold(piece);
 }
 
+// Add piece pFrom on top of pTo
 function addToStack( pTo, pFrom )
 {
-// TODO: stackOverflow
     if ( isUnfolded( pTo ) != isUnfolded( pFrom ) )
     {
         toggleFold( pFrom );
     }
+
+// TODO: stackOverflow
+/*
+    var bottom = getStackBottom( pTo );
+    var stackSize = 0;
+    var next = stackNext( bottom );
+    while ( next )
+    {
+        ++stackSize;
+        next = stackNext( next );
+        if ( stackSize >= MAX_PIECE_NESTING )
+    }
+*/
     while ( pFrom )
     {
         var next = stackNext( pTo );
@@ -218,6 +249,13 @@ function getDragPiece( nodeid )
 /****************************
  *        DRAG START        *
  ***************************/
+function dragEndPiece(e)
+{
+    //this.parentNode.style.pointerEvents = '';
+    //this.parentNode.style.zIndex = 'auto';
+    //this.parentNode.style.opacity = '';
+}
+
 function dragStartPiece(e) 
 {
 /* TODO: loop to bottom of stack; Switch to draggable face ipv pieces 
@@ -233,6 +271,10 @@ function dragStartPiece(e)
     if ( inUnfoldedStack(piece) )
     {
         dragEl = activeFace( piece );
+    }
+    else
+    {
+        // dragEl.style.pointerEvents = 'none'; // Stops dragging immediately in Chrome
     }
 
     var offsetX = 0;
@@ -251,7 +293,14 @@ function dragStartPiece(e)
         y = offsetY * dpr;
     }
 
+//dragEl.style.zIndex = -1; // Stops dragging immediately in Chrome
+//    var im = dragEl.cloneNode(true);
+//    document.body.appendChild(im);
+//    e.dataTransfer.setDragImage(im, x, y);
+//dragEl.style.zIndex = -1; // Stops dragging immediately in Chrome
     e.dataTransfer.setDragImage(dragEl, x, y);
+//dragEl.style.opacity = 0.5;
+// cloneNode, add to body and position absolute top -computed height ??
 
     e.dataTransfer.dropEffect = 'move';
     e.dataTransfer.setData('nodeid', piece.id);
@@ -287,9 +336,10 @@ function dropPieceBubble(e)
     e.preventDefault(); 
 
     var to = this.parentNode;
-    var from = getDragPiece( e.dataTransfer.getData('nodeid') );
-    if ( to != from ) 
+    var fromId = e.dataTransfer.getData('nodeid');
+    if ( to.id != fromId ) 
     {
+        var from = getDragPiece( e.dataTransfer.getData('nodeid') );
         addToStack(to, from);
     }
     else if ( !isUnfolded( to ) )
@@ -340,6 +390,7 @@ function setPieceEvents(piece)
     faceContainer.addEventListener( "dragover", dragOverPiece, false );
     faceContainer.addEventListener( "drop", dropPieceBubble, false );
     faceContainer.addEventListener( "drop", dropPieceCapture, true ); //not needed for all pieces.
+    faceContainer.addEventListener( "dragend", dragEndPiece, true ); //not needed for all pieces.
     faceContainer.addEventListener( "click", clickPiece, false );
 }
 
