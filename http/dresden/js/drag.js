@@ -78,6 +78,32 @@ function getStackBottom( piece )
     return piece;
 }
 
+function getStackTop( piece )
+{
+    if ( piece.parentNode.classList.contains("stackOverflow") )
+    {
+        return piece.parentNode.lastElementChild;
+    }
+    else
+    {
+        var stackOverflow = piece.getElementsByClassName("stackOverflow");
+        if ( stackOverflow.length > 0 )
+        {
+            return stackOverflow.lastElementChild;
+        }
+        else
+        {
+            var next = stackNext( piece );
+            while( next )
+            {
+                piece = next;
+                next = stackNext( piece );
+            }
+            return piece;
+        }
+    }
+}
+
 /*
 function isTopOfStack( piece )
 {
@@ -140,7 +166,8 @@ function unfold( piece )
 // Add piece pFrom on top of pTo
 function addToStack( pTo, pFrom )
 {
-    if ( isUnfolded( pTo ) != isUnfolded( pFrom ) )
+    var toUnfolded = isUnfolded( pTo );
+    if ( toUnfolded != isUnfolded( pFrom ) )
     {
         toggleFold( pFrom );
     }
@@ -157,13 +184,22 @@ function addToStack( pTo, pFrom )
         if ( stackSize >= MAX_PIECE_NESTING )
     }
 */
-    while ( pFrom )
+    if ( !toUnfolded )
     {
-        var next = stackNext( pTo );
-        if ( next == pFrom ) break;
+        // Put on top of folded stack.
+        pTo = getStackTop( pTo );
         pTo.appendChild( pFrom );
-        pTo = pFrom;
-        pFrom = next;
+    }
+    else
+    {
+        while ( pFrom )
+        {
+            var next = stackNext( pTo );
+            if ( next == pFrom ) break;
+            pTo.appendChild( pFrom );
+            pTo = pFrom;
+            pFrom = next;
+        }
     }
 }
 
@@ -339,6 +375,10 @@ function dropPieceBubble(e)
     var fromId = e.dataTransfer.getData('nodeid');
     if ( to.id != fromId ) 
     {
+        if ( !isUnfolded( to ) && getStackBottom( to ).id == fromId )
+        {
+            return;
+        }
         var from = getDragPiece( e.dataTransfer.getData('nodeid') );
         addToStack(to, from);
     }
