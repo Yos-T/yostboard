@@ -248,11 +248,17 @@ function getDragPiece( nodeid )
             {
                 fold( prevPiece );
             }
+piece.parentNode.removeChild( piece );
         }
         else
         {
+piece.parentNode.removeChild( piece );
             addToStack( prevPiece, nextPiece );
         }
+    }
+    else
+    {
+piece.parentNode.removeChild( piece );
     }
 
     return piece;
