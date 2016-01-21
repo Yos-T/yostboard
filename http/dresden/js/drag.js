@@ -104,17 +104,6 @@ function getStackTop( piece )
     }
 }
 
-/*
-function isTopOfStack( piece )
-{
-    return stackPrev( piece ) && !stackNext( piece );
-}
-
-function isBottomOfStack( piece )
-{
-    return !piece.parentNode.classList.contains("piece");
-}
-*/
 function inStack( piece )
 {
     return stackPrev( piece ) || stackNext( piece );
@@ -122,7 +111,7 @@ function inStack( piece )
 
 function isUnfolded( piece )
 {
-    return piece.classList.contains("unfolded");
+    return getStackBottom( piece ).classList.contains("unfolded");
 }
 
 function inFoldedStack( piece )
@@ -137,20 +126,7 @@ function inUnfoldedStack( piece )
 
 function toggleFold( piece )
 {
-// TODO: stackOverflow
-    var p = piece;
-    var down = true;
-    while (p)
-    {
-        p.classList.toggle("unfolded");
-        p = stackNext(p);
-    }
-    p = stackPrev(piece);
-    while (p)
-    {
-        p.classList.toggle("unfolded");
-        p = stackPrev(p);
-    }
+    getStackBottom( piece ).classList.toggle("unfolded");
 }
 
 function fold( piece )
@@ -171,7 +147,7 @@ function addToStack( pTo, pFrom )
     {
         toggleFold( pFrom );
     }
-
+// TODO: Combining stacks (pFrom is stack)
 // TODO: stackOverflow
 /*
     var bottom = getStackBottom( pTo );
@@ -294,8 +270,6 @@ function dragEndPiece(e)
 
 function dragStartPiece(e) 
 {
-/* TODO: loop to bottom of stack; Switch to draggable face ipv pieces 
-*/
     // 'this' is the faces container
     var piece = this.parentNode;
     if ( inFoldedStack(piece) )

@@ -25,14 +25,14 @@
   position: static !important;
 }
 
-.piece > :not(.unfolded).piece
+:not(.unfolded).piece .piece
 {
   position: absolute;
   top: 25px !important;
   left: 25px !important;
 }
 
-.piece > .unfolded.piece
+.unfolded.piece .piece
 {
   position: static;
 }
