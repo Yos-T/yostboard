@@ -33,6 +33,11 @@ function activeFace( piece )
     return null;
 }
 
+function inStackOverflow( piece )
+{
+    return piece.parentNode.classList.contains("stackOverflow");
+}
+
 function stackNext( piece )
 {
     if ( piece.lastElementChild.classList.contains("piece") )
@@ -52,7 +57,7 @@ function stackPrev( piece )
     {
         return piece.parentNode;
     }
-    else if ( piece.parentNode.classList.contains("stackOverflow") )
+    else if ( inStackOverflow( piece ) )
     {
         var prev = piece.previousElementSibling;
         if ( prev )
@@ -70,7 +75,7 @@ function stackPrev( piece )
 function getStackBottom( piece )
 {
     var prev = piece.parentNode;
-    while( prev.classList.contains("piece") || prev.classList.contains("stackOverflow") )
+    while( prev && ( prev.classList.contains("piece") || inStackOverflow( prev ) ) )
     {
         piece = prev;
         prev = prev.parentNode;
@@ -80,7 +85,7 @@ function getStackBottom( piece )
 
 function getStackTop( piece )
 {
-    if ( piece.parentNode.classList.contains("stackOverflow") )
+    if ( inStackOverflow( piece ) )
     {
         return piece.parentNode.lastElementChild;
     }
@@ -143,11 +148,9 @@ function unfold( piece )
 function addToStack( pTo, pFrom )
 {
     var toUnfolded = isUnfolded( pTo );
-    if ( toUnfolded != isUnfolded( pFrom ) )
-    {
-        toggleFold( pFrom );
-    }
-// TODO: Combining stacks (pFrom is stack)
+    fold( pFrom );
+
+// TODO: Combining stacks (pFrom is stack) folded and unfolded
 // TODO: stackOverflow
 /*
     var bottom = getStackBottom( pTo );
@@ -221,6 +224,10 @@ function getEventOffset(evt, el)
     return { x: x, y: y };
 }
 
+/* Find the piece with nodeid and detach it from it's parent.
+ * If the piece is folded, it must be to bottom of a stack and will be detached from the location.
+ * If the piece is unfolded, the rest of the stack will remain and the single piece will be detached from the stack.
+ */
 function getDragPiece( nodeid )
 {
     var piece = findElement( nodeid );
@@ -241,6 +248,24 @@ function getDragPiece( nodeid )
             {
                 fold( nextPiece );
             }
+            else
+            {
+                // Update stackOverflow
+                var so = nextPiece.findElementsByClassName( 'stackOverflow' );
+                if ( so.length )
+                {
+                    var first = so[0].firstElementChild;
+                    so[0].parentNode.appendChild( first );
+                    if ( so[0].firstElementChild ) // not empty
+                    {
+                        first.appendChild( so[0] );
+                    }
+                    else
+                    {
+                        so[0].parentNode.removeChild( so[0] );
+                    }
+                }
+            }
         }
         else if ( !nextPiece )
         {
@@ -248,17 +273,17 @@ function getDragPiece( nodeid )
             {
                 fold( prevPiece );
             }
-piece.parentNode.removeChild( piece );
         }
         else
         {
-piece.parentNode.removeChild( piece );
+            piece.parentNode.removeChild( piece );
             addToStack( prevPiece, nextPiece );
         }
     }
-    else
+    
+    if ( piece.parentNode ) // Not detached yet.
     {
-piece.parentNode.removeChild( piece );
+        piece.parentNode.removeChild( piece );
     }
 
     return piece;
