@@ -24,18 +24,38 @@ function getFaces( piece )
 
 function activeFace( piece )
 {
+// TODO: change hidden to active class. No need to loop then.
     var faces = getFaces( piece );
     for ( var i = 0; i < faces.length; ++i )
     {
         if ( !faces[i].classList.contains("hidden") )
+        {
             return faces[i];
+        }
     }
     return null;
 }
 
 function inStackOverflow( piece )
 {
-    return piece.parentNode.classList.contains("stackOverflow");
+    return piece.parentNode && piece.parentNode.classList.contains("stackOverflow");
+}
+
+function getStackOverflow( piece, parentOnly )
+{
+    if ( inStackOverflow( piece ) )
+    {
+        return piece.parentNode;
+    }
+    else if ( !parentOnly )
+    {
+        var soList = piece.getElementsByClassName("stackOverflow");
+        if ( soList.length )
+        {
+            return soList[0];
+        }
+    }
+    return null;
 }
 
 function stackNext( piece )
@@ -144,13 +164,28 @@ function unfold( piece )
     if ( !isUnfolded(piece) ) toggleFold(piece);
 }
 
+function addToStackOverflow( so, piece, pBefore )
+{
+    var fromTop = getStackTop( piece );
+    var prev;
+    while ( fromTop )
+    {
+        prev = stackPrev( fromTop );
+        toSo.insertBefore( fromTop, pBefore );
+        pBefore = fromTop;
+        fromTop = prev;
+    }
+//TODO: remove excess stackOverflow containers
+}
+
 // Add piece pFrom on top of pTo
+// pFrom can be single detached piece or stack bottom
 function addToStack( pTo, pFrom )
 {
     var toUnfolded = isUnfolded( pTo );
     fold( pFrom );
 
-// TODO: Combining stacks (pFrom is stack) folded and unfolded
+// TODO: Combining stacks (pFrom is stack) folded
 // TODO: stackOverflow
 /*
     var bottom = getStackBottom( pTo );
@@ -163,21 +198,56 @@ function addToStack( pTo, pFrom )
         if ( stackSize >= MAX_PIECE_NESTING )
     }
 */
+
     if ( !toUnfolded )
     {
         // Put on top of folded stack.
         pTo = getStackTop( pTo );
-        pTo.appendChild( pFrom );
+    }
+
+    var toSo = getStackOverflow( pTo, true );
+    if ( toSo )
+    {
+        var toNext = stackNext( pTo );
+        addToStackOverflow( toSo, pFrom, toNext );
+// TODO: drop on self/ move in unfolded stack?
     }
     else
     {
-        while ( pFrom )
+        var next = getStackBottom( pTo );
+        var stackSize = 1;
+        while ( next != pTo )
         {
+            ++stackSize;
+            next = stackNext( next );
+        }
+
+        // detach next, insert pFrom stack
+        if ( next ) next.parentNode.removeChild( next );
+
+        pTo.appendChild( pFrom );
+        
+        while ( pFrom && stackSize < MAX_PIECE_NESTING )
+        {
+            ++stackSize;
+            pTo = pFrom;
+            pFrom = stackNext( pFrom );
+        }
+        
+        if ( pFrom ) pFrom.parentNode.removeChild( pFrom );
+
+        if ( pFrom || next )
+            if ( stackSize >= MAX_PIECE_NESTING )
+            {
+                // Create stackOverflow
+            }
             var next = stackNext( pTo );
             if ( next == pFrom ) break;
             pTo.appendChild( pFrom );
             pTo = pFrom;
             pFrom = next;
+
+            if ( stackSize >= MAX_PIECE_NESTING )
         }
     }
 }
@@ -236,7 +306,6 @@ function getDragPiece( nodeid )
     if ( inUnfoldedStack( piece ) )
     {
         var nextPiece = stackNext( piece );
-// TODO: stackOverflow
         var prevPiece = stackPrev( piece );
         if ( !prevPiece )
         {
