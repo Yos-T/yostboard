@@ -1,4 +1,4 @@
-var MAX_PIECE_NESTING = 20;
+var MAX_PIECE_NESTING = 2;
 
 function debug(msg)
 {
@@ -214,7 +214,6 @@ function addToStack( pTo, pFrom )
     {
         var toNext = stackNext( pTo );
         addToStackOverflow( toSo, pFrom, toNext );
-// TODO: drop on self/ move in unfolded stack?
     }
     else
     {
@@ -363,7 +362,7 @@ function getDragPiece( nodeid )
                 fold( prevPiece );
             }
         }
-        else
+        else if ( !inStackOverflow( piece ) )
         {
             piece.parentNode.removeChild( piece );
             addToStack( prevPiece, nextPiece );

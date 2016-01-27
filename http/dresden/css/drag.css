@@ -65,7 +65,7 @@
 .piece
 {
   display:inline-block;
-  line-height: 0px;
+  line-height: unset;
   z-index: 2;
 }
 
@@ -80,26 +80,16 @@ img
 }
 
 /* debug rules: */
-.piece
-{
-  border: 3px solid black;
-  border-style: outset;
-}
-
-:not(.unfolded).piece .piece
-{
-  border: 0px solid black;
-}
-
 .location.single
 {
   border: 3px solid red;
+  background-color: orange;
 
 }
 
 .location.fixed
 {
   border: 3px solid blue;
-
+  background-color: purple;
 }
 
