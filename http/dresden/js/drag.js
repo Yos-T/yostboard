@@ -1,3 +1,5 @@
+var MAX_PIECE_NESTING = 20;
+
 function debug(msg)
 {
     window.console.log(msg);
@@ -68,12 +70,16 @@ function stackNext( piece )
     {
         return piece.lastElementChild.firstElementChild;
     }
+    else if ( inStackOverflow( piece ) )
+    {
+        return piece.nextElementSibling;
+    }
     return null; // Top of stack
 }
 
 function stackPrev( piece )
 {
-    if ( piece.parentNode.classList.contains("piece") )
+    if ( piece.parentNode && piece.parentNode.classList.contains("piece") )
     {
         return piece.parentNode;
     }
@@ -95,7 +101,7 @@ function stackPrev( piece )
 function getStackBottom( piece )
 {
     var prev = piece.parentNode;
-    while( prev && ( prev.classList.contains("piece") || inStackOverflow( prev ) ) )
+    while( prev && ( prev.classList.contains("piece") || prev.classList.contains("stackOverflow") ) )
     {
         piece = prev;
         prev = prev.parentNode;
@@ -111,8 +117,8 @@ function getStackTop( piece )
     }
     else
     {
-        var stackOverflow = piece.getElementsByClassName("stackOverflow");
-        if ( stackOverflow.length > 0 )
+        var stackOverflow = getStackOverflow( piece, false );
+        if ( stackOverflow )
         {
             return stackOverflow.lastElementChild;
         }
@@ -164,6 +170,13 @@ function unfold( piece )
     if ( !isUnfolded(piece) ) toggleFold(piece);
 }
 
+function newStackOverflow()
+{
+    var so = document.createElement('div');
+    so.setAttribute('class', 'stackOverflow' );
+    return so;
+}
+
 function addToStackOverflow( so, piece, pBefore )
 {
     var fromTop = getStackTop( piece );
@@ -171,11 +184,16 @@ function addToStackOverflow( so, piece, pBefore )
     while ( fromTop )
     {
         prev = stackPrev( fromTop );
-        toSo.insertBefore( fromTop, pBefore );
+        so.insertBefore( fromTop, pBefore );
         pBefore = fromTop;
         fromTop = prev;
     }
-//TODO: remove excess stackOverflow containers
+    // remove excess stackOverflow containers
+    soList = so.getElementsByClassName( 'stackOverflow' );
+    for (var i = 0; i < soList.length; ++i )
+    {
+        soList[i].parentNode.removeChild( soList[i] );
+    }
 }
 
 // Add piece pFrom on top of pTo
@@ -184,20 +202,6 @@ function addToStack( pTo, pFrom )
 {
     var toUnfolded = isUnfolded( pTo );
     fold( pFrom );
-
-// TODO: Combining stacks (pFrom is stack) folded
-// TODO: stackOverflow
-/*
-    var bottom = getStackBottom( pTo );
-    var stackSize = 0;
-    var next = stackNext( bottom );
-    while ( next )
-    {
-        ++stackSize;
-        next = stackNext( next );
-        if ( stackSize >= MAX_PIECE_NESTING )
-    }
-*/
 
     if ( !toUnfolded )
     {
@@ -222,6 +226,7 @@ function addToStack( pTo, pFrom )
             next = stackNext( next );
         }
 
+        next = stackNext( pTo );
         // detach next, insert pFrom stack
         if ( next ) next.parentNode.removeChild( next );
 
@@ -234,20 +239,31 @@ function addToStack( pTo, pFrom )
             pFrom = stackNext( pFrom );
         }
         
-        if ( pFrom ) pFrom.parentNode.removeChild( pFrom );
-
-        if ( pFrom || next )
-            if ( stackSize >= MAX_PIECE_NESTING )
+        if ( pFrom )
+        {
+            pFrom.parentNode.removeChild( pFrom );
+            var so = newStackOverflow();
+            pTo.appendChild( so );
+            addToStackOverflow( so, pFrom, null );
+            if ( next )
+                addToStackOverflow( so, next, null );
+        }
+        else if ( next )
+        {
+            pTo.appendChild( next );
+            while ( next && stackSize < MAX_PIECE_NESTING )
             {
-                // Create stackOverflow
+                ++stackSize;
+                pTo = next;
+                next = stackNext( next );
             }
-            var next = stackNext( pTo );
-            if ( next == pFrom ) break;
-            pTo.appendChild( pFrom );
-            pTo = pFrom;
-            pFrom = next;
-
-            if ( stackSize >= MAX_PIECE_NESTING )
+            if ( next )
+            {
+                next.parentNode.removeChild( pFrom );
+                var so = newStackOverflow();
+                pTo.appendChild( so );
+                addToStackOverflow( so, next, null );
+            }
         }
     }
 }
@@ -319,8 +335,12 @@ function getDragPiece( nodeid )
             }
             else
             {
+                if ( isUnfolded( piece ) )
+                {
+                    unfold( nextPiece );
+                }
                 // Update stackOverflow
-                var so = nextPiece.findElementsByClassName( 'stackOverflow' );
+                var so = nextPiece.getElementsByClassName( 'stackOverflow' );
                 if ( so.length )
                 {
                     var first = so[0].firstElementChild;
@@ -551,13 +571,15 @@ function initTestBigStack()
     var mappc = getPieceContainer( document.getElementById('map') );
    
     var base = piece.cloneNode(true); 
+    base.id = 'cc0';
+    setPieceEvents( base );
     mappc.appendChild( base );
     setCoordinates( base, 0, 0 );
 
-    for (var i = 0; i < 300; i++)
+    for (var i = 1; i < 300; i++)
     {
         var clone = piece.cloneNode(true);
-        clone.id = 'c'+i;
+        clone.id = 'cc'+i;
         setPieceEvents( clone );
         addToStack( base, clone );
     }
@@ -566,7 +588,7 @@ function initTestBigStack()
 function init()
 {
     initDrag();
-//    initTestBigStack();
+    initTestBigStack();
 //    if (initGame)
 //        initGame();
 //    restorePos();

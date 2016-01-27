@@ -8,6 +8,11 @@
   z-index: 1;
 }
 
+.location.free
+{
+  display: flex;
+}
+
 /* stack bottom */
 .location.free > * > .piece
 {
@@ -16,6 +21,9 @@
 .location.free > * > .unfolded.piece
 {
   border: 15px solid green;
+  max-width: 50%;
+  max-height: 100%;
+  overflow: auto;
 }
 
 /* TODO: not sure if right... */
@@ -23,6 +31,11 @@
 .location.fixed > * > .piece
 {
   position: static !important;
+}
+
+.stackOverflow
+{
+  display: inline;
 }
 
 :not(.unfolded).piece .piece
@@ -34,6 +47,7 @@
 
 .unfolded.piece .piece
 {
+  display: inline;
   position: static;
 }
 
@@ -70,6 +84,11 @@ img
 {
   border: 3px solid black;
   border-style: outset;
+}
+
+:not(.unfolded).piece .piece
+{
+  border: 0px solid black;
 }
 
 .location.single
