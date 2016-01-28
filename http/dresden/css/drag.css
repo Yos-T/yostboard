@@ -20,6 +20,7 @@
 }
 .location.free > * > .unfolded.piece
 {
+  z-index: 3;
   border: 15px solid green;
   background-color: lightgreen;
   max-width: 50%;
