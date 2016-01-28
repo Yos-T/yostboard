@@ -19,6 +19,7 @@ function getFaceContainer( piece )
 {
     return piece.firstElementChild;
 }
+
 function getFaces( piece )
 {
     return getFaceContainer( piece ).getElementsByClassName("face");
@@ -26,14 +27,10 @@ function getFaces( piece )
 
 function activeFace( piece )
 {
-// TODO: change hidden to active class. No need to loop then.
-    var faces = getFaces( piece );
-    for ( var i = 0; i < faces.length; ++i )
+    var active = getFaceContainer( piece ).getElementsByClassName("face active")
+    if ( active.length )
     {
-        if ( !faces[i].classList.contains("hidden") )
-        {
-            return faces[i];
-        }
+        return active[0];
     }
     return null;
 }
@@ -258,7 +255,7 @@ function addToStack( pTo, pFrom )
             }
             if ( next )
             {
-                next.parentNode.removeChild( pFrom );
+                next.parentNode.removeChild( next );
                 var so = newStackOverflow();
                 pTo.appendChild( so );
                 addToStackOverflow( so, next, null );
@@ -361,9 +358,11 @@ function getDragPiece( nodeid )
             {
                 fold( prevPiece );
             }
+// TODO: Remove empty stackOverflow
         }
         else if ( !inStackOverflow( piece ) )
         {
+//TODO: piece has stackOverflow ...
             piece.parentNode.removeChild( piece );
             addToStack( prevPiece, nextPiece );
         }
@@ -542,10 +541,7 @@ function initFaces(el)
     var faces = el.getElementsByClassName("face");
     if ( !faces ) return;
     // Last face is visible
-    for ( var f = 0; f < faces.length-1; f++ )
-    {
-        faces[f].classList.add("hidden");
-    }
+    faces[faces.length-1].classList.add("active");
 }
 
 function initDrag()

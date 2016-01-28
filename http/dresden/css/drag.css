@@ -21,6 +21,7 @@
 .location.free > * > .unfolded.piece
 {
   border: 15px solid green;
+  background-color: lightgreen;
   max-width: 50%;
   max-height: 100%;
   overflow: auto;
@@ -57,7 +58,7 @@
   cursor: move;
 }
 
-.face.hidden
+.piece :not(.active).face
 {
   display: none;
 }
@@ -80,6 +81,11 @@ img
 }
 
 /* debug rules: */
+.unfolded.piece .stackOverflow
+{
+  border: 2px solid orange;
+}
+
 .location.single
 {
   border: 3px solid red;
