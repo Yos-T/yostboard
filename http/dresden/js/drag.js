@@ -358,12 +358,31 @@ function getDragPiece( nodeid )
             {
                 fold( prevPiece );
             }
-// TODO: Remove empty stackOverflow
+            else
+            {
+                piece.parentNode.removeChild( piece );
+                // Remove empty stackOverflow
+                var so = prevPiece.getElementsByClassName( 'stackOverflow' );
+                if ( so.length )
+                {
+                    so[0].parentNode.removeChild( so[0] );
+                }
+            }
         }
         else if ( !inStackOverflow( piece ) )
         {
-//TODO: piece has stackOverflow ...
             piece.parentNode.removeChild( piece );
+            // piece has stackOverflow 
+            if ( piece.lastElementChild.classList.contains( 'stackOverflow' ) )
+            {
+                nextPiece.parentNode.removeChild( nextPiece );
+                var so = piece.lastElementChild;
+                piece.removeChild( so );
+                if ( so.firstElementChild ) //not empty
+                {
+                    nextPiece.appendChild( so ); // move stackOverflow
+                }
+            }
             addToStack( prevPiece, nextPiece );
         }
     }

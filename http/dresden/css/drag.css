@@ -82,9 +82,9 @@ img
 }
 
 /* debug rules: */
-.unfolded.piece .stackOverflow
+.stackOverflow
 {
-  border: 2px solid orange;
+  border: 12px solid orange;
 }
 
 .location.single
