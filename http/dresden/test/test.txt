@@ -1,0 +1,15 @@
+### Stacking
+# Detaching
+1. Single piece
+2. Stack no overlow, bottom
+3. Stack no overlow, top
+4. Stack no overlow, middle
+5. Stack with overflow, bottom
+6. Stack with overflow, top 
+7. Stack with overflow, middle before overflow container
+8. Stack with overflow, piece with overflow container
+9. Stack with overflow, piece first in overflow container
+10. Stack with overflow, middle after overflow container
+11. Stack with one overflow, last in overflow container
+12. Stack with one overflow, piece with overflow container
+13. Stack with one overflow, middle before overflow container
