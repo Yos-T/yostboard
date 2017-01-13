@@ -40,21 +40,33 @@ function inStackOverflow( piece )
     return piece.parentNode && piece.parentNode.classList.contains("stackOverflow");
 }
 
-function getStackOverflow( piece, parentOnly )
+function getStackOverflowParent( piece )
 {
     if ( inStackOverflow( piece ) )
     {
         return piece.parentNode;
     }
-    else if ( !parentOnly )
+    return null;
+}
+
+function getStackOverflowChild( piece )
+{
+    var soList = piece.getElementsByClassName("stackOverflow");
+    if ( soList.length )
     {
-        var soList = piece.getElementsByClassName("stackOverflow");
-        if ( soList.length )
-        {
-            return soList[0];
-        }
+        return soList[0];
     }
     return null;
+}
+
+function getStackOverflow( piece )
+{
+    var so = getStackOverflowParent( piece );
+    if ( !so )
+    {
+        so = getStackOverflowChild( piece );
+    }
+    return so;
 }
 
 function stackNext( piece )
@@ -114,7 +126,7 @@ function getStackTop( piece )
     }
     else
     {
-        var stackOverflow = getStackOverflow( piece, false );
+        var stackOverflow = getStackOverflow( piece );
         if ( stackOverflow )
         {
             return stackOverflow.lastElementChild;
@@ -206,7 +218,7 @@ function addToStack( pTo, pFrom )
         pTo = getStackTop( pTo );
     }
 
-    var toSo = getStackOverflow( pTo, true );
+    var toSo = getStackOverflowParent( pTo );
     if ( toSo )
     {
         var toNext = stackNext( pTo );
@@ -238,11 +250,16 @@ function addToStack( pTo, pFrom )
         if ( pFrom )
         {
             pFrom.parentNode.removeChild( pFrom );
-            var so = newStackOverflow();
-            pTo.appendChild( so );
-            addToStackOverflow( so, pFrom, null );
+            var so = getStackOverflowChild( pTo );
+            if ( !so )
+            {
+                so = newStackOverflow();
+                pTo.appendChild( so );
+            }
             if ( next )
-                addToStackOverflow( so, next, null );
+                addToStackOverflow( so, next, so.firstElementChild );
+
+            addToStackOverflow( so, pFrom, so.firstElementChild );
         }
         else if ( next )
         {
