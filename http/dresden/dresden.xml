@@ -23,7 +23,7 @@
       <face type="image" name="front">CE2.PNG</face>
     </piece>
     <piece id="c3" base="card">
-        <face type="image" name="front">CE2.PNG</face>
+      <face type="image" name="front">CE2.PNG</face>
     </piece>
     <piece id="c4" base="card">
       <face type="image" name="front">CE3.PNG</face>
@@ -37,6 +37,7 @@
     <tags>counter</tags>
   </basePiece>
 
+  <!-- TODO: base attribute for basePiece is not supported (Not needed?) -->
   <basePiece id="russian" base="counter">
     <tags>allied russian</tags>
     <face type="image" name="back">RUMask.PNG</face>

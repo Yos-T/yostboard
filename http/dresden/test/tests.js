@@ -28,7 +28,10 @@ function createStack( loc, ids )
         }
         var p = newPiece( ids[i] );
         prev.appendChild( p );
-        prev = p;
+        if ( i < MAX_PIECE_NESTING )
+        {
+            prev = p;
+        }
     }
 }
 

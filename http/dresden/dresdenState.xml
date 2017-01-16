@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?xml-stylesheet type="text/xsl" href="gamestate.xsl"?>
+
+<gamestate game="dresden.xml">
+  <location id="map">
+    <stack x="1659" y="2038">
+      <piece id="rubii" face="front" />
+      <piece id="turn" />
+    </stack>
+  </location>
+
+  <location id="deck">
+    <piece id="c1" face="front" />
+    <piece id="c2" face="front" />
+    <piece id="c3" face="front" />
+    <piece id="c4" face="front" />
+  </location>
+
+  <location id="discard">
+  </location>
+
+  <location id="countersheet">
+    <piece id="rubi" face="front" />
+    <piece id="rubiii" face="front" />
+  </location>
+
+</gamestate>
+

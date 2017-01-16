@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<gameState>
+  <location id="locationId">
+    <stack x="x" y="y" id="stack_pieceId"> <!-- Only for "free" location?; pieceId == id of piece on bottom.; pieceId not needed, can match: stack/piece[1]@id -->
+      <piece id="pieceId" face="name" />
+    </stack>
+  </location>
+</gameState>
