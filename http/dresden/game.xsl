@@ -69,5 +69,25 @@
   </div>
 </xsl:template>
 
+<xsl:template name="getBasetags">
+  <xsl:if test="@base">
+    <xsl:variable name="base" select="@base" />
+    <xsl:call-template name="getBaseTags">
+      <xsl:with-param name="id" select="$base" />
+    </xsl:call-template>
+  </xsl:if>
+  <xsl:value-of select="/game/basePiece[@id=$id]/tags" />
+<xsl:template>
+
+<xsl:template name="getBaseFaces">
+  <xsl:if test="@base">
+    <xsl:variable name="base" select="@base" />
+    <xsl:call-template name="getBaseFaces">
+      <xsl:with-param name="id" select="$base" />
+    </xsl:call-template>
+  </xsl:if>
+  <xsl:apply-templates select="/game/basePiece[@id=$id]/face" />
+</xsl:template>
+
 </xsl:stylesheet>
 

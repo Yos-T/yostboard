@@ -18,18 +18,19 @@
     <script src="js/drag.js" type="application/javascript"></script>
   </head>
   <body onload="init()"> 
-<!--
   <xsl:for-each select="location">
     <div>
       <xsl:attribute name="id"><xsl:value-of select="@id" /></xsl:attribute>
-      <xsl:attribute name="class">location <xsl:value-of select="@type" /></xsl:attribute>
+      <xsl:variable name="locid" select="@id" />
+      <xsl:attribute name="class">location <xsl:value-of select="$gamedoc/game/location[@id=$locid]/@type" /></xsl:attribute>
         <div class="relativity">
-          <xsl:apply-templates select="face"/>
+          <xsl:apply-templates select="$gamedoc/game/location[@id=$locid]/face"/>
+<!--
           <xsl:apply-templates select="piece"/>
+-->
         </div>
     </div>
   </xsl:for-each>
--->
   </body>
   </html>
 
@@ -47,7 +48,6 @@
   </script>
 </xsl:template>
 
-<!--
 <xsl:template match="face">
   <div class="face">
     <xsl:choose>
@@ -63,6 +63,7 @@
   </div>
 </xsl:template>
 
+<!--
 <xsl:template match="piece">
   <div>
     <xsl:attribute name="id"><xsl:value-of select="@id" /></xsl:attribute>
