@@ -55,6 +55,7 @@
 
   <location type="fixed" id="countersheet">
     <piece id="rubi" base="russian">
+      <tags>first</tags>
       <face type="image" name="front">RUBI.PNG</face>
     </piece>
     <piece id="rubii" base="russian">

@@ -59,34 +59,35 @@
 <xsl:template match="piece">
   <div>
     <xsl:attribute name="id"><xsl:value-of select="@id" /></xsl:attribute>
-    <xsl:variable name="base" select="@base" />
-    <xsl:variable name="baseClass" select="/game/basePiece[@id=$base]/tags" />
-    <xsl:attribute name="class">piece <xsl:value-of select="$baseClass" /><xsl:value-of select="tags" /></xsl:attribute>
+    <xsl:attribute name="class">piece <xsl:call-template name="getBaseTags"/><xsl:value-of select="tags" /></xsl:attribute>
     <div class="faces" draggable="true">
-      <xsl:apply-templates select="/game/basePiece[@id=$base]/face" />
+      <xsl:call-template name="getBaseFaces"/>
       <xsl:apply-templates select="face"/>
     </div>
   </div>
 </xsl:template>
 
-<xsl:template name="getBasetags">
+<xsl:key name="basePiece" match="basePiece" use="@id"/>
+
+<xsl:template name="getBaseTags">
   <xsl:if test="@base">
     <xsl:variable name="base" select="@base" />
-    <xsl:call-template name="getBaseTags">
-      <xsl:with-param name="id" select="$base" />
-    </xsl:call-template>
+    <xsl:for-each select="key('basePiece', $base)">
+      <xsl:call-template name="getBaseTags"/>
+    </xsl:for-each>
+    <xsl:value-of select="/game/basePiece[@id=$base]/tags" />
+    <xsl:text> </xsl:text><!-- Add space -->
   </xsl:if>
-  <xsl:value-of select="/game/basePiece[@id=$id]/tags" />
-<xsl:template>
+</xsl:template>
 
 <xsl:template name="getBaseFaces">
   <xsl:if test="@base">
     <xsl:variable name="base" select="@base" />
-    <xsl:call-template name="getBaseFaces">
-      <xsl:with-param name="id" select="$base" />
-    </xsl:call-template>
+    <xsl:for-each select="key('basePiece', $base)">
+      <xsl:call-template name="getBaseFaces"/>
+    </xsl:for-each>
+    <xsl:apply-templates select="/game/basePiece[@id=$base]/face" />
   </xsl:if>
-  <xsl:apply-templates select="/game/basePiece[@id=$id]/face" />
 </xsl:template>
 
 </xsl:stylesheet>
