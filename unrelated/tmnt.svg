@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="1300" height="1300">
+  <style type="text/css">
+    #a8 { fill:rgb(0,0,255);stroke-width:.25%;stroke:rgb(0,0,0) }
+    #a7 { fill:rgb(0,255,0);stroke-width:.25%;stroke:rgb(0,0,0) }
+    #a6 { fill:rgb(0,255,0);stroke-width:.25%;stroke:rgb(255,0,0) }
+    #a5 { fill:rgb(0,255,0); stroke-width:.5%;stroke:rgb(255,0,0) }
+    #a4 { fill:rgb(0,255,0); stroke-width:.5%;stroke:rgb(0,0,0) }
+    #a3 { fill:rgb(0,255,0);stroke-width:.25%;stroke:rgb(0,0,0) }
+    #a2 { fill:rgb(0,255,0);stroke-width:.25%;stroke:rgb(0,0,0) }
+    #a1 { fill:rgb(0,255,0);stroke-width:.25%;stroke:rgb(0,0,0) }
+
+  </style>
+
+  <rect id="a8" width="12%" height="12%" />
+  <rect id="a7" width="12%" height="12%" y="12.5%" />
+  <rect id="a6" width="12%" height="12%" y="25%" />
+  <rect id="a5" width="12%" height="12%" y="37.5%" />
+  <rect id="a4" width="12%" height="12%" y="50%" />
+  <rect id="a3" width="12%" height="12%" y="62.5%" />
+  <rect id="a2" width="12%" height="12%" y="75%" />
+  <rect id="a1" width="12%" height="12%" y="87.5%" />
+
+  <svg viewBox="0 0 300 300" height="12%" width="12%" >
+    <polygon points="300,150 225,280 75,280 0,150 75,20 225,20" style="fill:grey;stroke:purple;stroke-width:10" ></polygon>
+    <text x="50" y="150" fill="red">MOUSER</text>
+  </svg>
+</svg>
