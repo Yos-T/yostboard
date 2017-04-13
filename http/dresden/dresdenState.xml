@@ -4,10 +4,15 @@
 
 <gamestate game="dresden.xml">
   <location id="map">
+<!--
     <stack x="1659" y="2038">
       <piece id="rubii" face="front" />
       <piece id="turn" />
     </stack>
+-->
+    <piece id="rubii" face="front" x="1659" y="2038">
+      <piece id="turn" />
+    </piece>
   </location>
 
   <location id="deck">
