@@ -25,7 +25,9 @@
       <xsl:attribute name="class">location <xsl:value-of select="$gamedoc/game/location[@id=$locid]/@type" /></xsl:attribute>
         <div class="relativity">
           <xsl:apply-templates select="$gamedoc/game/location[@id=$locid]/face"/>
-          <xsl:apply-templates select="pieceState"/>
+          <xsl:apply-templates select="pieceState">
+            <xsl:with-param name="gamedoc" select="$gamedoc" />
+          </xsl:apply-templates>
         </div>
     </div>
   </xsl:for-each>
@@ -60,24 +62,31 @@
   </div>
 </xsl:template>
 
-<!--
-<xsl:template match="piece">
-  <div>
-    <xsl:attribute name="id"><xsl:value-of select="@id" /></xsl:attribute>
-    <xsl:variable name="base" select="@base" />
-    <xsl:variable name="baseClass" select="/game/basePiece[@id=$base]/tags" />
-    <xsl:attribute name="class">piece <xsl:value-of select="$baseClass" /><xsl:value-of select="tags" /></xsl:attribute>
-    <div class="faces" draggable="true">
-      <xsl:apply-templates select="/game/basePiece[@id=$base]/face" />
-      <xsl:apply-templates select="face"/>
-    </div>
-  </div>
-</xsl:template>
--->
+<xsl:key name="pieceNode" match="piece" use="@id"/>
+
 <xsl:template match="pieceState">
+  <xsl:param name="gamedoc" />
+  <xsl:variable name="id" select="@id" />
+  <div NAME="STATE">
+    <!--<xsl:for-each select="$gamedoc/key('pieceNode', $id)">-->
+<!--
+    <xsl:for-each select="piece[@id]">
+      bla 
+    </xsl:for-each>
+-->
+<!--  <xsl:apply-templates select="$gamedoc//piece[@id=$id]" /> -->
+    <xsl:for-each select="$gamedoc">
+      <xsl:apply-templates select="key('pieceNode', $id)" />
+    </xsl:for-each>
+    <xsl:apply-templates select="pieceState">
+      <xsl:with-param name="gamedoc" select="$gamedoc" />
+    </xsl:apply-templates>
+  end</div>
 </xsl:template>
 
-<xsl:template match="piece">
+<xsl:key name="basePiece" match="/game/basePiece" use="@id"/>
+
+<xsl:template match="piece" as="element()*">
   <div>
     <xsl:attribute name="id"><xsl:value-of select="@id" /></xsl:attribute>
     <xsl:attribute name="class">piece <xsl:call-template name="getBaseTags"/><xsl:value-of select="tags" /></xsl:attribute>
@@ -87,16 +96,14 @@
     </div>
   </div>
 </xsl:template>
-  
-<xsl:key name="basePiece" match="$gamedoc/game/basePiece" use="@id"/>
-    
+   
 <xsl:template name="getBaseTags">
   <xsl:if test="@base">
     <xsl:variable name="base" select="@base" />
     <xsl:for-each select="key('basePiece', $base)">
       <xsl:call-template name="getBaseTags"/>
     </xsl:for-each>
-    <xsl:value-of select="$gamedoc/game/basePiece[@id=$base]/tags" />
+    <xsl:value-of select="/game/basePiece[@id=$base]/tags" />
     <xsl:text> </xsl:text><!-- Add space -->
   </xsl:if>
 </xsl:template>
@@ -107,7 +114,7 @@
     <xsl:for-each select="key('basePiece', $base)">
       <xsl:call-template name="getBaseFaces"/>
     </xsl:for-each>
-    <xsl:apply-templates select="$gamedoc/game/basePiece[@id=$base]/face" />
+    <xsl:apply-templates select="/game/basePiece[@id=$base]/face" />
   </xsl:if>
 </xsl:template>
 
