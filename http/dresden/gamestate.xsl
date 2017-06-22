@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:exsl="http://exslt.org/common" version="1.0">
 
 <xsl:output
      method="html"
@@ -64,10 +64,27 @@
 
 <xsl:key name="pieceNode" match="piece" use="@id"/>
 
+<xsl:template match="tmpHtmlPiece//node()|@*">
+  <xsl:copy>
+    <xsl:apply-templates select="node()|@*"/>
+  </xsl:copy>
+</xsl:template>
+
+<!--<xsl:template match="tmpHtmlPiece/div[1]">-->
+<xsl:template match="tmpHtmlPiece/div[contains(@class, 'piece')]">
+  <xsl:param name="x" />
+  <xsl:copy>
+    <xsl:copy-of select="@*" />
+    <xsl:attribute name="x"><xsl:value-of select="$x" /></xsl:attribute>
+    <xsl:apply-templates select="node()|@*"/>
+  </xsl:copy>
+</xsl:template>
+
 <xsl:template match="pieceState">
   <xsl:param name="gamedoc" />
   <xsl:variable name="id" select="@id" />
   <div NAME="STATE">
+    <xsl:attribute name="id"><xsl:value-of select="@id" /></xsl:attribute>
     <!--<xsl:for-each select="$gamedoc/key('pieceNode', $id)">-->
 <!--
     <xsl:for-each select="piece[@id]">
@@ -75,18 +92,28 @@
     </xsl:for-each>
 -->
 <!--  <xsl:apply-templates select="$gamedoc//piece[@id=$id]" /> -->
-    <xsl:for-each select="$gamedoc">
-      <xsl:apply-templates select="key('pieceNode', $id)" />
+    <xsl:variable name="bottomPiece">
+      <xsl:for-each select="$gamedoc">
+        <tmpHtmlPiece>
+        <xsl:apply-templates select="key('pieceNode', $id)" />
+        </tmpHtmlPiece>
+      </xsl:for-each>
+    </xsl:variable>
+
+    <xsl:for-each select="exsl:node-set($bottomPiece)">
+        <xsl:apply-templates ><xsl:with-param name="x">2222</xsl:with-param></xsl:apply-templates>
     </xsl:for-each>
+<!--
     <xsl:apply-templates select="pieceState">
       <xsl:with-param name="gamedoc" select="$gamedoc" />
     </xsl:apply-templates>
+-->
   end</div>
 </xsl:template>
 
 <xsl:key name="basePiece" match="/game/basePiece" use="@id"/>
 
-<xsl:template match="piece" as="element()*">
+<xsl:template match="piece">
   <div>
     <xsl:attribute name="id"><xsl:value-of select="@id" /></xsl:attribute>
     <xsl:attribute name="class">piece <xsl:call-template name="getBaseTags"/><xsl:value-of select="tags" /></xsl:attribute>
