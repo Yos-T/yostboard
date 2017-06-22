@@ -1,7 +1,7 @@
-TODO: move in stackoverflow to next/prev keeps looping
+TODO: move stackoverflow to bottom of stack
 	  
-
-
+Logging.
+SVG log display
 7.5.2 The accesskey attribute
 
 Drag map to scroll?
