@@ -49,6 +49,7 @@
 
 <xsl:template match="face">
   <div class="face">
+    <xsl:attribute name="data-name"><xsl:value-of select="@name" /></xsl:attribute>
     <xsl:choose>
     <xsl:when test="@type = 'image'">
       <img draggable="false">
@@ -71,11 +72,12 @@
 </xsl:template>
 
 <!--<xsl:template match="tmpHtmlPiece/div[1]">-->
-<xsl:template match="tmpHtmlPiece/div[contains(@class, 'piece')]">
-  <xsl:param name="x" />
+<xsl:template match="tmpHtmlPiece//div[contains(@class, 'piece')]">
+  <xsl:param name="x" select="0" />
+  <xsl:param name="y" select="0" />
   <xsl:copy>
     <xsl:copy-of select="@*" />
-    <xsl:attribute name="x"><xsl:value-of select="$x" /></xsl:attribute>
+    <xsl:attribute name="style">top: <xsl:value-of select="$y" />px; left: <xsl:value-of select="$x" />px;</xsl:attribute>
     <xsl:apply-templates select="node()|@*"/>
   </xsl:copy>
 </xsl:template>
@@ -101,7 +103,10 @@
     </xsl:variable>
 
     <xsl:for-each select="exsl:node-set($bottomPiece)">
-        <xsl:apply-templates ><xsl:with-param name="x">2222</xsl:with-param></xsl:apply-templates>
+        <xsl:apply-templates >
+          <xsl:with-param name="x">1</xsl:with-param>
+          <xsl:with-param name="y">2</xsl:with-param>
+        </xsl:apply-templates>
     </xsl:for-each>
 <!--
     <xsl:apply-templates select="pieceState">

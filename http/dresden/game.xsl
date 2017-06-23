@@ -43,6 +43,7 @@
 
 <xsl:template match="face">
   <div class="face">
+    <xsl:attribute name="data-name"><xsl:value-of select="@name" /></xsl:attribute>
     <xsl:choose>
     <xsl:when test="@type = 'image'">
       <img draggable="false">

@@ -37,7 +37,6 @@
     <tags>counter</tags>
   </basePiece>
 
-  <!-- TODO: base attribute for basePiece is not supported (Not needed?) -->
   <basePiece id="russian" base="counter">
     <tags>allied russian</tags>
     <face type="image" name="back">RUMask.PNG</face>
