@@ -1,4 +1,5 @@
 TODO: move stackoverflow to bottom of stack
+No need for stackoverflow? Multiple sibling pieces works?
 	  
 Logging.
 SVG log display
