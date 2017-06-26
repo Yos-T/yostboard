@@ -12,6 +12,8 @@
 -->
     <pieceState id="rubii" face="front" x="1659" y="2038">
       <pieceState id="turn" />
+      <pieceState id="rubi" face="front" />
+      <pieceState id="rubiii" face="front" />
     </pieceState>
   </location>
 
@@ -26,8 +28,6 @@
   </location>
 
   <location id="countersheet">
-    <pieceState id="rubi" face="front" />
-    <pieceState id="rubiii" face="front" />
   </location>
 
 </gamestate>

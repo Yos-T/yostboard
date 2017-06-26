@@ -124,7 +124,7 @@
 
 <xsl:key name="pieceNode" match="piece" use="@id"/>
 
-<xsl:template match="tmpHtmlBottomPiece//node()|tmpHtmlBottomPiece//@*">
+<xsl:template match="node()|@*">
   <xsl:copy>
     <xsl:apply-templates select="node()|@*"/>
   </xsl:copy>
@@ -162,20 +162,17 @@
   <xsl:variable name="face" select="@face"/>
 
 <!--  <xsl:apply-templates select="$gamedoc//piece[@id=$id]" /> -->
-  <xsl:variable name="bottomPiece">
+  <xsl:variable name="bottom">
     <xsl:for-each select="$gamedoc">
-      <tmpHtmlBottomPiece>
-        <xsl:apply-templates select="key('pieceNode', $id)" >
-          <xsl:with-param name="x"><xsl:value-of select="$x" /></xsl:with-param>
-          <xsl:with-param name="y"><xsl:value-of select="$y" /></xsl:with-param>
-          <xsl:with-param name="face"><xsl:value-of select="$face" /></xsl:with-param>
-        </xsl:apply-templates>
-      </tmpHtmlBottomPiece>
+      <xsl:apply-templates select="key('pieceNode', $id)" >
+        <xsl:with-param name="x"><xsl:value-of select="$x" /></xsl:with-param>
+        <xsl:with-param name="y"><xsl:value-of select="$y" /></xsl:with-param>
+        <xsl:with-param name="face"><xsl:value-of select="$face" /></xsl:with-param>
+      </xsl:apply-templates>
     </xsl:for-each>
   </xsl:variable>
 
   <xsl:variable name="stack">
-      <tmpHtmlBottomPiece>
     <xsl:for-each select="pieceState">
       <xsl:variable name="nodeid" select="@id" />
       <xsl:for-each select="$gamedoc">
@@ -184,22 +181,10 @@
         </xsl:apply-templates>
       </xsl:for-each>
     </xsl:for-each>
-      </tmpHtmlBottomPiece>
-  </xsl:variable>
-
-  <xsl:variable name="bottom">
-      <tmpHtmlBottomPiece>
-    <xsl:for-each select="exsl:node-set($bottomPiece)">
-      <xsl:apply-templates >
-        <xsl:with-param name="x"><xsl:value-of select="111" /></xsl:with-param>
-        <xsl:with-param name="y"><xsl:value-of select="222" /></xsl:with-param>
-      </xsl:apply-templates>
-    </xsl:for-each>
-      </tmpHtmlBottomPiece>
   </xsl:variable>
 
   <xsl:for-each select="exsl:node-set($bottom)">
-    <xsl:for-each select="tmpHtmlBottomPiece/*[1]">
+    <xsl:for-each select="/*">
       <xsl:copy>
         <xsl:apply-templates select="node()|@*" />
         <xsl:apply-templates select="exsl:node-set($stack)" />
