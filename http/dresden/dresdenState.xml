@@ -17,9 +17,9 @@
 
   <location id="deck">
     <pieceState id="c1" face="front" />
-    <pieceState id="c2" face="front" />
+    <pieceState id="c2" face="back" />
     <pieceState id="c3" face="front" />
-    <pieceState id="c4" face="front" />
+    <pieceState id="c4" face="back" />
   </location>
 
   <location id="discard">

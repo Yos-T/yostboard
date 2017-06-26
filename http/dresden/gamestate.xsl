@@ -10,10 +10,15 @@
      encoding="UTF-8"
      indent="yes" />
 
-<!-- COPY from game.xsl -->
+<!-- NOT COPY from game.xsl -->
   <xsl:template match="face">
-    <div class="face">
-      <xsl:attribute name="data-name"><xsl:value-of select="@name" /></xsl:attribute>
+    <xsl:param name="active" />
+
+    <div>
+      <xsl:attribute name="class">face<xsl:if test="not(@name) or @name = $active"> active</xsl:if></xsl:attribute>
+      <xsl:if test="@name">
+        <xsl:attribute name="data-name"><xsl:value-of select="@name" /></xsl:attribute>
+      </xsl:if>
       <xsl:choose>
       <xsl:when test="@type = 'image'">
         <img draggable="false">
@@ -28,12 +33,22 @@
   </xsl:template>
 
   <xsl:template match="piece">
+    <xsl:param name="x" />
+    <xsl:param name="y" />
+    <xsl:param name="face" />
     <div>
       <xsl:attribute name="id"><xsl:value-of select="@id" /></xsl:attribute>
       <xsl:attribute name="class">piece <xsl:call-template name="getBaseTags"/><xsl:value-of select="tags" /></xsl:attribute>
+      <xsl:if test="$x and $y and $x!='' and $y!=''">
+        <xsl:attribute name="style">top: <xsl:value-of select="$y" />px; left: <xsl:value-of select="$x" />px;</xsl:attribute>
+      </xsl:if>
       <div class="faces" draggable="true">
-        <xsl:call-template name="getBaseFaces"/>
-        <xsl:apply-templates select="face"/>
+        <xsl:call-template name="getBaseFaces">
+          <xsl:with-param name="active" select="$face" />
+        </xsl:call-template>
+        <xsl:apply-templates select="face">
+          <xsl:with-param name="active" select="$face" />
+        </xsl:apply-templates>
       </div>
     </div>
   </xsl:template>
@@ -52,12 +67,17 @@
   </xsl:template>
 
   <xsl:template name="getBaseFaces">
+    <xsl:param name="active" />
     <xsl:if test="@base">
       <xsl:variable name="base" select="@base" />
       <xsl:for-each select="key('basePiece', $base)">
-        <xsl:call-template name="getBaseFaces"/>
+        <xsl:call-template name="getBaseFaces">
+          <xsl:with-param name="active" select="$active" />
+        </xsl:call-template>
       </xsl:for-each>
-      <xsl:apply-templates select="/game/basePiece[@id=$base]/face" />
+      <xsl:apply-templates select="/game/basePiece[@id=$base]/face" >
+        <xsl:with-param name="active" select="$active" />
+      </xsl:apply-templates>
     </xsl:if>
   </xsl:template>
 <!-- END COPY from game.xsl -->
@@ -104,13 +124,14 @@
 
 <xsl:key name="pieceNode" match="piece" use="@id"/>
 
-<xsl:template match="tmpHtmlBottomPiece//node()|@*">
+<xsl:template match="tmpHtmlBottomPiece//node()|tmpHtmlBottomPiece//@*">
   <xsl:copy>
     <xsl:apply-templates select="node()|@*"/>
   </xsl:copy>
 </xsl:template>
 
 <!--<xsl:template match="tmpHtmlBottomPiece/div[1]">-->
+<!--
 <xsl:template match="tmpHtmlBottomPiece//div[contains(@class, 'piece')]">
   <xsl:param name="x" />
   <xsl:param name="y" />
@@ -122,7 +143,7 @@
     <xsl:apply-templates select="node()|@*"/>
   </xsl:copy>
 </xsl:template>
-
+-->
 <!--
 <xsl:template match="@*|node()">
   <xsl:copy>
@@ -138,12 +159,17 @@
   <xsl:variable name="id" select="@id" />
   <xsl:variable name="x" select="@x"/>
   <xsl:variable name="y" select="@y"/>
+  <xsl:variable name="face" select="@face"/>
 
 <!--  <xsl:apply-templates select="$gamedoc//piece[@id=$id]" /> -->
   <xsl:variable name="bottomPiece">
     <xsl:for-each select="$gamedoc">
       <tmpHtmlBottomPiece>
-        <xsl:apply-templates select="key('pieceNode', $id)" />
+        <xsl:apply-templates select="key('pieceNode', $id)" >
+          <xsl:with-param name="x"><xsl:value-of select="$x" /></xsl:with-param>
+          <xsl:with-param name="y"><xsl:value-of select="$y" /></xsl:with-param>
+          <xsl:with-param name="face"><xsl:value-of select="$face" /></xsl:with-param>
+        </xsl:apply-templates>
       </tmpHtmlBottomPiece>
     </xsl:for-each>
   </xsl:variable>
@@ -153,7 +179,9 @@
     <xsl:for-each select="pieceState">
       <xsl:variable name="nodeid" select="@id" />
       <xsl:for-each select="$gamedoc">
-        <xsl:apply-templates select="key('pieceNode', $nodeid)" />
+        <xsl:apply-templates select="key('pieceNode', $nodeid)">
+          <xsl:with-param name="face"><xsl:value-of select="$face" /></xsl:with-param>
+        </xsl:apply-templates>
       </xsl:for-each>
     </xsl:for-each>
       </tmpHtmlBottomPiece>

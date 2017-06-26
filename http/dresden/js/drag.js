@@ -586,7 +586,7 @@ function initDrag()
     for ( var i = 0; i < pieces.length; i++ )
     {
         setPieceEvents( pieces[i] );
-        initFaces( pieces[i] );
+ //       initFaces( pieces[i] );
     }
 
     var locations = document.getElementsByClassName("location");
@@ -619,7 +619,7 @@ function initTestBigStack()
 function init()
 {
     initDrag();
-    initTestBigStack();
+//    initTestBigStack();
 //    if (initGame)
 //        initGame();
 //    restorePos();
