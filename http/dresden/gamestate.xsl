@@ -10,6 +10,8 @@
      encoding="UTF-8"
      indent="yes" />
 
+<xsl:variable name="MAX_PIECE_NESTING">2</xsl:variable>
+
 <!-- NOT COPY from game.xsl -->
   <xsl:template match="face">
     <xsl:param name="active" />
@@ -36,6 +38,7 @@
     <xsl:param name="x" />
     <xsl:param name="y" />
     <xsl:param name="face" />
+    <xsl:param name="stackPiece" />
     <div>
       <xsl:attribute name="id"><xsl:value-of select="@id" /></xsl:attribute>
       <xsl:attribute name="class">piece <xsl:call-template name="getBaseTags"/><xsl:value-of select="tags" /></xsl:attribute>
@@ -50,11 +53,15 @@
           <xsl:with-param name="active" select="$face" />
         </xsl:apply-templates>
       </div>
+      <xsl:copy-of select="$stackPiece" />
     </div>
   </xsl:template>
 
   <xsl:key name="basePiece" match="basePiece" use="@id"/>
 
+<!-- rewrite with match and mode 
+     Use key for basePiece lookup
+-->
   <xsl:template name="getBaseTags">
     <xsl:if test="@base">
       <xsl:variable name="base" select="@base" />
@@ -90,6 +97,7 @@
   <head>
     <xsl:apply-templates select="$gamedoc/game"/>
     <link href="css/drag.css" rel="stylesheet" type="text/css"/>
+    <script type="application/javascript">var MAX_PIECE_NESTING = <xsl:value-of select="$MAX_PIECE_NESTING" />;</script>
     <script src="js/drag.js" type="application/javascript"></script>
   </head>
   <body onload="init()"> 
@@ -110,7 +118,7 @@
   </html>
 </xsl:template>
 
-<xsl:template match="game">
+<xsl:template match="/game">
   <title>
     <xsl:value-of select="name" />
   </title>
@@ -122,7 +130,7 @@
   </script>
 </xsl:template>
 
-<xsl:key name="pieceNode" match="piece" use="@id"/>
+<xsl:key name="pieceNode" match="/game/location/piece" use="@id"/>
 
 <xsl:template match="node()|@*">
   <xsl:copy>
@@ -130,29 +138,31 @@
   </xsl:copy>
 </xsl:template>
 
-<!--<xsl:template match="tmpHtmlBottomPiece/div[1]">-->
-<!--
-<xsl:template match="tmpHtmlBottomPiece//div[contains(@class, 'piece')]">
-  <xsl:param name="x" />
-  <xsl:param name="y" />
-  <xsl:copy>
-    <xsl:copy-of select="@*" />
-    <xsl:if test="$x and $y and $x!='' and $y!=''">
-      <xsl:attribute name="style">top: <xsl:value-of select="$y" />px; left: <xsl:value-of select="$x" />px;</xsl:attribute>
-    </xsl:if>
-    <xsl:apply-templates select="node()|@*"/>
-  </xsl:copy>
-</xsl:template>
--->
-<!--
-<xsl:template match="@*|node()">
-  <xsl:copy>
-    <xsl:apply-templates select="@*|node()"/>
-  </xsl:copy>
-</xsl:template>
 
-<xsl:template match="tmpHtmlBottomPiece" />
--->
+<xsl:template match="pieceState/pieceState">
+  <xsl:param name="gamedoc" />
+  <xsl:param name="stackSize" />
+
+  <xsl:variable name="id" select="@id" />
+  <xsl:variable name="face" select="@face"/>
+
+  <xsl:variable name="stack">
+    <xsl:if test="position() &gt;= $stackSize - $MAX_PIECE_NESTING">
+      <xsl:apply-templates select="following-sibling::*" >
+        <xsl:with-param name="gamedoc" select="$gamedoc" />
+        <xsl:with-param name="stackSize" select="$stackSize" />
+      </xsl:apply-templates>
+    </xsl:if>
+  </xsl:variable>
+
+  <xsl:for-each select="$gamedoc">
+    <xsl:apply-templates select="key('pieceNode', $id)" >
+      <xsl:with-param name="face"><xsl:value-of select="$face" /></xsl:with-param>
+      <xsl:with-param name="stackPiece" select="$stack" />
+    </xsl:apply-templates>
+  </xsl:for-each>
+
+</xsl:template>
 
 <xsl:template match="location/pieceState">
   <xsl:param name="gamedoc" />
@@ -160,73 +170,26 @@
   <xsl:variable name="x" select="@x"/>
   <xsl:variable name="y" select="@y"/>
   <xsl:variable name="face" select="@face"/>
-
-<!--  <xsl:apply-templates select="$gamedoc//piece[@id=$id]" /> -->
-  <xsl:variable name="bottom">
-    <xsl:for-each select="$gamedoc">
-      <xsl:apply-templates select="key('pieceNode', $id)" >
-        <xsl:with-param name="x"><xsl:value-of select="$x" /></xsl:with-param>
-        <xsl:with-param name="y"><xsl:value-of select="$y" /></xsl:with-param>
-        <xsl:with-param name="face"><xsl:value-of select="$face" /></xsl:with-param>
-      </xsl:apply-templates>
-    </xsl:for-each>
-  </xsl:variable>
+  <xsl:variable name="stackSize" select="count(pieceState) + 1" />
 
   <xsl:variable name="stack">
-    <xsl:for-each select="pieceState">
-      <xsl:variable name="nodeid" select="@id" />
-      <xsl:for-each select="$gamedoc">
-        <xsl:apply-templates select="key('pieceNode', $nodeid)">
-          <xsl:with-param name="face"><xsl:value-of select="$face" /></xsl:with-param>
-        </xsl:apply-templates>
-      </xsl:for-each>
-    </xsl:for-each>
+    <xsl:apply-templates select="pieceState[position() &lt;= $stackSize - $MAX_PIECE_NESTING]">
+      <xsl:with-param name="gamedoc" select="$gamedoc" />
+      <xsl:with-param name="stackSize"><xsl:value-of select="$stackSize" /></xsl:with-param>
+    </xsl:apply-templates>
   </xsl:variable>
 
-  <xsl:for-each select="exsl:node-set($bottom)">
-    <xsl:for-each select="/*">
-      <xsl:copy>
-        <xsl:apply-templates select="node()|@*" />
-        <xsl:apply-templates select="exsl:node-set($stack)" />
-      </xsl:copy>
-    </xsl:for-each>
+<!--  <xsl:apply-templates select="$gamedoc//piece[@id=$id]" /> -->
+  <xsl:for-each select="$gamedoc">
+    <xsl:apply-templates select="key('pieceNode', $id)" > 
+      <xsl:with-param name="x"><xsl:value-of select="$x" /></xsl:with-param>
+      <xsl:with-param name="y"><xsl:value-of select="$y" /></xsl:with-param>
+      <xsl:with-param name="face"><xsl:value-of select="$face" /></xsl:with-param>
+      <xsl:with-param name="stackPiece" select="$stack" />
+    </xsl:apply-templates>
   </xsl:for-each>
 
-<!--
-  <xsl:call-template name="nest">
-    <xsl:with-param name="parent"><xsl:value-of select="exsl:node-set($bottom)" /></xsl:with-param>
-    <xsl:with-param name="child"><xsl:value-of select="$stack" /></xsl:with-param>
-  </xsl:call-template>
--->
 </xsl:template>
-
-<!--
-<xsl:template name="nest">
-  <xsl:param name="parent" />
-  <xsl:param name="child" />
-
-xxx1
-    <xsl:value-of select="$parent" />
-ccc2
-
-ppp1
-    <xsl:copy-of select="exsl:node-set($parent)" />
-ppp2
-
-
-  <xsl:for-each select="exsl:node-set($parent)/.">
-PPP1
-    <xsl:copy-of select="exsl:node-set($parent)" />
-BLA2
-<xsl:value-of select="exsl:node-set($child)" />
-    <xsl:copy>
-      <xsl:copy-of select="@*" />
-      <xsl:copy-of select="node()" />
-      <xsl:value-of select="$child" />
-    </xsl:copy>
-  </xsl:for-each>
-</xsl:template>
--->
 
 </xsl:stylesheet>
 

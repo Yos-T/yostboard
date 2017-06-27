@@ -1,4 +1,4 @@
-var MAX_PIECE_NESTING = 2;
+//var MAX_PIECE_NESTING = ; Set in xsl
 
 function debug(msg)
 {
