@@ -35,53 +35,18 @@ function activeFace( piece )
     return null;
 }
 
-function inStackOverflow( piece )
-{
-    return piece.parentNode && piece.parentNode.classList.contains("stackOverflow");
-}
-
-function getStackOverflowParent( piece )
-{
-    if ( inStackOverflow( piece ) )
-    {
-        return piece.parentNode;
-    }
-    return null;
-}
-
-function getStackOverflowChild( piece )
-{
-    var soList = piece.getElementsByClassName("stackOverflow");
-    if ( soList.length )
-    {
-        return soList[0];
-    }
-    return null;
-}
-
-function getStackOverflow( piece )
-{
-    var so = getStackOverflowParent( piece );
-    if ( !so )
-    {
-        so = getStackOverflowChild( piece );
-    }
-    return so;
-}
-
 function stackNext( piece )
 {
-    if ( piece.lastElementChild.classList.contains("piece") )
-    {
-        return piece.lastElementChild;
-    }
-    else if ( piece.lastElementChild.classList.contains("stackOverflow") )
-    {
-        return piece.lastElementChild.firstElementChild;
-    }
-    else if ( inStackOverflow( piece ) )
+    if ( piece.parentNode && piece.parentNode.classList.contains("piece") &&
+         piece.nextElementSibling && piece.nextElementSibling.classList.contains("piece") )
     {
         return piece.nextElementSibling;
+    }
+
+    var pieces = piece.getElementsByClassName("piece");
+    if ( pieces.length )
+    {
+        return pieces[0]
     }
     return null; // Top of stack
 }
@@ -90,19 +55,12 @@ function stackPrev( piece )
 {
     if ( piece.parentNode && piece.parentNode.classList.contains("piece") )
     {
-        return piece.parentNode;
-    }
-    else if ( inStackOverflow( piece ) )
-    {
         var prev = piece.previousElementSibling;
-        if ( prev )
+        if ( prev && prev.parentNode && prev.parentNode.classList.contains("piece") )
         {
-            return prev;
+            return prev.parentNode;
         }
-        else
-        {
-            return piece.parentNode.parentNode;
-        }
+        return piece.parentNode;
     }
     return null; // Bottom of stack
 }
@@ -110,7 +68,7 @@ function stackPrev( piece )
 function getStackBottom( piece )
 {
     var prev = piece.parentNode;
-    while( prev && ( prev.classList.contains("piece") || prev.classList.contains("stackOverflow") ) )
+    while( prev && prev.classList.contains("piece") )
     {
         piece = prev;
         prev = prev.parentNode;
@@ -120,28 +78,21 @@ function getStackBottom( piece )
 
 function getStackTop( piece )
 {
-    if ( inStackOverflow( piece ) )
+    var pieces = [];
+    if ( piece.parentNode && piece.parentNode.classList.contains("piece") )
     {
-        return piece.parentNode.lastElementChild;
+        pieces = piece.parentNode.getElementsByClassName("piece");
     }
     else
     {
-        var stackOverflow = getStackOverflow( piece );
-        if ( stackOverflow )
-        {
-            return stackOverflow.lastElementChild;
-        }
-        else
-        {
-            var next = stackNext( piece );
-            while( next )
-            {
-                piece = next;
-                next = stackNext( piece );
-            }
-            return piece;
-        }
+        pieces = piece.getElementsByClassName("piece");
     }
+
+    if ( pieces.length )
+    {
+        return pieces[pieces.length-1]
+    }
+    return piece;
 }
 
 function inStack( piece )
@@ -177,32 +128,6 @@ function fold( piece )
 function unfold( piece )
 {
     if ( !isUnfolded(piece) ) toggleFold(piece);
-}
-
-function newStackOverflow()
-{
-    var so = document.createElement('div');
-    so.setAttribute('class', 'stackOverflow' );
-    return so;
-}
-
-function addToStackOverflow( so, piece, pBefore )
-{
-    var fromTop = getStackTop( piece );
-    var prev;
-    while ( fromTop )
-    {
-        prev = stackPrev( fromTop );
-        so.insertBefore( fromTop, pBefore );
-        pBefore = fromTop;
-        fromTop = prev;
-    }
-    // remove excess stackOverflow containers
-    soList = so.getElementsByClassName( 'stackOverflow' );
-    for (var i = 0; i < soList.length; ++i )
-    {
-        soList[i].parentNode.removeChild( soList[i] );
-    }
 }
 
 // Add piece pFrom on top of pTo
