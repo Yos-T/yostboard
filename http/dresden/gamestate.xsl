@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:exsl="http://exslt.org/common" version="1.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
 <!-- <xsl:include href="game.xsl" /> -->
 
@@ -13,84 +13,71 @@
 <xsl:variable name="MAX_PIECE_NESTING">2</xsl:variable>
 
 <!-- NOT COPY from game.xsl -->
-  <xsl:template match="face">
-    <xsl:param name="active" />
+<xsl:template match="face">
+  <xsl:param name="active" />
 
-    <div>
-      <xsl:attribute name="class">face<xsl:if test="not(@name) or @name = $active"> active</xsl:if></xsl:attribute>
-      <xsl:if test="@name">
-        <xsl:attribute name="data-name"><xsl:value-of select="@name" /></xsl:attribute>
-      </xsl:if>
-      <xsl:choose>
-      <xsl:when test="@type = 'image'">
-        <img draggable="false">
-        <xsl:attribute name="src">images/<xsl:value-of select="." /></xsl:attribute>
-        </img>
-      </xsl:when>
-      <xsl:otherwise>
-          ERROR face type unknown: <xsl:value-of select="@type" />
-      </xsl:otherwise>
-      </xsl:choose> 
-    </div>
-  </xsl:template>
-
-  <xsl:template match="piece">
-    <xsl:param name="x" />
-    <xsl:param name="y" />
-    <xsl:param name="face" />
-    <xsl:param name="stackPiece" />
-    <div>
-      <xsl:attribute name="id"><xsl:value-of select="@id" /></xsl:attribute>
-      <xsl:attribute name="class">piece <xsl:call-template name="getBaseTags"/><xsl:value-of select="tags" /></xsl:attribute>
-      <xsl:if test="$x and $y and $x!='' and $y!=''">
-        <xsl:attribute name="style">top: <xsl:value-of select="$y" />px; left: <xsl:value-of select="$x" />px;</xsl:attribute>
-      </xsl:if>
-      <div class="faces" draggable="true">
-        <xsl:call-template name="getBaseFaces">
-          <xsl:with-param name="active" select="$face" />
-        </xsl:call-template>
-        <xsl:apply-templates select="face">
-          <xsl:with-param name="active" select="$face" />
-        </xsl:apply-templates>
-      </div>
-      <xsl:copy-of select="$stackPiece" />
-    </div>
-  </xsl:template>
-
-  <xsl:key name="basePiece" match="basePiece" use="@id"/>
-
-<!-- rewrite with match and mode 
-     Use key for basePiece lookup
--->
-  <xsl:template name="getBaseTags">
-    <xsl:if test="@base">
-      <xsl:variable name="base" select="@base" />
-      <xsl:for-each select="key('basePiece', $base)">
-        <xsl:call-template name="getBaseTags"/>
-      </xsl:for-each>
-      <xsl:value-of select="/game/basePiece[@id=$base]/tags" />
-      <xsl:text> </xsl:text><!-- Add space -->
+  <div>
+    <xsl:attribute name="class">face<xsl:if test="not(@name) or @name = $active"> active</xsl:if></xsl:attribute>
+    <xsl:if test="@name">
+      <xsl:attribute name="data-name"><xsl:value-of select="@name" /></xsl:attribute>
     </xsl:if>
-  </xsl:template>
+    <xsl:choose>
+    <xsl:when test="@type = 'image'">
+      <img draggable="false">
+      <xsl:attribute name="src">images/<xsl:value-of select="." /></xsl:attribute>
+      </img>
+    </xsl:when>
+    <xsl:otherwise>
+        ERROR face type unknown: <xsl:value-of select="@type" />
+    </xsl:otherwise>
+    </xsl:choose> 
+  </div>
+</xsl:template>
 
-  <xsl:template name="getBaseFaces">
-    <xsl:param name="active" />
-    <xsl:if test="@base">
-      <xsl:variable name="base" select="@base" />
-      <xsl:for-each select="key('basePiece', $base)">
-        <xsl:call-template name="getBaseFaces">
-          <xsl:with-param name="active" select="$active" />
-        </xsl:call-template>
-      </xsl:for-each>
-      <xsl:apply-templates select="/game/basePiece[@id=$base]/face" >
-        <xsl:with-param name="active" select="$active" />
+<xsl:template match="piece">
+  <xsl:param name="x" />
+  <xsl:param name="y" />
+  <xsl:param name="face" />
+  <xsl:param name="stackPiece" />
+  <div>
+    <xsl:attribute name="id"><xsl:value-of select="@id" /></xsl:attribute>
+    <xsl:attribute name="class">piece <xsl:apply-templates select="key('basePiece', base)" mode="tags"/><xsl:value-of select="tags" /></xsl:attribute>
+    <xsl:if test="$x and $y and $x!='' and $y!=''">
+      <xsl:attribute name="style">top: <xsl:value-of select="$y" />px; left: <xsl:value-of select="$x" />px;</xsl:attribute>
+    </xsl:if>
+    <div class="faces" draggable="true">
+      <xsl:apply-templates select="key('basePiece', base)" mode="faces">
+        <xsl:with-param name="active" select="$face" />
       </xsl:apply-templates>
-    </xsl:if>
-  </xsl:template>
+      <xsl:apply-templates select="face">
+        <xsl:with-param name="active" select="$face" />
+      </xsl:apply-templates>
+    </div>
+    <xsl:copy-of select="$stackPiece" />
+  </div>
+</xsl:template>
+
+<xsl:key name="basePiece" match="basePiece" use="@id"/>
+
+<xsl:template match="basePiece" mode="tags">
+  <xsl:apply-templates select="key('basePiece', base)" mode="tags" />
+  <xsl:value-of select="tags" />
+  <xsl:text> </xsl:text><!-- Add space -->
+</xsl:template>
+
+<xsl:template match="basePiece" mode="faces">
+  <xsl:param name="active" />
+  <xsl:apply-templates select="key('basePiece', base)" mode="faces"> 
+    <xsl:with-param name="active" select="$active" />
+  </xsl:apply-templates>
+  <xsl:apply-templates select="face">
+    <xsl:with-param name="active" select="$active" />
+  </xsl:apply-templates>
+</xsl:template>
+
 <!-- END COPY from game.xsl -->
 
-
-<xsl:template match="/gamestate">
+<xsl:template match="gamestate">
   <xsl:param name="gamefile" select="@game"/> 
   <xsl:variable name="gamedoc" select="document($gamefile)"/>
   <html>
@@ -118,7 +105,7 @@
   </html>
 </xsl:template>
 
-<xsl:template match="/game">
+<xsl:template match="game">
   <title>
     <xsl:value-of select="name" />
   </title>
@@ -130,7 +117,7 @@
   </script>
 </xsl:template>
 
-<xsl:key name="pieceNode" match="/game/location/piece" use="@id"/>
+<xsl:key name="piece" match="piece" use="@id"/>
 
 <xsl:template match="node()|@*">
   <xsl:copy>
@@ -138,11 +125,9 @@
   </xsl:copy>
 </xsl:template>
 
-
 <xsl:template match="pieceState/pieceState">
   <xsl:param name="gamedoc" />
   <xsl:param name="stackSize" />
-
   <xsl:variable name="id" select="@id" />
   <xsl:variable name="face" select="@face"/>
 
@@ -156,12 +141,11 @@
   </xsl:variable>
 
   <xsl:for-each select="$gamedoc">
-    <xsl:apply-templates select="key('pieceNode', $id)" >
+    <xsl:apply-templates select="key('piece', $id)" >
       <xsl:with-param name="face"><xsl:value-of select="$face" /></xsl:with-param>
       <xsl:with-param name="stackPiece" select="$stack" />
     </xsl:apply-templates>
   </xsl:for-each>
-
 </xsl:template>
 
 <xsl:template match="location/pieceState">
@@ -179,16 +163,14 @@
     </xsl:apply-templates>
   </xsl:variable>
 
-<!--  <xsl:apply-templates select="$gamedoc//piece[@id=$id]" /> -->
   <xsl:for-each select="$gamedoc">
-    <xsl:apply-templates select="key('pieceNode', $id)" > 
+    <xsl:apply-templates select="key('piece', $id)" > 
       <xsl:with-param name="x"><xsl:value-of select="$x" /></xsl:with-param>
       <xsl:with-param name="y"><xsl:value-of select="$y" /></xsl:with-param>
       <xsl:with-param name="face"><xsl:value-of select="$face" /></xsl:with-param>
       <xsl:with-param name="stackPiece" select="$stack" />
     </xsl:apply-templates>
   </xsl:for-each>
-
 </xsl:template>
 
 </xsl:stylesheet>

@@ -16,16 +16,20 @@
   </basePiece>
 
   <location type="single" id="deck">
-    <piece id="c1" base="card">
+    <piece id="c1">
+      <base>card</base>
       <face type="image" name="front">CE1.PNG</face>
     </piece>
-    <piece id="c2" base="card">
+    <piece id="c2">
+      <base>card</base>
       <face type="image" name="front">CE2.PNG</face>
     </piece>
-    <piece id="c3" base="card">
+    <piece id="c3">
+      <base>card</base>
       <face type="image" name="front">CE2.PNG</face>
     </piece>
-    <piece id="c4" base="card">
+    <piece id="c4">
+      <base>card</base>
       <face type="image" name="front">CE3.PNG</face>
     </piece>
   </location>
@@ -37,30 +41,36 @@
     <tags>counter</tags>
   </basePiece>
 
-  <basePiece id="russian" base="counter">
+  <basePiece id="russian">
+    <base>counter</base>
     <tags>allied russian</tags>
     <face type="image" name="back">RUMask.PNG</face>
   </basePiece>
 
-  <basePiece id="prussian" base="counter">
+  <basePiece id="prussian">
+    <base>counter</base>
     <tags>allied prussian</tags>
     <face type="image" name="back">PRMask.PNG</face>
   </basePiece>
 
-  <basePiece id="french" base="counter">
+  <basePiece id="french">
+    <base>counter</base>
     <tags>french</tags>
     <face type="image" name="back">FMask.PNG</face>
   </basePiece>
 
   <location type="fixed" id="countersheet">
-    <piece id="rubi" base="russian">
+    <piece id="rubi">
+      <base>russian</base>
       <tags>first</tags>
       <face type="image" name="front">RUBI.PNG</face>
     </piece>
-    <piece id="rubii" base="russian">
+    <piece id="rubii">
+      <base>russian</base>
       <face type="image" name="front">RUBII.PNG</face>
     </piece>
-    <piece id="rubiii" base="russian">
+    <piece id="rubiii">
+      <base>russian</base>
       <face type="image" name="front">RUBIII.PNG</face>
     </piece>
     <piece id="turn">
