@@ -1,8 +1,6 @@
 TODO: move stackoverflow to bottom of stack
 No need for stackoverflow? Multiple sibling pieces works?
 	  
-TODO: Make base a tag, allow multiple base
-
 Logging.
 SVG log display
 7.5.2 The accesskey attribute
