@@ -27,7 +27,7 @@ function getFaces( piece )
 
 function activeFace( piece )
 {
-    var active = getFaceContainer( piece ).getElementsByClassName("face active")
+    var active = getFaceContainer( piece ).getElementsByClassName("face active");
     if ( active.length )
     {
         return active[0];
@@ -46,7 +46,7 @@ function stackNext( piece )
     var pieces = piece.getElementsByClassName("piece");
     if ( pieces.length )
     {
-        return pieces[0]
+        return pieces[0];
     }
     return null; // Top of stack
 }
@@ -90,7 +90,7 @@ function getStackTop( piece )
 
     if ( pieces.length )
     {
-        return pieces[pieces.length-1]
+        return pieces[pieces.length-1];
     }
     return piece;
 }
@@ -122,12 +122,40 @@ function toggleFold( piece )
 
 function fold( piece )
 {
-    if ( isUnfolded(piece) ) toggleFold(piece);
+    if ( isUnfolded(piece) ) { toggleFold(piece); }
 }
 
 function unfold( piece )
 {
-    if ( !isUnfolded(piece) ) toggleFold(piece);
+    if ( !isUnfolded(piece) ) { toggleFold(piece); }
+}
+
+function restack( piece )
+{
+    if ( !inStack( piece ) )
+    {
+        fold( piece );
+        return;
+    }
+
+    var bottom = getStackBottom( piece );
+    var pieces = bottom.getElementsByClassName( "piece" );
+    var pi = pieces.length-1;
+    var next = null;
+
+    for ( var nest = 0; pi >= 0; pi-- )
+    {
+        if ( pi > 0 && nest < MAX_PIECE_NESTING )
+        {
+            pieces[pi-1].appendChild( pieces[pi] );
+            nest++;
+        }
+        else
+        {
+            bottom.insertBefore( pieces[pi], next );
+            next = pieces[pi];
+        }
+    }
 }
 
 // Add piece pFrom on top of pTo
@@ -136,74 +164,20 @@ function addToStack( pTo, pFrom )
 {
     var toUnfolded = isUnfolded( pTo );
     fold( pFrom );
+    setCoordinates(piece, 0, 0);
 
     if ( !toUnfolded )
     {
         // Put on top of folded stack.
-        pTo = getStackTop( pTo );
-    }
-
-    var toSo = getStackOverflowParent( pTo );
-    if ( toSo )
-    {
-        var toNext = stackNext( pTo );
-        addToStackOverflow( toSo, pFrom, toNext );
+        getStackTop( pTo ).appendChild( pFrom );
     }
     else
     {
-        var next = getStackBottom( pTo );
-        var stackSize = 1;
-        while ( next != pTo )
-        {
-            ++stackSize;
-            next = stackNext( next );
-        }
-
-        next = stackNext( pTo );
-        // detach next, insert pFrom stack
-        if ( next ) next.parentNode.removeChild( next );
-
-        pTo.appendChild( pFrom );
-        
-        while ( pFrom && stackSize < MAX_PIECE_NESTING )
-        {
-            ++stackSize;
-            pTo = pFrom;
-            pFrom = stackNext( pFrom );
-        }
-        
-        if ( pFrom )
-        {
-            pFrom.parentNode.removeChild( pFrom );
-            var so = getStackOverflowChild( pTo );
-            if ( !so )
-            {
-                so = newStackOverflow();
-                pTo.appendChild( so );
-            }
-            if ( next )
-                addToStackOverflow( so, next, so.firstElementChild );
-
-            addToStackOverflow( so, pFrom, so.firstElementChild );
-        }
-        else if ( next )
-        {
-            pTo.appendChild( next );
-            while ( next && stackSize < MAX_PIECE_NESTING )
-            {
-                ++stackSize;
-                pTo = next;
-                next = stackNext( next );
-            }
-            if ( next )
-            {
-                next.parentNode.removeChild( next );
-                var so = newStackOverflow();
-                pTo.appendChild( so );
-                addToStackOverflow( so, next, null );
-            }
-        }
+        var toNext = stackNext( pTo );
+        toNext.parentNode.insertBefore( pFrom, toNext );
     }
+
+    restack( pTo );
 }
 
 function getCoordinates( piece )
@@ -218,8 +192,8 @@ function getCoordinates( piece )
 
 function setCoordinates(piece, x, y)
 {
-    piece.style.left = x+'px';
-    piece.style.top = y+'px';
+    piece.style.left = x+"px";
+    piece.style.top = y+"px";
 }
 
 /*****************************
@@ -228,14 +202,14 @@ function setCoordinates(piece, x, y)
 /*****************************
  *     EVENTS HELPERS        *
  ****************************/
-function getEventOffset(evt, el) 
+function getEventOffset(evt, el)
 {
-    if (typeof(el)==='undefined') el = evt.target; //No default arguments in chrome?
+    if (typeof(el)==="undefined") { el = evt.target; } //No default arguments in chrome?
 
     var x = 0;
     var y = 0;
 
-    while ( el && !isNaN(el.offsetLeft) && !isNaN(el.offsetTop) ) 
+    while ( el && !isNaN(el.offsetLeft) && !isNaN(el.offsetTop) )
     {
         x += el.offsetLeft - el.scrollLeft;
         y += el.offsetTop - el.scrollTop;
@@ -255,81 +229,49 @@ function getEventOffset(evt, el)
 function getDragPiece( nodeid )
 {
     var piece = findElement( nodeid );
-    if ( !piece ) return null;
+    if ( !piece ) { return null; }
 
     if ( inUnfoldedStack( piece ) )
     {
         var nextPiece = stackNext( piece );
         var prevPiece = stackPrev( piece );
+
         if ( !prevPiece )
         {
             var c = getCoordinates( piece );
             setCoordinates( nextPiece, c.x, c.y );
             piece.parentNode.appendChild( nextPiece );
-
-            if ( !inStack( nextPiece ) )
+            // move children
+            var next = null;
+            for( var i = piece.childNodes.length; i >= 0; i++ )
             {
-                fold( nextPiece );
-            }
-            else
-            {
-                if ( isUnfolded( piece ) )
+                if ( piece.childNodes[i].classList.contains("piece") )
                 {
-                    unfold( nextPiece );
-                }
-                // Update stackOverflow
-                var so = nextPiece.getElementsByClassName( 'stackOverflow' );
-                if ( so.length )
-                {
-                    var first = so[0].firstElementChild;
-                    so[0].parentNode.appendChild( first );
-                    if ( so[0].firstElementChild ) // not empty
-                    {
-                        first.appendChild( so[0] );
-                    }
-                    else
-                    {
-                        so[0].parentNode.removeChild( so[0] );
-                    }
+                    nextPiece.insertBefore( piece.childNodes[i], next );
+                    next = piece.childNodes[i];
                 }
             }
         }
-        else if ( !nextPiece )
+        else if ( nextPiece && nextPiece.parentNode == piece )
         {
-            if ( !stackPrev( prevPiece ) )
-            {
-                fold( prevPiece );
-            }
-            else
-            {
-                piece.parentNode.removeChild( piece );
-                // Remove empty stackOverflow
-                var so = prevPiece.getElementsByClassName( 'stackOverflow' );
-                if ( so.length )
-                {
-                    so[0].parentNode.removeChild( so[0] );
-                }
-            }
+            prevPiece.appendChild( nextPiece );
+            piece.parentNode.removeChild( piece );
         }
-        else if ( !inStackOverflow( piece ) )
+        else
         {
             piece.parentNode.removeChild( piece );
-            // piece has stackOverflow 
-            if ( piece.lastElementChild.classList.contains( 'stackOverflow' ) )
-            {
-                nextPiece.parentNode.removeChild( nextPiece );
-                var so = piece.lastElementChild;
-                piece.removeChild( so );
-                if ( so.firstElementChild ) //not empty
-                {
-                    nextPiece.appendChild( so ); // move stackOverflow
-                }
-            }
-            addToStack( prevPiece, nextPiece );
+        }
+
+        if ( prevPiece )
+        {
+            restack( prevPiece );
+        }
+        else if ( nextPiece )
+        {
+            restack( nextPiece );
         }
     }
-    
-    if ( piece.parentNode ) // Not detached yet.
+    else
     {
         piece.parentNode.removeChild( piece );
     }
@@ -347,7 +289,7 @@ function dragEndPiece(e)
     //this.parentNode.style.opacity = '';
 }
 
-function dragStartPiece(e) 
+function dragStartPiece(e)
 {
     // 'this' is the faces container
     var piece = this.parentNode;
@@ -371,7 +313,7 @@ function dragStartPiece(e)
     var x = 0;
     var y = 0;
 
-    if ( window.hasOwnProperty('devicePixelRatio') )
+    if ( window.hasOwnProperty("devicePixelRatio") )
     {
         // Correct for zoom level
         var dpr = window.devicePixelRatio; //NON STANDARD ?
@@ -391,19 +333,19 @@ function dragStartPiece(e)
 //dragEl.style.opacity = 0.5;
 // cloneNode, add to body and position absolute top -computed height ??
 
-    e.dataTransfer.dropEffect = 'move';
-    e.dataTransfer.setData('nodeid', piece.id);
-    e.dataTransfer.setData('offsetX', offsetX);
-    e.dataTransfer.setData('offsetY', offsetY);
+    e.dataTransfer.dropEffect = "move";
+    e.dataTransfer.setData("nodeid", piece.id);
+    e.dataTransfer.setData("offsetX", offsetX);
+    e.dataTransfer.setData("offsetY", offsetY);
 
-    e.stopPropagation(); 
+    e.stopPropagation();
 }
 
 /***************************
  *        DRAG OVER        *
  **************************/
 function dragOverPiece(e)
-{ 
+{
     e.preventDefault();
 }
 
@@ -417,22 +359,22 @@ function dragOverLocation(e)
  *********************/
 function dropPieceCapture(e)
 {
-    e.preventDefault(); 
+    e.preventDefault();
 }
 
 function dropPieceBubble(e)
 {
-    e.preventDefault(); 
+    e.preventDefault();
 
     var to = this.parentNode;
-    var fromId = e.dataTransfer.getData('nodeid');
-    if ( to.id != fromId ) 
+    var fromId = e.dataTransfer.getData("nodeid");
+    if ( to.id != fromId )
     {
         if ( !isUnfolded( to ) && getStackBottom( to ).id == fromId )
         {
             return;
         }
-        var from = getDragPiece( e.dataTransfer.getData('nodeid') );
+        var from = getDragPiece( e.dataTransfer.getData("nodeid") );
         addToStack(to, from);
     }
     else if ( !isUnfolded( to ) )
@@ -448,9 +390,9 @@ function dropLocation(e)
     e.preventDefault();
 
     var to = this;
-    var from = getDragPiece( e.dataTransfer.getData('nodeid') );
-    var offsetX = e.dataTransfer.getData('offsetX');
-    var offsetY = e.dataTransfer.getData('offsetY');
+    var from = getDragPiece( e.dataTransfer.getData("nodeid") );
+    var offsetX = e.dataTransfer.getData("offsetX");
+    var offsetY = e.dataTransfer.getData("offsetY");
     var offset = getEventOffset(e, to);
     if ( !from ) return;
     var x = offset.x - offsetX;
@@ -496,22 +438,12 @@ function setLocationEvents(loc)
 //    loc.addEventListener( "click", clickLocation, false );
 }
 
-function initFaces(el)
-{
-    if (!el) return;
-    var faces = el.getElementsByClassName("face");
-    if ( !faces ) return;
-    // Last face is visible
-    faces[faces.length-1].classList.add("active");
-}
-
 function initDrag()
 {
     var pieces = document.getElementsByClassName("piece");
     for ( var i = 0; i < pieces.length; i++ )
     {
         setPieceEvents( pieces[i] );
- //       initFaces( pieces[i] );
     }
 
     var locations = document.getElementsByClassName("location");
@@ -523,11 +455,11 @@ function initDrag()
 
 function initTestBigStack()
 {
-    var piece = document.getElementById('c1');
-    var mappc = getPieceContainer( document.getElementById('map') );
-   
-    var base = piece.cloneNode(true); 
-    base.id = 'cc0';
+    var piece = document.getElementById("c1");
+    var mappc = getPieceContainer( document.getElementById("map") );
+
+    var base = piece.cloneNode(true);
+    base.id = "cc0";
     setPieceEvents( base );
     mappc.appendChild( base );
     setCoordinates( base, 0, 0 );
@@ -535,7 +467,7 @@ function initTestBigStack()
     for (var i = 1; i < 300; i++)
     {
         var clone = piece.cloneNode(true);
-        clone.id = 'cc'+i;
+        clone.id = "cc"+i;
         setPieceEvents( clone );
         addToStack( base, clone );
     }
