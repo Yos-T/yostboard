@@ -1,0 +1,18 @@
+<log>
+  <move id="#index" pid="@pieceId" type="single|stack">
+    <location id="@id" x="x" y="y" />
+    <piece id="@id" />
+  </move>
+
+  <move id="#index">
+    <src> <piece id="@id" /> </src>
+    <src> <stack id="@id" /> </src>
+    <dest> <location id="@id" x="x" y="y" /> </dest>
+    <dest> <piece id="@id" /> </dest>
+  </move>
+
+  <flip id="#index">
+    <piece id="@id">facename</piece>
+  </flip>
+
+</log>
