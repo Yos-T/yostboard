@@ -164,7 +164,7 @@ function addToStack( pTo, pFrom )
 {
     var toUnfolded = isUnfolded( pTo );
     fold( pFrom );
-    setCoordinates(piece, 0, 0);
+    setCoordinates( pFrom, 0, 0 );
 
     if ( !toUnfolded )
     {
@@ -174,7 +174,14 @@ function addToStack( pTo, pFrom )
     else
     {
         var toNext = stackNext( pTo );
-        toNext.parentNode.insertBefore( pFrom, toNext );
+        if ( toNext )
+        {
+            toNext.parentNode.insertBefore( pFrom, toNext );
+        }
+        else
+        {
+            pTo.appendChild( pFrom );
+        }
     }
 
     restack( pTo );
@@ -241,9 +248,10 @@ function getDragPiece( nodeid )
             var c = getCoordinates( piece );
             setCoordinates( nextPiece, c.x, c.y );
             piece.parentNode.appendChild( nextPiece );
+            unfold( nextPiece );
             // move children
             var next = null;
-            for( var i = piece.childNodes.length; i >= 0; i++ )
+            for( var i = piece.childNodes.length-1; i >= 0; i-- )
             {
                 if ( piece.childNodes[i].classList.contains("piece") )
                 {
