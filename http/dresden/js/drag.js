@@ -130,6 +130,7 @@ function unfold( piece )
     if ( !isUnfolded(piece) ) { toggleFold(piece); }
 }
 
+//rebuild the stack
 function restack( piece )
 {
     if ( !inStack( piece ) )
@@ -143,7 +144,7 @@ function restack( piece )
     var pi = pieces.length-1;
     var next = null;
 
-    for ( var nest = 0; pi >= 0; pi-- )
+    for ( var nest = 1; pi >= 0; pi-- )
     {
         if ( pi > 0 && nest < MAX_PIECE_NESTING )
         {
