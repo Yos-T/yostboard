@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?xml-stylesheet type="text/xsl" href="game.xsl"?>
+
+<game id="dresden20">
+  <name>Dresden 20</name>
+
+  <location type="free" id="map">
+    <face type="image">Dresden 20 map v1r.JPG</face>
+  </location>
+
+  <basePiece id="card">
+    <tags>card</tags>
+    <face type="image" name="back">CBack.PNG</face>
+  </basePiece>
+
+  <location type="single" id="deck">
+    <piece id="c1">
+      <base>card</base>
+      <face type="image" name="front">CE1.PNG</face>
+    </piece>
+    <piece id="c2">
+      <base>card</base>
+      <face type="image" name="front">CE2.PNG</face>
+    </piece>
+    <piece id="c3">
+      <base>card</base>
+      <face type="image" name="front">CE2.PNG</face>
+    </piece>
+    <piece id="c4">
+      <base>card</base>
+      <face type="image" name="front">CE3.PNG</face>
+    </piece>
+  </location>
+
+  <location type="single" id="discard">
+  </location>
+
+  <basePiece id="counter">
+    <tags>counter</tags>
+  </basePiece>
+
+  <basePiece id="russian">
+    <base>counter</base>
+    <tags>allied russian</tags>
+    <face type="image" name="back">RUMask.PNG</face>
+  </basePiece>
+
+  <basePiece id="prussian">
+    <base>counter</base>
+    <tags>allied prussian</tags>
+    <face type="image" name="back">PRMask.PNG</face>
+  </basePiece>
+
+  <basePiece id="french">
+    <base>counter</base>
+    <tags>french</tags>
+    <face type="image" name="back">FMask.PNG</face>
+  </basePiece>
+
+  <location type="fixed" id="countersheet">
+    <piece id="ru_b_cv">
+      <base>russian</base>
+      <face type="image" name="front">RU B Cv.PNG</face>
+    </piece>
+    <piece id="ru_b_ii">
+      <base>russian</base>
+      <face type="image" name="front">RU B II.PNG</face>
+    </piece>
+    <piece id="ru_cadre">
+      <base>russian</base>
+      <face type="image" name="front">RU Cadre.PNG</face>
+    </piece>
+    <piece id="rubg+r">
+      <base>russian</base>
+      <face type="image" name="front">RUBG+R.PNG</face>
+    </piece>
+    <piece id="rubg+ri">
+      <base>russian</base>
+      <face type="image" name="front">RUBG+Ri.PNG</face>
+    </piece>
+    <piece id="rubi">
+      <base>russian</base>
+      <face type="image" name="front">RUBI.PNG</face>
+    </piece>
+    <piece id="rubii">
+      <base>russian</base>
+      <face type="image" name="front">RUBII.PNG</face>
+    </piece>
+    <piece id="rubiii">
+      <base>russian</base>
+      <face type="image" name="front">RUBIII.PNG</face>
+    </piece>
+    <piece id="rubres">
+      <base>russian</base>
+      <face type="image" name="front">RUBRes.PNG</face>
+    </piece>
+    <piece id="rudummy">
+      <base>russian</base>
+      <face type="image" name="front">RUDummy.PNG</face>
+    </piece>
+    <piece id="rugt">
+      <base>russian</base>
+      <face type="image" name="front">RUGT.PNG</face>
+    </piece>
+    <piece id="rumask">
+      <base>russian</base>
+      <face type="image" name="front">RUMask.PNG</face>
+    </piece>
+    <piece id="rumoraleh">
+      <base>russian</base>
+      <face type="image" name="front">RUMoraleH.PNG</face>
+    </piece>
+  </location>
+
+</game>
+

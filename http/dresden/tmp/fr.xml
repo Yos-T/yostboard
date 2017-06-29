@@ -1,0 +1,60 @@
+<piece id="frcadre">
+  <base>french</base>
+  <face type="image" name="front">FRCadre.PNG</face>
+</piece>
+<piece id="frcv">
+  <base>french</base>
+  <face type="image" name="front">FRCv.PNG</face>
+</piece>
+<piece id="frdummy">
+  <base>french</base>
+  <face type="image" name="front">FRDummy.PNG</face>
+</piece>
+<piece id="frgc">
+  <base>french</base>
+  <face type="image" name="front">FRGC.PNG</face>
+</piece>
+<piece id="fri">
+  <base>french</base>
+  <face type="image" name="front">FRI.PNG</face>
+</piece>
+<piece id="fric">
+  <base>french</base>
+  <face type="image" name="front">FRIc.PNG</face>
+</piece>
+<piece id="frii">
+  <base>french</base>
+  <face type="image" name="front">FRII.PNG</face>
+</piece>
+<piece id="frmorale">
+  <base>french</base>
+  <face type="image" name="front">FRMorale.PNG</face>
+</piece>
+<piece id="frmoraleh">
+  <base>french</base>
+  <face type="image" name="front">FRMoraleH.PNG</face>
+</piece>
+<piece id="frog">
+  <base>french</base>
+  <face type="image" name="front">FROG.PNG</face>
+</piece>
+<piece id="frres">
+  <base>french</base>
+  <face type="image" name="front">FRRes.PNG</face>
+</piece>
+<piece id="frv">
+  <base>french</base>
+  <face type="image" name="front">FRV.PNG</face>
+</piece>
+<piece id="frvi">
+  <base>french</base>
+  <face type="image" name="front">FRVI.PNG</face>
+</piece>
+<piece id="frxiv">
+  <base>french</base>
+  <face type="image" name="front">FRXIV.PNG</face>
+</piece>
+<piece id="fryg">
+  <base>french</base>
+  <face type="image" name="front">FRYG.PNG</face>
+</piece>

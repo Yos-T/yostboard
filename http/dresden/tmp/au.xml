@@ -1,0 +1,40 @@
+<piece id="aub1lt">
+  <base>austrian</base>
+  <face type="image" name="front">AUB1Lt.PNG</face>
+</piece>
+<piece id="aubcu">
+  <base>austrian</base>
+  <face type="image" name="front">AUBCu.PNG</face>
+</piece>
+<piece id="aubi">
+  <base>austrian</base>
+  <face type="image" name="front">AUBI.PNG</face>
+</piece>
+<piece id="aubii">
+  <base>austrian</base>
+  <face type="image" name="front">AUBII.PNG</face>
+</piece>
+<piece id="aubiii">
+  <base>austrian</base>
+  <face type="image" name="front">AUBIII.PNG</face>
+</piece>
+<piece id="aubiv">
+  <base>austrian</base>
+  <face type="image" name="front">AUBIV.PNG</face>
+</piece>
+<piece id="aucadre">
+  <base>austrian</base>
+  <face type="image" name="front">AUCadre.PNG</face>
+</piece>
+<piece id="audummy">
+  <base>austrian</base>
+  <face type="image" name="front">AUDummy.PNG</face>
+</piece>
+<piece id="audummyi">
+  <base>austrian</base>
+  <face type="image" name="front">AUDummyi.PNG</face>
+</piece>
+<piece id="aumask">
+  <base>austrian</base>
+  <face type="image" name="front">AUMask.PNG</face>
+</piece>
