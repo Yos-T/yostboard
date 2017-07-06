@@ -384,7 +384,13 @@ function dropPieceBubble(e)
             return;
         }
         var from = getDragPiece( e.dataTransfer.getData("nodeid") );
+        var instack = inStack(from);
         addToStack(to, from);
+        var logentry = { action: "move", 
+                         id: -1, 
+                         src: { type: (instack?"stack":"single"), id:from.id }, 
+                         dest: { type: "piece", id: to.id } };
+        log( logentry );
     }
     else if ( !isUnfolded( to ) )
     {
@@ -400,6 +406,7 @@ function dropLocation(e)
 
     var to = this;
     var from = getDragPiece( e.dataTransfer.getData("nodeid") );
+    var instack = inStack(from);
     var offsetX = e.dataTransfer.getData("offsetX");
     var offsetY = e.dataTransfer.getData("offsetY");
     var offset = getEventOffset(e, to);
@@ -409,6 +416,12 @@ function dropLocation(e)
     setCoordinates(from, x, y);
     getPieceContainer( to ).appendChild( from );
     fold( from );
+
+    var logentry = { action: "move",
+                     id: -1,
+                     src: { type: (instack?"stack":"single"), id:from.id },
+                     dest: { type: "location", id: to.id, x: x, y: y } };
+    log( logentry );
 
     e.stopPropagation();
 }
@@ -491,3 +504,8 @@ function init()
 //    restorePos();
 }
 
+function log( entry )
+{
+    var myJSON = JSON.stringify( entry );
+    debug( myJSON );
+}

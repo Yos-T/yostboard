@@ -5,6 +5,7 @@
   </move>
 
   <move id="#index">
+    <src>@id1 @id2 @id3 ...</src>
     <src> <piece id="@id" /> </src>
     <src> <stack id="@id" /> </src>
     <dest> <location id="@id" x="x" y="y" /> </dest>
@@ -12,7 +13,15 @@
   </move>
 
   <flip id="#index">
-    <piece id="@id">facename</piece>
+    <piece id="@id" face="name" />
   </flip>
 
 </log>
+
+JSON:
+{ "action" : "move|flip|message",
+  "id" : "increment",
+  "src" : { type: "single|stack", "props" : [ @id, x, y ] },
+  "dest" : [ @id, x, y ],
+  "face" : "@name"
+}
