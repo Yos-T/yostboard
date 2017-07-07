@@ -475,37 +475,20 @@ function initDrag()
     }
 }
 
-function initTestBigStack()
-{
-    var piece = document.getElementById("c1");
-    var mappc = getPieceContainer( document.getElementById("map") );
-
-    var base = piece.cloneNode(true);
-    base.id = "cc0";
-    setPieceEvents( base );
-    mappc.appendChild( base );
-    setCoordinates( base, 0, 0 );
-
-    for (var i = 1; i < 300; i++)
-    {
-        var clone = piece.cloneNode(true);
-        clone.id = "cc"+i;
-        setPieceEvents( clone );
-        addToStack( base, clone );
-    }
-}
-
 function init()
 {
     initDrag();
-//    initTestBigStack();
 //    if (initGame)
 //        initGame();
 //    restorePos();
 }
 
+var CURRENT_LOG_ID = 0;
+
 function log( entry )
 {
+    CURRENT_LOG_ID += 1;
+    entry.id = CURRENT_LOG_ID
     var logString = JSON.stringify( entry );
 
     xmlhttp = new XMLHttpRequest();
@@ -520,5 +503,21 @@ function log( entry )
     xmlhttp.open("POST", "/log/"+game, true);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xmlhttp.send("logentry=" + logString); 
+}
+
+function initLog()
+{
+    xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200)
+        {
+            //myObj = JSON.parse(this.responseText);
+            debug(this.responseText);
+        }
+    }
+    var game = "dresden"
+    xmlhttp.open("GET", "/log/"+game, true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    //xmlhttp.send("logentry=" + logString);
 }
 
