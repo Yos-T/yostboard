@@ -506,6 +506,19 @@ function init()
 
 function log( entry )
 {
-    var myJSON = JSON.stringify( entry );
-    debug( myJSON );
+    var logString = JSON.stringify( entry );
+
+    xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) 
+        {
+            //myObj = JSON.parse(this.responseText);
+            debug(this.responseText);
+        }
+    }
+    var game = "dresden"
+    xmlhttp.open("POST", "/log/"+game, true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.send("logentry=" + logString); 
 }
+
