@@ -2,6 +2,7 @@ var express = require("express");
 
 var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080
 var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1"
+var websocket_port = 8000
 
 var server = express();
 var bodyParser = require("body-parser");
@@ -10,6 +11,9 @@ server.use(bodyParser.urlencoded({
     extended: true
 }));
 server.use(bodyParser.json());
+
+var WebSocketServer = require('ws').Server
+wss = new WebSocketServer({host:server_ip_address, port:websocket_port});
 
 server.post("/log/:game", function(req, res) {
 //    console.log( req.params );
