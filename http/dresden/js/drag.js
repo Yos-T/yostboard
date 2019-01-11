@@ -388,7 +388,7 @@ function dropPieceBubble(e)
         addToStack(to, from);
         var logentry = { action: "move", 
                          id: -1, 
-                         src: { type: (instack?"stack":"single"), id:from.id }, 
+                         src: { type: (instack?"stack":"single"), id: from.id }, 
                          dest: { type: "piece", id: to.id } };
         log( logentry );
     }
